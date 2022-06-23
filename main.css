@@ -1,0 +1,20 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
+@media print{
+    body * {
+        visibility: hidden;
+    }
+    .modal_multi{
+        width: calc(5/12 * 100%);
+    }
+    .modal_multi, .modal_multi *{
+        visibility: visible;
+        
+    }
+}
+
+[data-tab-content]{
+    display:none;
+}
+.active[data-tab-content]{
+    display:block;
+}
