@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<ht lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,21 +28,21 @@
                         <span class="text-sm text-gray-400">please choose one flatform to register</span>
                     </div>
                     <div>
-                        <a href="form/form1.html">
+                        <a href="form/form1.php">
                             <button id="btn" type="submit" class="focus:shadow-outline flex w-full cursor-pointer justify-center rounded-full bg-indigo-500 p-4 font-semibold tracking-wide text-gray-100 shadow-lg transition duration-300 ease-in hover:bg-green-400 focus:outline-none">
                                 User
                             </button>
                         </a>
                     </div>
                     <div>
-                        <a href="form/form2.html">
+                        <a href="form/form2.php">
                             <button id="btn" type="submit" class="focus:shadow-outline flex w-full cursor-pointer justify-center rounded-full bg-indigo-500 p-4 font-semibold tracking-wide text-gray-100 shadow-lg transition duration-300 ease-in hover:bg-orange-400 focus:outline-none">
                                 Seller
                             </button>
                         </a>
                         </div>
                     <div>
-                        <a href="form/form3.html">
+                        <a href="form/form3.php">
                             <button id="btn" type="submit" class="focus:shadow-outline flex w-full cursor-pointer justify-center rounded-full bg-indigo-500 p-4 font-semibold tracking-wide text-gray-100 shadow-lg transition duration-300 ease-in hover:bg-blue-400 focus:outline-none">
                                 Employer
                             </button>
@@ -50,7 +50,7 @@
                     </div>
                     <p class="text-md mt-10 flex flex-col items-center justify-center text-center text-gray-500">
                         <span>Have an account?</span>
-                        <a href="create.html" class="hover:text-indigo-500 no-underline cursor-pointer text-indigo-500 transition duration-300 ease-in hover:underline">Sign In</a>
+                        <a href="create.php" class="hover:text-indigo-500 no-underline cursor-pointer text-indigo-500 transition duration-300 ease-in hover:underline">Sign In</a>
                     </p>
                 </div>
             </div>

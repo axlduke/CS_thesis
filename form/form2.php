@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../loading.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Create Account</title>
+    <title>Create Account Seller</title>
 </head>
 <body>
     <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');</style>
@@ -26,7 +26,7 @@
                             <h1 class="font-bold text-3xl text-gray-900">Welcome Seller😊</h1>
                             <p>Enter your information to register your business</p>
                         </div>
-                        <form action="" method="post">
+                        <form action="../auth/register-auth.php" method="post">
                             <div class="flex -mx-3">
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-xs font-semibold px-1">Full Name</label>
@@ -88,22 +88,21 @@
                                         <span class="block text-blue-400 font-normal">Browse files</span>
                                         
                                         </div>
-                                    </div> <input type="file" class="h-full w-full opacity-0" name="">
+                                    </div> <input type="file" class="h-full w-full opacity-0" name="permit">
                                 </div>
                                 <div class="flex justify-between items-center text-gray-400">
                                 <span>Accepted file type:.doc, jpg, jpeg, png</span>
                                 <span class="flex items-center "><i class="fa fa-lock mr-1"></i> secure</span>
                                 </div>
                             </div>
-                            <input name="seller" type="text" value="2" hidden>
+                            <input name="type" type="text" value="2" hidden>
                             <div class="flex -mx-3">
-                                
                                 <div class="w-full px-3 mb-5">
-                                    <button name="submit" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
+                                    <button name="form2" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
                                 </div>
                             </div>
                         </form>
-                        <a href="../create.html">
+                        <a href="../create.php">
                             <div class="w-full px-3 mb-5">
                                 <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Back</button>
                             </div>

@@ -18,7 +18,7 @@
                         Login
                     </h2>
                 </div>
-                <form class="space-y-6" action="#_" method="POST">
+                <form class="space-y-6" action="auth/register-auth.php" method="POST">
                     <input type="hidden" name="remember" value="true">
                     <div class="relative">
                         <div class="absolute right-0 mt-4">
@@ -53,7 +53,7 @@
                     </div>
                     <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
                         <span>Don't have an account?</span>
-                        <a href="form.html" class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</a>
+                        <a href="form.php" class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</a>
                     </p>
                 </form>
             </div>
