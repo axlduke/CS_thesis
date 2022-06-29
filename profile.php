@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Main</title>
+    <title>Profile</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -67,7 +67,7 @@
                         </button>
                         <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
-                                <li><a href="profile.html" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
+                                <li><a href="profile.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
@@ -93,7 +93,7 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="main.html" class="block py-1 md:py-3 pl-1 align-middle text-green-300 no-underline hover:text-green-500 border-b-2 border-white border-green-300">
+                        <a href="main.php" class="block py-1 md:py-3 pl-1 align-middle text-green-300 no-underline hover:text-green-500 border-b-2 border-white border-green-300">
                             <i class="fas fa-home fa-fw mr-3 text-green-300 hover:text-green-500"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
@@ -112,12 +112,12 @@
                 <!-- Profile Card -->
                 <div class="border-t-4 border-green-400 bg-white p-3">
                 <div class="image overflow-hidden">
-                    <img class="w-[27rem] h-[26rem]" src="img/ace.jpg" alt="profile" />
+                    <img class="w-[27rem] h-[26rem]" src="img/<?php echo $profile?>.jpg" alt="profile" />
                     <!-- <img class="mx-auto h-auto w-full" src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="" /> -->
                 </div>
                 <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $fname?></h1>
                 <h3 class="font-lg text-semibold leading-6 text-gray-600"><?php ?></h3>
-                <p class="text-sm leading-6 text-gray-500 hover:text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
+                <p class="text-sm leading-6 text-gray-500 hover:text-gray-600"><?php echo $about?></p>
                 <ul class="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm hover:text-gray-700 hover:shadow">
                     <li class="flex items-center py-3">
                     <span>Status</span>
@@ -185,7 +185,7 @@
                                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                                                 </button>
                                             </div>
-                                            <form action="auth/update.php" method="post" role="form" enctype="multipart/form-data">
+                                            <form action="auth/update.php" method="post" enctype="multipart/form-data">
                                                 <div class="border-t border-gray-200">
                                                     <dl>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -214,10 +214,10 @@
                                                         </div>
                                                     </dl>
                                                 </div>
+                                                <button name="about_btn" type="submit" class="text-red-400 font-bold text-2xl bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
+                                                    Updates
+                                                </button>
                                                 <div class="flex justify-center items-center">
-                                                    <button name="about" type="button" class="text-red-400 font-bold text-2xl bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                        Update
-                                                    </button>
                                                 </div>
                                             </form>
                                         </div>

@@ -1,3 +1,20 @@
+<?php
+    session_start();
+    include "auth/db.php";
+    
+    if (!isset($_SESSION['user_id'])){
+		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+		echo '<script>window.location.replace("login.php");</script>';
+	}
+    $user_id = $_SESSION['user_id'];
+    $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $user_id = $row['user_id'];
+        $fname = $row['fname'];
+        $contact = $row['contact'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
