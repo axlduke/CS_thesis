@@ -17,7 +17,7 @@
         $address = $row['address'];
         $password = $row['password'];
         $about = $row['about'];
-        $profile = $row['profile'];
+        $pictures = $row['pictures'];
     }
 ?>
 <!DOCTYPE html>
@@ -112,7 +112,7 @@
                 <!-- Profile Card -->
                 <div class="border-t-4 border-green-400 bg-white p-3">
                 <div class="image overflow-hidden">
-                    <img class="w-[27rem] h-[26rem]" src="img/<?php echo $profile?>.jpg" alt="profile" />
+                    <img class="w-[27rem] h-[26rem]" src="img/<?php echo $pictures?>.jpg" alt="profile" />
                     <!-- <img class="mx-auto h-auto w-full" src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="" /> -->
                 </div>
                 <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $fname?></h1>
@@ -185,7 +185,7 @@
                                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                                                 </button>
                                             </div>
-                                            <form action="auth/update.php" method="post" enctype="multipart/form-data">
+                                            <form action="auth/update.php" method="post" role="form" enctype="multipart/form-data">
                                                 <div class="border-t border-gray-200">
                                                     <dl>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -210,7 +210,11 @@
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Profile</dt>
-                                                            <input name="profile" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $profile ?>">
+                                                            <input name="pictures" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $profile ?>">
+                                                        </div>
+                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Contact</dt>
+                                                            <input name="contact" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $contact ?>">
                                                         </div>
                                                     </dl>
                                                 </div>
