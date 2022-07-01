@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="/path/to/cdn/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-1.6.2.min.js"></script>
     <script src="/path/to/dist/js/image-zoom.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="main.css">
@@ -58,7 +60,7 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?></span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?></span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -107,13 +109,27 @@
     <div class="mt-9 mb-5 lg:mt-24 overflow-auto">
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap md:-mx-2 md:flex">
+                
             <!-- Left Side -->
             <div class="w-full md:mx-2 md:w-3/12">
                 <!-- Profile Card -->
                 <div class="border-t-4 border-green-400 bg-white p-3">
                 <div class="image overflow-hidden">
-                    <img class="w-[27rem] h-[26rem]" src="img/<?php echo $pictures?>.jpg" alt="profile" />
-                    <!-- <img class="mx-auto h-auto w-full" src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="" /> -->
+                    <img class="w-[27rem] h-[26rem]" src="img/<?php echo $pictures?>" alt="profile" />
+                    
+                    <form action="auth/update.php" method="post" role="form" enctype="multipart/form-data">
+                        <div class="relative h-40 -mt-40 rounded-lg border-gray-200 bg-gray-800 opacity-0 hover:opacity-50 flex justify-center items-center hover:cursor-pointer">
+                            <div class="absolute mb-5">
+                                <div class="flex flex-col items-center"> 
+                                <i class="uil uil-upload text-white text-3xl"></i> 
+                                <span class="block text-white font-normal">Upload your Profile</span> 
+                                <span class="block text-white font-normal">or</span>
+                                <span class="block text-white font-normal">Browse files</span>            
+                                </div>
+                            </div> <input type="file" class="h-full w-full opacity-0" name="pic">
+                            <button name="upload" type="submit" class="absolute block text-yellow-400 font-normal mt-32">Upload</button>
+                        </div>
+                    </form>
                 </div>
                 <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $fname?></h1>
                 <h3 class="font-lg text-semibold leading-6 text-gray-600"><?php ?></h3>
@@ -146,6 +162,7 @@
                         </svg>
                         </span>
                         <span class="tracking-wide">About</span>
+                        <!-- <?php echo $_SESSION['about_success']?> -->
                     </div>
                     <div class="text-gray-700">
                         <div class="grid text-sm md:grid-cols-2">
@@ -209,20 +226,15 @@
                                                             <input name="about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $about ?>">
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">Profile</dt>
-                                                            <input name="pictures" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $profile ?>">
-                                                        </div>
-                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Contact</dt>
                                                             <input name="contact" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $contact ?>">
+                                                            <input name="user_id" type="text" class="hidden" value="<?php echo $user_id?>">
                                                         </div>
                                                     </dl>
                                                 </div>
                                                 <button name="about_btn" type="submit" class="text-red-400 font-bold text-2xl bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
                                                     Updates
                                                 </button>
-                                                <div class="flex justify-center items-center">
-                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -593,7 +605,6 @@
     </footer>
 
     <script>
-        
         var modalparent = document.getElementsByClassName("modal_multi");
 
         // Get the button that opens the modal
