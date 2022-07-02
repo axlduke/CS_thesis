@@ -21,20 +21,20 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','$type')";
+				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$address','$password','$type','','','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and `password`='$password'";
 					$result = $conn->query($sql);
-					if($result->num_rows == 0){
+					if($result->num_rows > 0){
+						$_SESSION['user_id'];
 						$row = mysqli_fetch_array($result);
 						$_SESSION['user_id'] = $row['user_id'];
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
 						$_SESSION['address'] = $row['address'];
 						$_SESSION['password'] = $row['password'];
-						// echo "11";
+
 						header("Location: ../main.php");
-						// echo '<script>window.alert("ERROR ON USERS!")</script>';
 					}
 				} else{
 					echo '<script>window.alert("ERROR ON USERS!")</script>';
@@ -70,7 +70,7 @@ include "db.php";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
-					if($result->num_rows == 0){
+					if($result->num_rows > 0){
 						$_SESSION['user_id'];
 						$row = $result->fetch_array();
 						$_SESSION['user_id'] = $row['user_id'];
@@ -114,7 +114,7 @@ include "db.php";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
-					if($result->num_rows == 0){
+					if($result->num_rows > 0){
 						$_SESSION['user_id'];
 						$row = $result->fetch_array();
 						$_SESSION['user_id'] = $row['user_id'];
