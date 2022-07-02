@@ -78,11 +78,11 @@
                             <input name="type" type="text" value="3" hidden>
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mb-5">
-                                    <button name="form3" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
+                                    <button name="manager" type="submit" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
                                 </div>
                             </div>
                         </form>
-                        <a href="../create.php">
+                        <a href="../form.php">
                             <div class="w-full px-3 mb-5">
                                 <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Back</button>
                             </div>

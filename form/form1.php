@@ -39,7 +39,7 @@
                                     <label for="" class="text-xs font-semibold px-1">Email Address</label>
                                     <div class="flex">
                                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                        <input name="email" type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="email@gmail.com" required maxlength="20">
+                                        <input name="email" type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="email@gmail.com" required maxlength="30">
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                             <input name="type" type="text" value="1" hidden>
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mb-5">
-                                    <button name="form1" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
+                                    <button name="users" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
                                 </div>
                             </div>
                         </form>

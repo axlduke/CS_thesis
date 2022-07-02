@@ -50,7 +50,7 @@
                     </div>
                     <p class="text-md mt-10 flex flex-col items-center justify-center text-center text-gray-500">
                         <span>Have an account?</span>
-                        <a href="create.php" class="hover:text-indigo-500 no-underline cursor-pointer text-indigo-500 transition duration-300 ease-in hover:underline">Sign In</a>
+                        <a href="login.php" class="hover:text-indigo-500 no-underline cursor-pointer text-indigo-500 transition duration-300 ease-in hover:underline">Sign In</a>
                     </p>
                 </div>
             </div>
