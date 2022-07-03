@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "auth/db.php";
+    include "../auth/db.php";
     
     if (!isset($_SESSION['user_id'])){
 		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -89,12 +89,12 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="admin-seller.php" class="block py-1 md:py-3 pl-1 align-middle text-blue-400 no-underline hover:text-blue-600 border-b-2 border-white border-blue-600">
+                        <a href="../shop.html" class="block py-1 md:py-3 pl-1 align-middle text-blue-400 no-underline hover:text-blue-600 border-b-2 border-white border-blue-600">
                             <i class="fas fa-home fa-fw mr-3 text-blue-400"></i><span class="pb-1 md:pb-0 text-sm">Dashboard</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="e-com/seller-order.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="job/post.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="uil uil-shopping-cart fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Orders</span>
                         </a>
                     </li>
@@ -108,183 +108,31 @@
         </div>
     </nav>
     <!--Container-->
-    <div class="flex justify-center w-full mt-28 mb-5">
-        <div class="flex grid grid-cols-1 lg:grid-cols-5 grid-flow-row lg:gap-3 justify-items-stretch px-5">
-            <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                <div class="mb-5">
-                    <i class="uil uil-bill text-5xl text-orange-400"></i>
-                </div>
-                <div class="text-center">
-                    <p class="text-md text-gray-700 font-bold">₱2,500,800</p>
-                    <p class="text-base text-gray-400">End of the Year</p>
-                </div>
+    <div class="flex justify-center mt-28 mb-5">
+            <div class="max-w-full flex ">
+                <table class="table-auto bg-white px-5">
+                    <thead class="">
+                        <tr class="bg-slate-700">
+                            <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
+                        </tr>
+                    </thead>
+                    <!-- PHP script -->
+                    <tbody class="">
+                        <tr class="">
+                            <td class="py-5 lg:px-28">#123456</td>
+                            <td class="py-5 lg:px-28">03/07/2022</td>
+                            <td class="py-5 lg:px-28 underline text-red-300">view</td>
+                            <td class="py-5 lg:px-28">₱1,500</td>
+                            <td class="py-5 lg:px-28">Shipping</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                <div class="mb-5">
-                    <i class="uil uil-arrow-growth text-5xl text-orange-400"></i>
-                </div>
-                <div class="text-center">
-                    <p class="text-md text-gray-700 font-bold">₱208,400</p>
-                    <p class="text-base text-gray-400">Revenue Per Month</p>
-                    
-                </div>
-            </div>
-            <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                <div class="mb-5">
-                    <i class="uil uil-chart-line text-5xl text-orange-400"></i>
-                </div>
-                <div class="text-center">
-                    <p class="text-md text-gray-700 font-bold">₱70.9%</p>
-                    <p class="text-base text-gray-400">Conversation Rate</p>
-                </div>
-            </div>
-            <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                <div class="mb-5">
-                    <i class="uil uil-money-insert text-5xl text-orange-400"></i>
-                </div>
-                <div class="text-center">
-                    <p class="text-md text-gray-700 font-bold">₱70.9%</p>
-                    <p class="text-base text-gray-400">Gross Profit Margin</p>
-                </div>
-            </div>
-            <div class="row-span-2 container max-w-full mx-auto items-center text-center bg-white rounded drop-shadow-lg px-5 md:px-0">
-                <div class="mb-1 tracking-wide px-4 py-6" >
-                    <h2 class="text-gray-800 font-semibold mt-1">67 Users reviews</h2>
-                    <div class="border-b -mx-8 px-8 pb-3">
-                        <div class="flex items-center mt-1 py-3">
-                            <div class=" w-1/5 text-indigo-500 tracking-tighter">
-                            <span>5 star</span>
-                            </div>
-                            <div class="w-3/5">
-                            <div class="bg-gray-300 w-full rounded-lg h-2">
-                                <div class=" w-7/12 bg-green-500 rounded-lg h-2"></div>
-                            </div>
-                            </div>
-                            <div class="w-1/5 text-gray-700 pl-3">
-                            <span class="text-sm">51%</span>
-                            </div>
-                        </div><!-- first -->
-                        <div class="flex items-center mt-1 py-3">
-                            <div class="w-1/5 text-indigo-500 tracking-tighter">
-                            <span>4 star</span>
-                            </div>
-                            <div class="w-3/5">
-                            <div class="bg-gray-300 w-full rounded-lg h-2">
-                                <div class="w-1/5 bg-green-400 rounded-lg h-2"></div>
-                            </div>
-                            </div>
-                            <div class="w-1/5 text-gray-700 pl-3">
-                            <span class="text-sm">17%</span>
-                            </div>
-                        </div><!-- second -->
-                        <div class="flex items-center mt-1 py-3">
-                            <div class="w-1/5 text-indigo-500 tracking-tighter">
-                            <span>3 star</span>
-                            </div>
-                            <div class="w-3/5">
-                            <div class="bg-gray-300 w-full rounded-lg h-2">
-                                <div class=" w-3/12 bg-yellow-400 rounded-lg h-2"></div>
-                            </div>
-                            </div>
-                            <div class="w-1/5 text-gray-700 pl-3">
-                            <span class="text-sm">19%</span>
-                            </div>
-                        </div><!-- thierd -->
-                        <div class="flex items-center mt-1 py-3">
-                            <div class=" w-1/5 text-indigo-500 tracking-tighter">
-                            <span>2 star</span>
-                            </div>
-                            <div class="w-3/5">
-                            <div class="bg-gray-300 w-full rounded-lg h-2">
-                                <div class=" w-1/5 bg-yellow-500 rounded-lg h-2"></div>
-                            </div>
-                            </div>
-                            <div class="w-1/5 text-gray-700 pl-3">
-                            <span class="text-sm">8%</span>
-                            </div>
-                        </div><!-- 4th -->
-                        <div class="flex items-center mt-1 py-3">
-                            <div class="w-1/5 text-indigo-500 tracking-tighter">
-                            <span>1 star</span>
-                            </div>
-                            <div class="w-3/5">
-                            <div class="bg-gray-300 w-full rounded-lg h-2">
-                                <div class=" w-2/12 bg-red-400 rounded-lg h-2"></div>
-                            </div>
-                            </div>
-                            <div class="w-1/5 text-gray-700 pl-3">
-                            <span class="text-sm">5%</span>
-                            </div>
-                        </div><!-- 5th -->
-                    </div>
-                </div>
-                <div class="w-full px-4">
-                    <p class="text-gray-700 text-sm py-1">
-                        Here is the result for the latest Responsible would recommmend this 100 customers
-                    </p>
-                </div>
-            </div>
-            <div class="col-span-2 w-full bg-white shadow-2xl overflow-hidden rounded-lg flex flex-col justify-center items-center">
-                <div class="mb-1">
-                    Goal Completion
-                </div>
-                <div class="">
-                    <canvas class="p-10" id="chartBar"></canvas>
-                </div>
-            </div>
-            <div class="col-span-2 justify-self-stretch w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                <div class="mb-1 font-bold">
-                    Order Status    
-                </div>
-                <div class="aspect-square w-72">
-                    <canvas class="p-10" id="chartDoughnut"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <!-- Jobs Part -->
-    
-    <!-- E-commerce End -->
-    
-    <!--/container-->
-    <footer class="bg-white border-t border-gray-400 shadow">
-        <div class="container max-w-md mx-auto flex py-8">
-            <div class="w-full mx-auto flex flex-wrap">
-                <div class="flex w-full md:w-1/2 ">
-                    <div class="px-8">
-                        <h1 class="font-bold font-bold text-gray-900">DWCL BS - Computer Science 4</h1>
-                        <h3 class="font-bold font-bold text-gray-900">Developer</h3>
-                        <p class="py-4 text-gray-600 text-sm">
-                            Ace Malto <br>
-                            Mark Limpo
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex w-full md:w-1/2">
-                    <div class="px-8">
-                        <h3 class="font-bold font-bold text-gray-900">Social</h3>
-                        <ul class="list-reset items-center text-sm pt-3">
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Facebook</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Instagram</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">LinkedIn</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </footer>
-
     <script>
         const labelsBarChart = [
             "January",
