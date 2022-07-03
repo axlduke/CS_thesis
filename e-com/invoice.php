@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -82,13 +83,18 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="../shop.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-gray-900 border-b-2 border-white hover:border-pink-600">
-                            <i class="fas fa-home fa-fw mr-3 text-gray-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                        <a href="seller-profile.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-blue-400 border-b-2 border-white hover:border-blue-400">
+                            <i class="fas fa-home fa-fw mr-3 text-gray-400 hover:text-blue-400"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="job/post.html" class="block py-1 md:py-3 pl-1 align-middle text-orange-400 no-underline hover:text-orange-400 border-b-2 border-white border-orange-400">
-                            <i class="fa fa-shopping-cart fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Cart</span>
+                        <a href="seller-order.php" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-orange-400 text-gray-400 border-b-2 border-white hover:border-orange-400">
+                            <i class="uil uil-shopping-cart fa-fw mr-3 text-gray-400 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Orders</span>
+                        </a>
+                    </li>
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="invoice.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-orange-400 border-b-2 border-white border-orange-400">
+                            <i class="uil uil-receipt fa-fw mr-3 text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Invoice</span>
                         </a>
                     </li>
                 </ul>
