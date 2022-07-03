@@ -51,8 +51,8 @@
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
 
             <div class="w-1/2 pl-2 md:pl-0">
-                <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="profile.html">
-                    Profile
+                <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="seller-profile.php">
+                    Seller Profile
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -69,11 +69,11 @@
                         </button>
                         <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
-                                <li><a href="profile.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
+                                <li><a href="seller-profile.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
-                                <li><a href="auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="../auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                 <div class="image overflow-hidden">
                     <img class="w-[27rem] h-[26rem]" src="img/<?php echo $pictures?>" alt="profile" />
                     
-                    <form action="../auth/update.php" method="post" role="form" enctype="multipart/form-data">
+                    <form action="../auth/seller-update.php" method="post" role="form" enctype="multipart/form-data">
                         <div class="relative h-40 -mt-40 rounded-lg border-gray-200 bg-gray-800 opacity-0 hover:opacity-50 flex justify-center items-center hover:cursor-pointer">
                             <div class="absolute mb-5">
                                 <div class="flex flex-col items-center"> 
@@ -202,7 +202,7 @@
                                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                                                 </button>
                                             </div>
-                                            <form action="auth/update.php" method="post" role="form" enctype="multipart/form-data">
+                                            <form action="../auth/seller-update.php" method="post" role="form" enctype="multipart/form-data">
                                                 <div class="border-t border-gray-200">
                                                     <dl>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -220,10 +220,6 @@
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Password</dt>
                                                             <input name="password" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $password ?>">
-                                                        </div>
-                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                            <input name="about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $about ?>">
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Contact</dt>
