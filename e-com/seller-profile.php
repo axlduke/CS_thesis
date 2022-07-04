@@ -100,17 +100,17 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="e-com/seller-order.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="seller-order.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="uil uil-shopping-cart fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Orders</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="e-com/posted-items.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="posted-items.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="uil uil-clipboard-notes fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Items</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="job/post.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="uil uil-comment-question fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Support</span>
                         </a>
                     </li>
