@@ -48,7 +48,6 @@
                             //         </div>
                             //     </div>
                             // </div>';
-    
                             header('location: ../e-com/seller-profile.php');
                         } else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
