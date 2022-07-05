@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../loading.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Create Account Seller</title>
+    <title>Create Seller Account</title>
 </head>
 <body>
     <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');</style>

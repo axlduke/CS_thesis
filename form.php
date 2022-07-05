@@ -19,7 +19,7 @@
             <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
                 <div class="text-center">
                     <h2 class="mt-6 text-3xl font-bold text-gray-900">
-                        Login
+     <!--                    Login -->
                     </h2>
                 </div>
                 <div class="z-10 w-full max-w-md space-y-8 rounded-xl bg-white">
