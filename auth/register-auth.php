@@ -30,6 +30,7 @@ include "db.php";
 						$row = mysqli_fetch_array($result);
 						$_SESSION['user_id'] = $row['user_id'];
 						$_SESSION['fname'] = $row['fname'];
+						$_SESSION['type'] = $row['type'];
 						$_SESSION['email'] = $row['email'];
 						$_SESSION['address'] = $row['address'];
 						$_SESSION['password'] = $row['password'];
@@ -76,6 +77,7 @@ include "db.php";
 						$_SESSION['user_id'] = $row['user_id'];
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
+						$_SESSION['type'] = $row['type'];
 						$_SESSION['address'] = $row['address'];
 						$_SESSION['password'] = $row['password'];
 						header('Location: ../shop.php');
@@ -121,6 +123,7 @@ include "db.php";
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
 						$_SESSION['address'] = $row['address'];
+						$_SESSION['type'] = $row['type'];
 						$_SESSION['password'] = $row['password'];
 						header('Location: ../jobs.php');
 					}
@@ -158,14 +161,28 @@ include "db.php";
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['fname'] = $row['fname'];
 				$_SESSION['contact'] = $row['contact'];
+				$_SESSION['type'] = $row['type'];
 				$_SESSION['address'] = $row['address'];
-                
-                header('location: ../main.php');
+                $row['user_id'] =$_SESSION['user_id'];
+                if ($row['type'] == 0) {
+                        header("Refresh:0 url=../admin-seller.php");
+                    }
+                    elseif ($row['type'] == 1) {
+                        header("Refresh:0 url=../main.php");
+                    }
+                    elseif ($row['type'] == 2) {
+                        header("Refresh:0 url=../jobs.php");
+                    }                    
+                    else{
+                        header("Refresh:0; url=../shop.php");
+                    }            
             } else {
                 echo 'Incorrect email or password.';
+                header("Refresh:1; url=../login.php");
             }
         } else {
             echo 'Email address does not exist.';
+             header("Refresh:1; url=../login.php");
         }
 	}
 ?>

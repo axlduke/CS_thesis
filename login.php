@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    require_once('auth/db.php')
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,7 @@
     <link rel="stylesheet" href="loading.css">
     <script src="jquery-2.1.4.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Create Account</title>
+    <title>Login Page</title>
 </head>
 <body>
     <div class="header">
