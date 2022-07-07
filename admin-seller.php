@@ -14,6 +14,15 @@
         $fname = $row['fname'];
         $contact = $row['contact'];
         $pictures = $row['pictures'];
+        require_once('auth/db.php');
+        if($_SESSION['type']==2){
+        }
+        else{
+            header('location: login.php');
+        }
+            if(!isset($_SESSION['user_id'])){
+                header('location: login.php');
+        }
     }
 ?>
 
