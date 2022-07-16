@@ -51,12 +51,8 @@
     }
 </style>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-
     <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
-
-
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
-
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="#">
                     Invoice
@@ -102,18 +98,23 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="../admin-seller.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-blue-400 border-b-2 border-white hover:border-blue-400">
-                            <i class="fas fa-home fa-fw mr-3 text-gray-400 hover:text-blue-400"></i><span class="pb-1 md:pb-0 text-sm">Dashboard</span>
+                        <a href="../admin-seller.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                            <i class="fas fa-home fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Dashboard</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="seller-order.php" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-orange-400 text-gray-400 border-b-2 border-white hover:border-orange-400">
-                            <i class="uil uil-shopping-cart fa-fw mr-3 text-gray-400 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Orders</span>
+                        <a href="seller-order.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                            <i class="uil uil-shopping-cart fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Orders</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="invoice.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-orange-400 border-b-2 border-white border-orange-400">
-                            <i class="uil uil-receipt fa-fw mr-3 text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Invoice</span>
+                            <i class="uil uil-receipt fa-fw mr-3 text-orange-400 text-gray-400"></i><span class="pb-1 md:pb-0 text-sm">Invoice</span>
+                        </a>
+                    </li>
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-gray-400 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                            <i class="uil uil-comment-question fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Support</span>
                         </a>
                     </li>
                 </ul>
@@ -121,36 +122,11 @@
         </div>
     </nav>
     <!--Container-->
-    <div class="container w-full mx-auto pt-20">
-        <div class="w-full md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-            <div class="flex justify-center items-center bg-white">
-                <div class=" px-4 py-5">
-                    <h1 class="lg:text-2xl text-orange-600 leading-tight mb-2">
-                        <i class="mdi mdi-store-outline text-orange-400 text-2xl md:text-3xl lg:text-4xl"></i>
-                        Invoice Cart
-                    </h1>
-                </div>
-                <div class="flex  lg:ml-[62rem] lg:px-6">
-                    <input name="contact" type="text" class="w-full sm:-ml-10 lg:-ml-10 lg:pl-12 lg:pr-3 lg:py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Search...">
-                </div>
-            </div>
-            <!-- Start of Invoice -->
-
+    <div class="container w-full mx-auto">
+        <div class="w-full md:px-0 mb-16 text-gray-800 leading-normal">
             <div class="">
-                <div class="grid grid-cols-2 lg:grid-cols-5 lg:grid-cols-8 px-10 py-10 gap-2">
-                    <div class="flex cursor-pointer flex-col items-center justify-center space-x-4 rounded-sm px-3 py-2 bg-gray-300 cursor-pointer w-40">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <div>
-                                <h1 class="mb-1 py-3 text-md font-bold text-gray-700">Mark Limpo</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
+                <div class="grid grid-cols-2 lg:grid-cols-5 lg:grid-cols-8 px-10 gap-2">
+                        <div class="modal modal_multi fade fixed top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
                             <div id="print" class="modal-content mx-auto max-w-6xl bg-white py-5 px-5 rounded-md shadow-lg">
                                 <div class="flex grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 p-4">
                                     <div class="px-2">
@@ -326,11 +302,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="flex">
-                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> COD </span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -341,43 +312,6 @@
             </div>
         </div>
     </div>
-    <!--/container-->
-    <footer class="bg-white border-t border-gray-400 shadow">
-        <div class="container max-w-md mx-auto flex py-8">
-            <div class="w-full mx-auto flex flex-wrap">
-                <div class="flex w-full md:w-1/2 ">
-                    <div class="px-8">
-                        <h1 class="font-bold font-bold text-gray-900">DWCL BS - Computer Science 4</h1>
-                        <h3 class="font-bold font-bold text-gray-900">Developer</h3>
-                        <p class="py-4 text-gray-600 text-sm">
-                            Ace Malto <br>
-                            Mark Limpo
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex w-full md:w-1/2">
-                    <div class="px-8">
-                        <h3 class="font-bold font-bold text-gray-900">Social</h3>
-                        <ul class="list-reset items-center text-sm pt-3">
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Facebook</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Instagram</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">LinkedIn</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </footer>
 
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");
