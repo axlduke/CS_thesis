@@ -114,7 +114,7 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="invoice.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="e-com/invoice.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="uil uil-receipt fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Invoice</span>
                         </a>
                     </li>
