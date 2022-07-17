@@ -53,9 +53,10 @@
             <div class="w-1/2 pr-0">
                 <div class="flex relative inline-block float-right">
 
-                    <div class="relative text-sm">
-                        <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?></span>
+                    <div class="flex flex-row space-x-8">
+                        <button id="userButton" class="max-w-xs rounded-full flex items-center text-sm focus:outline-none relative mr-3">
+                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?php echo $pictures?>" alt="Avatar of User">
+                            <span class="hidden md:inline-block"><?php echo $fname?></span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -119,94 +120,49 @@
         </div>
     </nav>
     <!--Container-->
-    <div class="flex justify-center mt-28 mb-5">
-            <div class="max-w-full flex ">
-                <table class="table-auto bg-white px-5">
-                    <thead class="">
-                        <tr class="bg-slate-700">
-                            <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
-                        </tr>
-                    </thead>
-                    <!-- PHP script -->
-                    <tbody class="">
-                        <tr class="">
-                            <td class="py-5 lg:px-28">#123456</td>
-                            <td class="py-5 lg:px-28">03/07/2022</td>
-                            <td class="py-5 lg:px-28 underline text-red-300">
-                                <a href="invoice.php">view</a>
-                            </td>
-                            <td class="py-5 lg:px-28">₱1,500</td>
-                            <td class="py-5 lg:px-28">Shipping</td>
-                        </tr>
-                    </tbody>
+    <div class="mt-28">
+        <div class="flex mb-5 px-10">
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative mt-1">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+            </div>
+        </div>
+        <div class="mb-5 flex justify-center">
+            <div class="flex max-w-full">
+                <table class="table-auto bg-white px-5"> 
+                <thead class="">
+                    <tr class="bg-slate-700">
+                    <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
+                    <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
+                    <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
+                    <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
+                    <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
+                    </tr>
+                </thead>
+                <!-- PHP script -->
+                <tbody class="">
+                    <tr class="">
+                    <td class="py-5 lg:px-28">#123456</td>
+                    <td class="py-5 lg:px-28">03/07/2022</td>
+                    <td class="py-5 text-red-300 underline lg:px-28">
+                        <a href="invoice.php">view</a> <!-- ID OF THE CURRENT ORDER-->
+                    </td>
+                    <td class="py-5 lg:px-28">₱1,500</td>
+                    <td class="py-5 lg:px-28">Shipping</td>
+                    </tr>
+                </tbody>
                 </table>
             </div>
-    </div>
-    <script>
-        const labelsBarChart = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-        ];
-        const dataBarChart = {
-            labels: labelsBarChart,
-            datasets: [
-            {
-                label: "My First dataset",
-                backgroundColor: "hsl(252, 82.9%, 67.8%)",
-                borderColor: "hsl(252, 82.9%, 67.8%)",
-                data: [0, 10, 5, 2, 20, 30, 45],
-            },
-            ],
-        };
-
-        const configBarChart = {
-            type: "bar",
-            data: dataBarChart,
-            options: {},
-        };
-
-        var chartBar = new Chart(
-            document.getElementById("chartBar"),
-            configBarChart
-        );
-    </script>
-
-    <script>
-        const dataDoughnut = {
-            labels: ["JavaScript", "Python", "Ruby"],
-            datasets: [
-            {
-                label: "My First Dataset",
-                data: [300, 50, 100],
-                backgroundColor: [
-                "rgb(133, 105, 241)",
-                "rgb(164, 101, 241)",
-                "rgb(101, 143, 241)",
-                ],
-                hoverOffset: 4,
-            },
-            ],
-        };
-
-        const configDoughnut = {
-            type: "doughnut",
-            data: dataDoughnut,
-            options: {},
-        };
-
-        var chartBar = new Chart(
-            document.getElementById("chartDoughnut"),
-            configDoughnut
-        );
-    </script>
+        </div>
+    </div>        
 
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");

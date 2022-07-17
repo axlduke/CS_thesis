@@ -171,10 +171,10 @@ include "db.php";
                         header("Refresh:0 url=../main.php");
                     }
                     elseif ($row['type'] == 2) {
-                        header("Refresh:0 url=../jobs.php");
+                        header("Refresh:0 url=../shop.php");
                     }                    
-                    else{
-                        header("Refresh:0; url=../shop.php");
+                    elseif ($row['type'] == 3){
+                        header("Refresh:0; url=../jobs.php");
                     }            
             } else {
                 echo 'Incorrect email or password.';
@@ -182,7 +182,7 @@ include "db.php";
             }
         } else {
             echo 'Email address does not exist.';
-             header("Refresh:1; url=../login.php");
+            header("Refresh:1; url=../login.php");
         }
 	}
 ?>

@@ -126,118 +126,190 @@
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 mt-28">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="flex relative mt-1 py-3 ">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd">
-                            </path>
-                        </svg>
-                    </div>
-                    <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Items...">
-                    <button class="myBtn_multi ml-3 bg-blue-500 text-white rounded-md hover:text-white hover:bg-blue-700 p-2 cursor-pointer">
-                        Create Post
-                    </button>
-                    <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                        <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                            <div class="divide-y divide-gray-200">
-                                <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Product Name</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Product Name" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Price</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="₱2,000" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Color</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Color" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Brand</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Quantity</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="5" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Product Description</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, suscipit pariatur at rerum neque in repellat optio dolorem rem provident." />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Images</label>
-                                    <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm"/>
-                                    <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm"/>
-                                    <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm"/>
-                                    <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm"/>
-                                    <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm"/>
-                                </div>
-                                </div>
-                                <div class="flex items-center space-x-4 pt-4">
+                    <form action="" method="post">
+                        <div class="flex modal modal_multi fade fixed hidden top-0 left-0 h-full w-full px-5 py-20 outline-none sm:py-32 lg:py-20 lg:mt-10">
+                            <div class="modal-content mx-auto w-[80rem] rounded-md bg-white py-5 px-5 shadow-lg">
+                                <div class="divide-gray-200">
+                                    <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
+                                        <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Product Name</div>
+                                            <input name="productName" type="text" class="border border-gray-300 rounded-md pl-3">
+                                        </div>
+                                        <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Product Description</div>
+                                            <input name="productDes" type="text" class="border border-gray-300 rounded-md pl-3">
+                                        </div>
+                                        <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Categories</div>
+                                            <input list="categories" name="category" class="border border-gray-300 rounded-md pl-3" placeholder="Search...">
+                                            <datalist id="categories">
+                                                <option value="women clothes">
+                                                <option value="men clothes">
+                                                <option value="beauty">
+                                                <option value="health">
+                                                <option value="fashion accessories">
+                                                <option value="home appliances">
+                                                <option value="men shoes">
+                                                <option value="mobile & gadget">
+                                                <option value="travel & luggage">
+                                                <option value="women bags">
+                                                <option value="women shoes">
+                                                <option value="men bags">
+                                                <option value="watches">
+                                                <option value="audio">
+                                                <option value="food & beverage">
+                                                <option value="pets">
+                                                <option value="mom & baby">
+                                                <option value="baby & kids fashion">
+                                                <option value="gaming & consoles">
+                                                <option value="cameras & drones">
+                                                <option value="home & living">
+                                                <option value="sports & outdoors">
+                                                <option value="stationary">
+                                                <option value="hobbies & collections">
+                                                <option value="automobiles">
+                                                <option value="motorcycles">
+                                                <option value="books & magazines">
+                                                <option value="computers & accessories">
+                                            </datalist>
+                                        </div>
+                                        <div class="grid lg:grid-cols-3 grid-cols-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Weight</div>
+                                            <input name="weight" type="text" class="border border-gray-300 rounded-md pl-3" placeholder="max 50kg">
+                                            <input list="kilo" name="shippingFee" class="border border-gray-300 rounded-md pl-1" placeholder="W ≥ F">
+                                            <datalist id="kilo">
+                                                <option value="100 = 10kg">
+                                                <option value="200 = 20kg">
+                                                <option value="300 = 30kg">
+                                                <option value="400 = 40kg">
+                                                <option value="500 = 50kg">
+                                            </datalist>
+                                        </div>
+                                        <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Quantity</div>
+                                            <input name="quantity" type="text" class="border border-gray-300 rounded-md pl-3">
+                                        </div>
+                                        <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Price</div>
+                                            <input name="price" type="text" class="border border-gray-300 rounded-md pl-3">
+                                        </div>
+                                    </div>
+                                    <div class="grid lg:grid-cols-4 grid-cols-1 py-2">
+                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                            <div class="absolute">
+                                                <div class="flex flex-col items-center "> 
+                                                <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                                                <i class="uil uil-image text-gray-300 text-4xl"></i>
+                                                <span class="block text-gray-400 font-normal">or</span>
+                                                
+                                                <span class="block text-blue-400 font-normal">Browse files</span>
+                                                
+                                                </div>
+                                            </div> <input type="file" class="h-full w-full opacity-0" name="permit">
+                                        </div>
+                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                            <div class="absolute">
+                                                <div class="flex flex-col items-center "> 
+                                                <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                                                <i class="uil uil-image text-gray-300 text-4xl"></i>
+                                                <span class="block text-gray-400 font-normal">or</span>
+                                                
+                                                <span class="block text-blue-400 font-normal">Browse files</span>
+                                                
+                                                </div>
+                                            </div> <input type="file" class="h-full w-full opacity-0" name="permit">
+                                        </div>
+                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                            <div class="absolute">
+                                                <div class="flex flex-col items-center "> 
+                                                <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                                                <i class="uil uil-image text-gray-300 text-4xl"></i>
+                                                <span class="block text-gray-400 font-normal">or</span>
+                                                
+                                                <span class="block text-blue-400 font-normal">Browse files</span>
+                                                
+                                                </div>
+                                            </div> <input type="file" class="h-full w-full opacity-0" name="permit">
+                                        </div>
+                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                            <div class="absolute">
+                                                <div class="flex flex-col items-center "> 
+                                                <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                                                <i class="uil uil-image text-gray-300 text-4xl"></i> 
+                                                <span class="block text-gray-400 font-normal">or</span>
+                                                
+                                                <span class="block text-blue-400 font-normal">Browse files</span>
+                                                
+                                                </div>
+                                            </div> <input type="file" class="h-full w-full opacity-0" name="permit">
+                                        </div>
+                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                            <div class="absolute">
+                                                <div class="flex flex-col items-center "> 
+                                                <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                                                <i class="uil uil-image text-gray-300 text-4xl"></i> 
+                                                <span class="block text-gray-400 font-normal">or</span>
+                                                
+                                                <span class="block text-blue-400 font-normal">Browse files</span>
+                                                
+                                                </div>
+                                            </div> <input type="file" class="h-full w-full opacity-0" name="permit">
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-4 pt-4">
                                     <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
                                         <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
                                     </button>
                                     <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-1 mt-5">
-                    <div class="max-w-sm rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
-                        <a href="#">
-                            <img class="rounded-t-lg p-5 aspect-square w-full" src="https://flowbite.com/docs/images/products/product-1.png" alt="product image" />
-                            <div class="px-5 pb-5">
-                                <h3 class="text-sm lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h3>
-                                <!-- <div class="mt-2.5 mb-5 flex items-center">
-                                    <svg class="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                    </svg>
-                                    <span class="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">5.0</span>
-                                </div> -->
-                                <div class="flex items-center justify-between">
-                                    <span class="text-md lg:text-2xl font-bold text-gray-900 text-orange-500">₱59,990</span>
-                                    <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white">15 sold</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- Pagination Start -->
-                <div class="flex justify-center py-4">
-                    <nav aria-label="Page navigation example">
-                        <ul class="flex list-style-none">
-                            <li class="page-item disabled"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                                href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-                            <li class="page-item active"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                                href="#">1</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">2</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">3</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Pagination End -->
             </section>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="flex justify-center mb-3">
+                    <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Items...">
+                    <button class="myBtn_multi ml-3 bg-blue-500 text-white rounded-md hover:text-white hover:bg-blue-700 p-2 cursor-pointer">
+                        Create Post
+                    </button>
+                </div>
+                <div class="mb-5 flex justify-center">
+                    <div class="flex max-w-full">
+                        <table class="table-auto bg-white px-5"> 
+                        <thead class="">
+                            <tr class="bg-slate-700">
+                            <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
+                            </tr>
+                        </thead>
+                        <!-- PHP script -->
+                        <tbody class="">
+                            <tr class="">
+                            <td class="py-5 lg:px-28">#123456</td>
+                            <td class="py-5 lg:px-28">03/07/2022</td>
+                            <td class="py-5 text-red-300 underline lg:px-28">
+                                <a href="invoice.php">view</a> <!-- ID OF THE CURRENT ORDER-->
+                            </td>
+                            <td class="py-5 lg:px-28">₱1,500</td>
+                            <td class="py-5 lg:px-28">Shipping</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
             <!--/ Job Profile Catalog-->
 
         </div>
     <!--/container-->
 
-    <footer class="bg-white border-t border-gray-400 shadow">
+    <footer class="bg-white border-t border-gray-400 shadow mt-[13.5rem]">
         <div class="container max-w-md mx-auto flex py-8">
-
             <div class="w-full mx-auto flex flex-wrap">
                 <div class="flex w-full md:w-1/2 ">
                     <div class="px-8">

@@ -9,12 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="loader.css">
     <script src="jquery-2.1.4.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="js/script.js"></script>
     <title>Login Page</title>
 </head>
 <body>
     <div class="header">
+        <!-- <div id="loader" class="building-blocks">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div> -->
         <div class="flex items-center justify-center py-12 px-3">
             <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
                 <div class="text-center">

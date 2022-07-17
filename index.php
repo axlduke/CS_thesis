@@ -1,11 +1,39 @@
+<?php
+    session_start();
+    include "auth/db.php";
+    
+    if (!isset($_SESSION['user_id'])){
+		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+		echo '<script>window.location.replace("login.php");</script>';
+	}
+    $user_id = $_SESSION['user_id'];
+    $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $user_id = $row['user_id'];
+        $fname = $row['fname'];
+        $contact = $row['contact'];
+        $pictures = $row['pictures'];
+        require_once('auth/db.php');
+        if($_SESSION['type']==1){
+        }
+        else{
+            header('location: login.php');
+        }
+            if(!isset($_SESSION['user_id'])){
+                header('location: login.php');
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Starter Template - Day Admin Template: Tailwind Toolbox</title>
+    <title>ADMIN</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">

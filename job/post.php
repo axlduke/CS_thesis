@@ -1,3 +1,34 @@
+<?php
+    session_start();
+    include "../auth/db.php";
+    
+    if (!isset($_SESSION['user_id'])){
+		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+		echo '<script>window.location.replace("login.php");</script>';
+	}
+    $user_id = $_SESSION['user_id'];
+    $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $user_id = $row['user_id'];
+        $fname = $row['fname'];
+        $contact = $row['contact'];
+        $pictures = $row['pictures'];
+        $email = $row['email'];
+        $address = $row['address'];
+        $about = $row['about'];
+        $company = $row['company'];
+        require_once('../auth/db.php');
+        if($_SESSION['type']== 3){
+        }
+        else{
+            header('location: login.php');
+        }
+            if(!isset($_SESSION['user_id'])){
+                header('location: login.php');
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +66,7 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User"> <span class="hidden md:inline-block">Hi, User </span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?= $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?= $fname ?> </span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -44,11 +75,11 @@
                         </button>
                         <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
-                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
+                                <li><a href="profile.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
-                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="../auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -70,13 +101,13 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="../jobs.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-gray-900 border-b-2 border-white hover:border-pink-600">
+                        <a href="../jobs.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-gray-900 border-b-2 border-white hover:border-pink-600">
                             <i class="fas fa-home fa-fw mr-3 text-gray-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:purple-300 border-b-2 border-white hover:border-purple-500">
-                            <i class="fa fa-copy fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Posted Jobs</span>
+                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-purple-300 no-underline hover:purple-300 border-b-2 border-white border-purple-500">
+                            <i class="fa fa-copy fa-fw mr-3 text-purple-300"></i><span class="pb-1 md:pb-0 text-sm">Posted Jobs</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
@@ -85,12 +116,12 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="applicant.html" class="block py-1 md:py-3 pl-1 align-middle text-red-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
+                        <a href="applicant.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-red-500 border-b-2 border-white hover:border-red-500">
                             <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Applicant</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="job/message.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
+                        <a href="job/message.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
                             <i class="fa fa-comment-alt fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Message</span>
                         </a>
                     </li>
@@ -118,48 +149,8 @@
                         </svg>
                     </div>
                     <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Position...">
-                    <button class="myBtn_multi ml-3 bg-blue-500 text-white rounded-md hover:text-white hover:bg-blue-700 p-2 cursor-pointer">
-                        Create Post
-                    </button>
-                    <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                        <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                            <div class="flex items-center space-x-5">
-                                <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                <h2 class="leading-relaxed">Software Engineer</h2>
-                                <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                </div>
-                            </div>
-                            <div class="divide-y divide-gray-200">
-                                <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Job Title</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Job Experience</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Job Qualification</label>
-                                    <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <label class="leading-loose">Logo</label>
-                                    <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                </div>
-                                </div>
-                                <div class="flex items-center space-x-4 pt-4">
-                                    <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                        <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                    </button>
-                                    <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
                         <div class="mb-2 flex items-center space-x-4">
                             <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
