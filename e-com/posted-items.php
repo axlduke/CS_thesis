@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     session_start();
     include "../auth/db.php";
     
@@ -15,7 +15,7 @@
         $contact = $row['contact'];
         $pictures = $row['pictures'];
     }
-?>
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -124,10 +124,9 @@
     <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
             <!-- Start of E-commerce -->
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 mt-28">
-                <label for="table-search" class="sr-only">Search</label>
-                <div class="flex relative mt-1 py-3 ">
-                    <form action="" method="post">
-                        <div class="flex modal modal_multi fade fixed hidden top-0 left-0 h-full w-full px-5 py-20 outline-none sm:py-32 lg:py-20 lg:mt-10">
+                <div class="flex relative mt-1 py-3">
+                    <form action="#_" method="post" enctype="multipart/form-data">
+                        <div class="flex modal modal_multi fade fixed hidden top-0 left-0 h-full w-full px-5 py-20 outline-none sm:py-32 lg:py-20 lg:mt-20 lg:mb-20">
                             <div class="modal-content mx-auto w-[80rem] rounded-md bg-white py-5 px-5 shadow-lg">
                                 <div class="divide-gray-200">
                                     <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
@@ -176,7 +175,7 @@
                                         <div class="grid lg:grid-cols-3 grid-cols-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Weight</div>
                                             <input name="weight" type="text" class="border border-gray-300 rounded-md pl-3" placeholder="max 50kg">
-                                            <input list="kilo" name="shippingFee" class="border border-gray-300 rounded-md pl-1" placeholder="W ≥ F">
+                                            <input list="kilo" name="shippingFee" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost">
                                             <datalist id="kilo">
                                                 <option value="100 = 10kg">
                                                 <option value="200 = 20kg">
@@ -195,7 +194,7 @@
                                         </div>
                                     </div>
                                     <div class="grid lg:grid-cols-4 grid-cols-1 py-2">
-                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                        <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                                             <div class="absolute">
                                                 <div class="flex flex-col items-center "> 
                                                 <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
@@ -207,7 +206,7 @@
                                                 </div>
                                             </div> <input type="file" class="h-full w-full opacity-0" name="permit">
                                         </div>
-                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                        <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                                             <div class="absolute">
                                                 <div class="flex flex-col items-center "> 
                                                 <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
@@ -219,7 +218,7 @@
                                                 </div>
                                             </div> <input type="file" class="h-full w-full opacity-0" name="permit">
                                         </div>
-                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                        <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                                             <div class="absolute">
                                                 <div class="flex flex-col items-center "> 
                                                 <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
@@ -231,7 +230,7 @@
                                                 </div>
                                             </div> <input type="file" class="h-full w-full opacity-0" name="permit">
                                         </div>
-                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                        <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                                             <div class="absolute">
                                                 <div class="flex flex-col items-center "> 
                                                 <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
@@ -243,7 +242,7 @@
                                                 </div>
                                             </div> <input type="file" class="h-full w-full opacity-0" name="permit">
                                         </div>
-                                        <div class="grid-cols-4 relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                        <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                                             <div class="absolute">
                                                 <div class="flex flex-col items-center "> 
                                                 <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
@@ -268,7 +267,6 @@
                     </form>
                 </div>
             </section>
-            <form action="" method="post" enctype="multipart/form-data">
                 <div class="flex justify-center mb-3">
                     <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Items...">
                     <button class="myBtn_multi ml-3 bg-blue-500 text-white rounded-md hover:text-white hover:bg-blue-700 p-2 cursor-pointer">
@@ -302,7 +300,6 @@
                         </table>
                     </div>
                 </div>
-            </form>
             <!--/ Job Profile Catalog-->
 
         </div>
