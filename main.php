@@ -52,7 +52,7 @@
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="#">
-                    E-commerce
+                    JobEcom
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -60,14 +60,14 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?></span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block font-bold"><?php echo $fname?></span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
                                 </g>
                             </svg>
                         </button>
-                        <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                        <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible ease-in-out duration-500">
                             <ul class="list-reset">
                                 <li><a href="profile.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
                                 <li>
@@ -95,12 +95,12 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="../shop.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-gray-900 border-b-2 border-white hover:border-pink-600">
-                            <i class="fas fa-home fa-fw mr-3 text-gray-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                        <a href="main.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-blue-400 border-b-2 border-white border-blue-400 ease-in-out duration-500">
+                            <i class="fas fa-home fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="e-com/cart.php" class="block py-1 md:py-3 pl-1 align-middle text-orange-400 no-underline hover:text-orange-400 border-b-2 border-white border-orange-400">
+                        <a href="e-com/cart.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400 ease-in-out duration-500">
                             <i class="fa fa-shopping-cart fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Cart</span>
                         </a>
                     </li>
@@ -113,17 +113,17 @@
         <div class="w-full md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
             <ul class="tabs flex justify-center items-center bg-white">
                 <li  class="px-4 py-5 lg:-ml-[60rem] lg:mr-32">
-                    <h1 class="lg:text-2xl xl:ml-44 text-orange-600 leading-tight mb-2">
+                    <h1 class="lg:text-2xl xl:ml-44 text-blue-400 leading-tight mb-2">
                         JobEcom
                     </h1>
                 </li>
-                <li data-tab-target="#job" class="active tab mx-2 cursor-pointer bg-orange-300 rounded-md">
-                    <h1 class="lg:text-lg text-orange-600 leading-tight px-2 py-2">
+                <li data-tab-target="#job" class="active tab mx-2 cursor-pointer hover:bg-blue-400 rounded-md ease-in-out duration-500">
+                    <h1 class="lg:text-lg text-black hover:text-blue-600 leading-tight px-2 py-2 ease-in-out duration-500">
                         Jobs Portal
                     </h1>
                 </li>
-                <li data-tab-target="#e-com" class="tab mx-2 cursor-pointer bg-orange-300 rounded-md">
-                    <h1 class="lg:text-lg text-orange-600 leading-tight px-2 py-2">
+                <li data-tab-target="#e-com" class="tab mx-2 cursor-pointer hover:bg-blue-400 rounded-md ease-in-out duration-500">
+                    <h1 class="lg:text-lg text-black hover:text-blue-600 leading-tight px-2 py-2 ease-in-out duration-500">
                         E-commerce
                     </h1>
                 </li>
@@ -136,6 +136,8 @@
         <div id="job" data-tab-content class="active">
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+
                     <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
                         <div class="mb-8">
                             <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
@@ -143,7 +145,7 @@
                         <div class="text-center">
                             <p class="text-md text-gray-700 font-bold">Amazon</p>
                             <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
-                            <button class="myBtn_multi bg-blue-600 text-base text-white p-1 rounded-md mt-4">
+                            <button class="myBtn_multi hover:bg-blue-400 hover:text-blue-600 text-base text-black p-1 rounded-md mt-4 ease-in-out duration-500">
                                 <a href="#_" class="p-1">
                                     View 
                                 </a>
@@ -197,34 +199,11 @@
                                                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
                                                     </div>
                                                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Attachments</dt>
+                                                        <dt class="text-sm font-medium text-gray-500">Apply for: </dt>
                                                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> resume_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> coverletter_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
+                                                            <div class="da">
+                                                                <button class="p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>
+                                                            </div>
                                                         </dd>
                                                     </div>
                                                 </dl>
@@ -235,501 +214,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                        <div class="mb-8">
-                            <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                        </div>
-                        <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold">Amazon</p>
-                            <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
-                            <button class="myBtn_multi bg-blue-600 text-base text-white p-1 rounded-md mt-4">
-                                <a href="#_" class="p-1">
-                                    View 
-                                </a>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-content relative w-auto pointer-events-none">
-                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Senior Machine Learning Engineer
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
-                                                </div>
-                                                <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Amazon</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Machine Learning is an integral part of how we design products, operate, and pursue Cash App’s mission to serve the unbanked as well as disrupt traditional financial institutions. Our massive scale and deep trove of transaction data create an endless number of opportunities to use artificial intelligence to better understand our customers and offer new products and experiences that can improve their lives. 
-                                                            We are a highly creative group that prefers to solve problems from first principles; we move quickly, make incremental changes, and deploy to production every day.</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">This role is part of our Cash App's ML team and will be deeply embedded within one of our product teams - here are the workstreams we're currently hiring for</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">3+ years experience with applied Machine Learning or Deep Learning
-                                                            A graduate degree in Computer Science, AI, ML, Applied Math, Stats, Physics, or a related technical field
-                                                            Worked with Product, Design, and Engineering to prioritize, scope, design, and deploy ML models
-                                                            A track record of providing mentorship and technical leadership
-                                                            An appreciation for the connection between the software you build and the experience it delivers to customers</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Python (NumPy, Pandas, sklearn, xgboost, TensorFlow, keras, etc.)
-                                                            MySQL, Snowflake, GCP/AWS and Tableau
-                                                            Java
-                                                        </dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> resume_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> coverletter_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
-                                                        </dd>
-                                                    </div>
-                                                </dl>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                        <div class="mb-8">
-                            <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                        </div>
-                        <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold">Amazon</p>
-                            <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
-                            <button class="myBtn_multi bg-blue-600 text-base text-white p-1 rounded-md mt-4">
-                                <a href="#_" class="p-1">
-                                    View 
-                                </a>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-content relative w-auto pointer-events-none">
-                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Senior Machine Learning Engineer
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
-                                                </div>
-                                                <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Amazon</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Machine Learning is an integral part of how we design products, operate, and pursue Cash App’s mission to serve the unbanked as well as disrupt traditional financial institutions. Our massive scale and deep trove of transaction data create an endless number of opportunities to use artificial intelligence to better understand our customers and offer new products and experiences that can improve their lives. 
-                                                            We are a highly creative group that prefers to solve problems from first principles; we move quickly, make incremental changes, and deploy to production every day.</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">This role is part of our Cash App's ML team and will be deeply embedded within one of our product teams - here are the workstreams we're currently hiring for</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">3+ years experience with applied Machine Learning or Deep Learning
-                                                            A graduate degree in Computer Science, AI, ML, Applied Math, Stats, Physics, or a related technical field
-                                                            Worked with Product, Design, and Engineering to prioritize, scope, design, and deploy ML models
-                                                            A track record of providing mentorship and technical leadership
-                                                            An appreciation for the connection between the software you build and the experience it delivers to customers</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Python (NumPy, Pandas, sklearn, xgboost, TensorFlow, keras, etc.)
-                                                            MySQL, Snowflake, GCP/AWS and Tableau
-                                                            Java
-                                                        </dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> resume_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> coverletter_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
-                                                        </dd>
-                                                    </div>
-                                                </dl>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                        <div class="mb-8">
-                            <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                        </div>
-                        <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold">Amazon</p>
-                            <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
-                            <button class="myBtn_multi bg-blue-600 text-base text-white p-1 rounded-md mt-4">
-                                <a href="#_" class="p-1">
-                                    View 
-                                </a>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-content relative w-auto pointer-events-none">
-                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Senior Machine Learning Engineer
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
-                                                </div>
-                                                <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Amazon</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Machine Learning is an integral part of how we design products, operate, and pursue Cash App’s mission to serve the unbanked as well as disrupt traditional financial institutions. Our massive scale and deep trove of transaction data create an endless number of opportunities to use artificial intelligence to better understand our customers and offer new products and experiences that can improve their lives. 
-                                                            We are a highly creative group that prefers to solve problems from first principles; we move quickly, make incremental changes, and deploy to production every day.</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">This role is part of our Cash App's ML team and will be deeply embedded within one of our product teams - here are the workstreams we're currently hiring for</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">3+ years experience with applied Machine Learning or Deep Learning
-                                                            A graduate degree in Computer Science, AI, ML, Applied Math, Stats, Physics, or a related technical field
-                                                            Worked with Product, Design, and Engineering to prioritize, scope, design, and deploy ML models
-                                                            A track record of providing mentorship and technical leadership
-                                                            An appreciation for the connection between the software you build and the experience it delivers to customers</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Python (NumPy, Pandas, sklearn, xgboost, TensorFlow, keras, etc.)
-                                                            MySQL, Snowflake, GCP/AWS and Tableau
-                                                            Java
-                                                        </dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> resume_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> coverletter_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
-                                                        </dd>
-                                                    </div>
-                                                </dl>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                        <div class="mb-8">
-                            <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                        </div>
-                        <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold">Amazon</p>
-                            <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
-                            <button class="myBtn_multi bg-blue-600 text-base text-white p-1 rounded-md mt-4">
-                                <a href="#_" class="p-1">
-                                    View 
-                                </a>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-content relative w-auto pointer-events-none">
-                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Senior Machine Learning Engineer
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
-                                                </div>
-                                                <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Amazon</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Machine Learning is an integral part of how we design products, operate, and pursue Cash App’s mission to serve the unbanked as well as disrupt traditional financial institutions. Our massive scale and deep trove of transaction data create an endless number of opportunities to use artificial intelligence to better understand our customers and offer new products and experiences that can improve their lives. 
-                                                            We are a highly creative group that prefers to solve problems from first principles; we move quickly, make incremental changes, and deploy to production every day.</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">This role is part of our Cash App's ML team and will be deeply embedded within one of our product teams - here are the workstreams we're currently hiring for</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">3+ years experience with applied Machine Learning or Deep Learning
-                                                            A graduate degree in Computer Science, AI, ML, Applied Math, Stats, Physics, or a related technical field
-                                                            Worked with Product, Design, and Engineering to prioritize, scope, design, and deploy ML models
-                                                            A track record of providing mentorship and technical leadership
-                                                            An appreciation for the connection between the software you build and the experience it delivers to customers</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Python (NumPy, Pandas, sklearn, xgboost, TensorFlow, keras, etc.)
-                                                            MySQL, Snowflake, GCP/AWS and Tableau
-                                                            Java
-                                                        </dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> resume_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> coverletter_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
-                                                        </dd>
-                                                    </div>
-                                                </dl>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                        <div class="mb-8">
-                            <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                        </div>
-                        <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold">Amazon</p>
-                            <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
-                            <button class="myBtn_multi bg-blue-600 text-base text-white p-1 rounded-md mt-4">
-                                <a href="#_" class="p-1">
-                                    View 
-                                </a>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-content relative w-auto pointer-events-none">
-                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Senior Machine Learning Engineer
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
-                                                </div>
-                                                <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Amazon</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Machine Learning is an integral part of how we design products, operate, and pursue Cash App’s mission to serve the unbanked as well as disrupt traditional financial institutions. Our massive scale and deep trove of transaction data create an endless number of opportunities to use artificial intelligence to better understand our customers and offer new products and experiences that can improve their lives. 
-                                                            We are a highly creative group that prefers to solve problems from first principles; we move quickly, make incremental changes, and deploy to production every day.</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">This role is part of our Cash App's ML team and will be deeply embedded within one of our product teams - here are the workstreams we're currently hiring for</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">3+ years experience with applied Machine Learning or Deep Learning
-                                                            A graduate degree in Computer Science, AI, ML, Applied Math, Stats, Physics, or a related technical field
-                                                            Worked with Product, Design, and Engineering to prioritize, scope, design, and deploy ML models
-                                                            A track record of providing mentorship and technical leadership
-                                                            An appreciation for the connection between the software you build and the experience it delivers to customers</dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Python (NumPy, Pandas, sklearn, xgboost, TensorFlow, keras, etc.)
-                                                            MySQL, Snowflake, GCP/AWS and Tableau
-                                                            Java
-                                                        </dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> resume_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                                                <div class="flex w-0 flex-1 items-center">
-                                                                <!-- Heroicon name: solid/paper-clip -->
-                                                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span class="ml-2 w-0 flex-1 truncate"> coverletter_back_end_developer.pdf </span>
-                                                                </div>
-                                                                <div class="ml-4 flex-shrink-0">
-                                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
-                                                        </dd>
-                                                    </div>
-                                                </dl>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+
                 </div>
             </section>
         </div>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "auth/db.php";
+    include "../auth/db.php";
     
     if (!isset($_SESSION['user_id'])){
 		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -14,7 +14,7 @@
         $fname = $row['fname'];
         $contact = $row['contact'];
         $pictures = $row['pictures'];
-        require_once('auth/db.php');
+        require_once('../auth/db.php');
         if($_SESSION['type']==3){
         }
         else{
@@ -29,30 +29,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Starter Template - Day Admin Template: Tailwind Toolbox</title>
     <meta name="description" content="description here">
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta name="keywords" content="keywords,here">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
-    <!--Replace with your tailwind.css once created-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    <title>Analytics - Manager</title>
+    <meta charset="UTF-8">
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="#">
-                    ADMIN
+                    Analytics
                 </a>
             </div>
             <div class="w-1/2 pr-0">
                 <div class="flex relative inline-block float-right">
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User"> <span class="hidden md:inline-block">Hi, User </span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?= $pictures ?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?= $fname ?> </span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -79,44 +81,35 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="../jobs.html" class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-gray-900 border-b-2 border-orange-600 hover:border-orange-600">
-                            <i class="fas fa-home fa-fw mr-3 text-pink-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                        <a href="../admin-jobs.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 hover:text-teal-300 no-underline border-b-2 hover:border-teal-300">
+                            <i class="fas fa-home fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="post.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-purple-500">
+                        <a href="post.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-teal-300 border-b-2 border-white hover:border-teal-300">
                             <i class="fa fa-copy fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Posted Jobs</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-green-500 no-underline hover:text-green-500 border-b-2 border-white border-green-500">
+                        <a href="analytic.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-teal-300 border-b-2 border-white border-teal-300">
                             <i class="fas fa-chart-area fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Analytic</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
-                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Proposed</span>
+                        <a href="applicant.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-500 hover:text-teal-300 border-b-2 border-white hover:border-teal-300">
+                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Applicant</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="message.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
+                        <a href="message.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-teal-300 border-b-2 border-white hover:border-teal-300">
                             <i class="fa fa-comment-alt fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Message</span>
                         </a>
                     </li>
                 </ul>
-
-                <div class="relative pull-right pl-4 pr-4 md:pr-0">
-                    <input type="search" placeholder="Search" class="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-10 appearance-none leading-normal">
-                    <div class="absolute search-icon" style="top: 0.375rem;left: 1.75rem;">
-                        <svg class="fill-current pointer-events-none text-gray-800 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
-                        </svg>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -125,47 +118,10 @@
     <!--Container-->
     <div class="container w-full mx-auto pt-20">
 
-        <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-            <div class="flex flex-row flex-wrap flex-grow mt-2">
-                <div class="w-full md:w-1/2 p-3">
-                    <!--Graph Card-->
-                    <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Jobs</h5>
-                        </div>
-                        <div class="p-5">
-                            <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                            new Chart(document.getElementById("chartjs-0"), {
-                                "type": "line",
-                                "data": {
-                                    "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                    "datasets": [{
-                                        "label": "Employed",
-                                        "data": [65, 59, 80, 81, 56, 55, 40],
-                                        "fill": false,
-                                        "borderColor": "rgb(75, 192, 192)",
-                                        "lineTension": 0.1
-                                    }, {
-                                        "label": "Unemployed",
-                                        "data": [60, 39, 60, 71, 26, 5, 10],
-                                        "type": "line",
-                                        "fill": false,
-                                        "borderColor": "rgb(54, 162, 235)",
-                                        "lineTension": 0.1
-                                    }]
-                                },
-                                "options": {}
-                            });
-                            </script>
-                        </div>
-                    </div>
-                    <!--/Graph Card-->
-                </div>
-            </div>
-
-            <!--/ Console Content-->
-
+        <div class="grid grid-cols-3 gap-1 my-10">
+            <div id="piechart_div" class="border-2 border-black w-[25rem] h-[25rem]"></div>
+            <div id="barchart_div" class="border-2 border-black w-auto h-auto"></div>
+            <div id="column chart_div" class="border-2 border-black w-auto h-auto"></div>
         </div>
 
 
@@ -209,6 +165,77 @@
 
         </div>
     </footer>
+
+    <script type="text/javascript">
+	$(document).ready(function() {
+
+            $.ajax({
+                url : "data.php",
+                dataType : "JSON",
+                success : function(result) {
+                    google.charts.load('current', {
+                        'packages' : [ 'corechart' ]
+                    });
+                    google.charts.setOnLoadCallback(function() {
+                        drawChart(result);
+                    });
+                }
+            });
+
+            function drawChart(result) {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Name');
+                data.addColumn('number', 'Quantity');
+                var dataArray = [];
+                $.each(result, function(i, obj) {
+                    dataArray.push([ obj.Country, parseInt(obj.Number) ]);
+                });
+
+                data.addRows(dataArray);
+
+                var piechart_options = {
+                    title : 'Pie Chart: Residents in Tabaco City',
+                    
+                    legend: { position: 'bottom' }
+                };
+                var piechart = new google.visualization.PieChart(document
+                        .getElementById('piechart_div'));
+                piechart.draw(data, piechart_options);
+
+                var barchart_options = {
+                    title : 'Barchart: Country wise Participant',
+                    
+                    legend : 'none'
+                };
+                var barchart = new google.visualization.BarChart(document
+                        .getElementById('barchart_div'));
+                barchart.draw(data, barchart_options);
+                
+            
+
+                
+                var column_options = {
+                    title : 'Column Chart: Country wise Participant',
+                    
+                    legend: { position: 'bottom' }
+                };
+                var columnchart = new google.visualization.ColumnChart(document
+                        .getElementById('column chart_div'));
+                columnchart.draw(data, column_options);
+                
+                
+                var area_options = {
+                    title : 'Donut Chart: Country wise Participant',
+                                    
+                    legend: 'none'
+                };
+                var areachart = new google.visualization.AreaChart(document.getElementById('chart_div'))
+                areachart.draw(data, area_options);
+            } 
+
+        });
+    </script>
 
     <script>
     /*Toggle dropdown list*/

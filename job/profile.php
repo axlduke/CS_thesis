@@ -103,7 +103,7 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="../jobs.php" class="block py-1 md:py-3 pl-1 align-middle text-green-300 no-underline hover:text-green-500 border-b-2 border-white border-green-300">
+                        <a href="../admin-jobs.php" class="block py-1 md:py-3 pl-1 align-middle text-green-300 no-underline hover:text-green-500 border-b-2 border-white border-green-300">
                             <i class="fas fa-home fa-fw mr-3 text-green-300 hover:text-green-500"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>

@@ -1,6 +1,7 @@
 <?php
     session_start();
-    require_once('auth/db.php')
+    include 'auth/db.php';
+    // include_once 'auth/register-auth.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="loader.css">
     <script src="jquery-2.1.4.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <script src="js/script.js"></script>
     <title>Login Page</title>
@@ -34,11 +36,15 @@
                         Login
                     </h2>
                 </div>
+                <?php
+                    if(isset($_SESSION['failed'])) {
+                        echo $_SESSION['failed'];
+                        unset($_SESSION['failed']);
+                    }
+                ?>
                 <form class="space-y-6" action="auth/register-auth.php" method="POST">
                     <input type="hidden" name="remember" value="true">
                     <div class="relative">
-                        <div class="absolute right-0 mt-4">
-                        </div>
                         <label class="text-sm font-bold text-gray-700 tracking-wide">Email</label>
                         <input name="email" class=" w-full text-black text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="mail@gmail.com">
                     </div>
@@ -46,7 +52,7 @@
                         <label class="text-sm font-bold text-gray-900 tracking-wide">
                             Password
                         </label>
-                        <input name="password" class="w-full content-center text-black text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="Enter your password">
+                        <input name="password" class="w-full content-center text-black text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password">
                     </div>
                     <div class="flex items-center justify-between">
                             <div class="flex items-center">
@@ -57,7 +63,7 @@
                             </div>
                         <div class="text-sm">
                             <a href="#" class="font-medium text-indigo-500 hover:text-indigo-500">
-                                        Forgot your password?
+                                Forgot your password?
                             </a>
                         </div>
                     </div>
@@ -90,5 +96,43 @@
             </svg>
         </div>
     </div>
+
+    <script>
+        // request permission on page load
+        document.addEventListener('DOMContentLoaded', function () {
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+        });
+
+        function notifyMe() {
+        if (!Notification) {
+            //alert('Desktop notifications not available in your browser. Try Chromium.'); 
+            return;
+        }
+
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+        else {
+            var notification = new Notification('Notification');
+
+            notification.onclick = function () {
+                window.focus();
+            };
+
+            setTimeout(notification.close, 2000);
+            // Result: Uncaught TypeError: Illegal invocation
+
+            // also tried.....
+
+            // setTimeout(notification.close(), 2000);
+            // Result: notification stays open forever
+
+            // setTimeout('notification.close', 2000);
+            // Result: ReferenceError: notification is not defined
+
+        }
+
+        }
+    </script>
 </body>
 </html>

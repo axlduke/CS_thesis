@@ -18,6 +18,12 @@
         $password = $row['password'];
         $about = $row['about'];
         $pictures = $row['pictures'];
+        $mode = $row['mode'];
+        if ($row['mode'] == 'user'){
+            echo $_SESSION['userMode'] = '<span class="rounded bg-red-500 py-1 px-2 text-sm text-white">User</span>';
+        } else{
+            echo $_SESSION['userMode'] = '<span class="rounded bg-green-500 py-1 px-2 text-sm text-white">Work</span>';
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -44,6 +50,23 @@
 
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <style>
+        ::-webkit-scrollbar {
+        width: 20px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: 5px;
+        border-radius: 1px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #0000;
+        border-radius: 10px;
+        }
+    </style>
     <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
 
 
@@ -136,11 +159,13 @@
                 <ul class="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm hover:text-gray-700 hover:shadow">
                     <li class="flex items-center py-3">
                     <span>Status</span>
-                    <span class="ml-auto"><span class="rounded bg-green-500 py-1 px-2 text-sm text-white">Active</span></span>
-                    </li>
-                    <li class="flex items-center py-3">
-                    <span>Member since</span>
-                    <span class="ml-auto">Nov 07, 2016</span>
+                    <span class="ml-auto">
+                    <?php
+                        if(isset($_SESSION['userMode'])) {
+                            echo $_SESSION['userMode'];
+                        }
+                    ?>
+                    </span>
                     </li>
                 </ul>
                 </div>
@@ -180,6 +205,10 @@
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>
                             <p type="text" class="border border-gray-300 p-2"><?php echo $email ?></p>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">About</div>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $about ?></p>
                         </div>
                         </div>
                     </div>
@@ -227,7 +256,13 @@
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Contact</dt>
                                                             <input name="contact" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $contact ?>">
-                                                            <input name="user_id" type="text" class="hidden" value="<?php echo $user_id?>">
+                                                        </div>
+                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Status: Mode</dt>
+                                                            <select name="mode" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $mode ?>">
+                                                                <option value="user">user</option>
+                                                                <option value="work">work</option>
+                                                            </select>
                                                         </div>
                                                     </dl>
                                                 </div>
