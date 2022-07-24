@@ -1,11 +1,10 @@
 <?php
     session_start();
     include "../auth/db.php";
-    
     if (!isset($_SESSION['user_id'])){
-		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-		echo '<script>window.location.replace("login.php");</script>';
-	}
+        echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
+    }
     $user_id = $_SESSION['user_id'];
     $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
     $result = $conn->query($sql_query);
@@ -15,16 +14,12 @@
         $contact = $row['contact'];
         $pictures = $row['pictures'];
         require_once('../auth/db.php');
-        if($_SESSION['type']== 3){
-        }
-        else{
-            header('location: login.php');
-        }
-            if(!isset($_SESSION['user_id'])){
-                header('location: login.php');
-        }
+        
     }
+    $jobs_posted="select * from jobs_post where employer_id = ".$_SESSION['user_id'];
+    $result=mysqli_query($conn,$jobs_posted);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -146,19 +141,28 @@
                     </div>
                     <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Position...">
                 </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                       
+                    <?php
+                    if (mysqli_num_rows($result) > 0) {
+                    $i=0;
+                    while($row = mysqli_fetch_array($result)) {
+                            $applicant="select * from applicants where job_id = ".$row['post_id'];
+                    ?>
                     <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
+
                         <div class="mb-2 flex items-center space-x-4">
                             <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
                             <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
+                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700"><?php echo $row['post_id'];echo $row['jobtitle'];?></h1>
                             </div>
                             <button class="myBtn_multi">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                                 </svg>
                             </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-7 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
+                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-7 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">  
                                 <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
                                     <div class="flex items-center space-x-5">
                                         <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
@@ -214,12 +218,24 @@
                                                                         </th>
                                                                         <th
                                                                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                                            Date
+                                                                            Date Applied
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                     <?php 
+                                                                    $fetch_applicant_id=mysqli_query($conn,$applicant);
+
+                                                                    if (mysqli_num_rows($fetch_applicant_id) > 0) {
+                                                                    while($get_row = mysqli_fetch_array($fetch_applicant_id)) { 
+                                                                    ?>                                                                   
                                                                     <tr>
+                                                                        <?php 
+                                                                            $applicant_list="select * from user where user_id = ".$get_row['user_id'];
+                                                                            $query=mysqli_query($conn,$applicant_list);
+                                                                                 if (mysqli_num_rows($query) > 0) {
+                                                                                    while($fetch = mysqli_fetch_array($query)) {
+                                                                        ?>
                                                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                                             <div class="flex items-center">
                                                                                 <div class="flex-shrink-0 w-10 h-10">
@@ -229,79 +245,24 @@
                                                                                 </div>
                                                                                 <div class="ml-3">
                                                                                     <p class="text-gray-900 whitespace-no-wrap">
-                                                                                        Vera Carpenter
+                                                                                        
+                                                                                        <?php echo $fetch['fname'];} }?>
+
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                                             <p class="text-gray-900 whitespace-no-wrap">
-                                                                                Jan 21, 2020
+                                                                                <?php echo $get_row['date_applied'];?>
                                                                             </p>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                                            <div class="flex items-center">
-                                                                                <div class="flex-shrink-0 w-10 h-10">
-                                                                                    <img class="w-full h-full rounded-full"
-                                                                                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                                                        alt="" />
-                                                                                </div>
-                                                                                <div class="ml-3">
-                                                                                    <p class="text-gray-900 whitespace-no-wrap">
-                                                                                        Blake Bowman
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                                Jan 01, 2020
-                                                                            </p>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                                            <div class="flex items-center">
-                                                                                <div class="flex-shrink-0 w-10 h-10">
-                                                                                    <img class="w-full h-full rounded-full"
-                                                                                        src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                                                        alt="" />
-                                                                                </div>
-                                                                                <div class="ml-3">
-                                                                                    <p class="text-gray-900 whitespace-no-wrap">
-                                                                                        Dana Moore
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                                Jan 10, 2020
-                                                                            </p>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="px-5 py-5 bg-white text-sm">
-                                                                            <div class="flex items-center">
-                                                                                <div class="flex-shrink-0 w-10 h-10">
-                                                                                    <img class="w-full h-full rounded-full"
-                                                                                        src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                                                                        alt="" />
-                                                                                </div>
-                                                                                <div class="ml-3">
-                                                                                    <p class="text-gray-900 whitespace-no-wrap">
-                                                                                        Alonzo Cox
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="px-5 py-5 bg-white text-sm">
-                                                                            <p class="text-gray-900 whitespace-no-wrap">Jan 18, 2020</p>
-                                                                        </td>
-                                                                    </tr>
+                                                                    <?php
+                                                                        }   } 
+                                                                    ?>
                                                                 </tbody>
+
                                                             </table>
                                                             <div
                                                                 class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
@@ -340,185 +301,16 @@
                             <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
                         </div>
                         <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Title</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Logo</label>
-                                            <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
-                        <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Title</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Logo</label>
-                                            <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
-                        <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Title</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Logo</label>
-                                            <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
-                        <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
+
                 </div>
-                </div>
+                </div>  
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        }
+                        ?> 
                 <!-- Pagination Start -->
                 <div class="flex justify-center py-4">
                     <nav aria-label="Page navigation example">

@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\auth",
+    "\\form"
   ],
   "PreviewInSolutionExplorer": false
 }
