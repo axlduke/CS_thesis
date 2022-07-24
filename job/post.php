@@ -24,9 +24,6 @@
         else{
             header('location: login.php');
         }
-            if(!isset($_SESSION['user_id'])){
-                header('location: login.php');
-        }
     }
 ?>
 <!DOCTYPE html>
@@ -137,7 +134,7 @@
         <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
             <!--Console Content-->
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
-                <label for="table-search" class="sr-only">Search</label>
+                <!-- <label for="table-search" class="sr-only">Search</label> -->
                 <div class="flex relative mt-1 py-3 ">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg class="w-5 h-5 text-white dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
@@ -148,7 +145,71 @@
                             </path>
                         </svg>
                     </div>
+
                     <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Position...">
+                        <button class="myBtn_multi ml-2 hover:text-teal-600 hover:bg-teal-300 transition duration-700 ease-in-out p-2 hover:rounded-md">
+                            <a href="#_">Create Post</a>
+                        </button>
+                        <form action="job_post.php" method="post">
+                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-content relative w-auto pointer-events-none">
+                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
+                                                    Senior Machine Learning Engineer
+                                                </h5>
+                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
+                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                                                </button>
+                                                </div>
+                                                <div class="border-t border-gray-200">
+                                                <dl>
+                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Job Title</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
+                                                        <input name="" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                    </div>
+                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                        <dt class="text-sm font-medium text-gray-500">Create: </dt>
+                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                            <div class="da">
+                                                                <button name="post" type="submit" class="p-3 rounded-md hover:bg-teal-400 hover:text-teal-600 ease-in-out duration-500">Save</button>
+                                                            </div>
+                                                        </dd>
+                                                    </div>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
@@ -178,11 +239,27 @@
                                             <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
                                         </div>
                                         <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
+                                            <label class="leading-loose">Company Name</label>
                                             <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
                                         </div>
                                         <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
+                                            <label class="leading-loose">Job Description</label>
+                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <label class="leading-loose">Role</label>
+                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <label class="leading-loose">Qualification</label>
+                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <label class="leading-loose">Technology | Languages use</label>
+                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <label class="leading-loose">About</label>
                                             <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
                                         </div>
                                         <div class="flex flex-col">
@@ -209,186 +286,13 @@
                         <!-- Button for General User for Apply or Message -->
                         </div>
                     </div>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Title</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Logo</label>
-                                            <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
-                        <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Title</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Logo</label>
-                                            <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
-                        <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700">Software Engineer</h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Title</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Experience</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Job Qualification</label>
-                                            <input type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <label class="leading-loose">Logo</label>
-                                            <input type="file" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Description" />
-                                        </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
-                        <div>
-                        <!-- Button for General User for Apply or Message -->
-                        </div>
-                    </div>
+                    
                 </div>
                 </div>
                 <!-- Pagination Start -->
-                <div class="flex justify-center py-4">
+                <!-- <div class="flex justify-center py-4">
                     <nav aria-label="Page navigation example">
-                        <ul class="flex list-style-none">
+                        <ul class="flex list-style-none overflow-auto">
                             <li class="page-item disabled"><a
                                 class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
                                 href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
@@ -406,7 +310,7 @@
                                 href="#">Next</a></li>
                         </ul>
                     </nav>
-                </div>
+                </div> -->
                 <!-- Pagination End -->
             </section>
             <!--/ Job Profile Catalog-->
