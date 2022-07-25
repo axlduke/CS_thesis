@@ -195,7 +195,7 @@
                 data.addRows(dataArray);
 
                 var piechart_options = {
-                    title : 'Pie Chart: Residents in Tabaco City',
+                    title : 'Pie Chart: Residents of Albay',
                     
                     legend: { position: 'bottom' }
                 };
@@ -204,7 +204,7 @@
                 piechart.draw(data, piechart_options);
 
                 var barchart_options = {
-                    title : 'Barchart: Country wise Participant',
+                    title : 'Barchart: total JobSeekers',
                     
                     legend : 'none'
                 };

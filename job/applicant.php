@@ -16,7 +16,7 @@
         require_once('../auth/db.php');
         
     }
-    $jobs_posted="select * from jobs_post where employer_id = ".$_SESSION['user_id'];
+    $jobs_posted="SELECT * from jobs_post where employer_id = ".$_SESSION['user_id'];
     $result=mysqli_query($conn,$jobs_posted);
 ?>
 
@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                       
+
                     <?php
                     if (mysqli_num_rows($result) > 0) {
                     $i=0;
@@ -155,7 +155,7 @@
                         <div class="mb-2 flex items-center space-x-4">
                             <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
                             <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700"><?php echo $row['post_id'];echo $row['jobtitle'];?></h1>
+                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700"><?php echo $row['job_title']?></h1>
                             </div>
                             <button class="myBtn_multi">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -223,7 +223,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                     <?php 
+                                                                    <?php 
                                                                     $fetch_applicant_id=mysqli_query($conn,$applicant);
 
                                                                     if (mysqli_num_rows($fetch_applicant_id) > 0) {
@@ -233,7 +233,7 @@
                                                                         <?php 
                                                                             $applicant_list="select * from user where user_id = ".$get_row['user_id'];
                                                                             $query=mysqli_query($conn,$applicant_list);
-                                                                                 if (mysqli_num_rows($query) > 0) {
+                                                                                if (mysqli_num_rows($query) > 0) {
                                                                                     while($fetch = mysqli_fetch_array($query)) {
                                                                         ?>
                                                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -259,7 +259,8 @@
                                                                         </td>
                                                                     </tr>
                                                                     <?php
-                                                                        }   } 
+                                                                            }
+                                                                        } 
                                                                     ?>
                                                                 </tbody>
 
@@ -295,11 +296,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ad iste inventore tenetur sint ullam, nisi officia odit fugit consequuntur optio numquam commodi rem rerum libero ea ducimus magni. Dolores.</p>
-                        <div class="flex px-10 py-6">
-                            <p class="mr-14 rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Full-time</p>
-                            <p class="rounded-lg bg-gray-300 py-2 px-2 text-sm font-normal text-gray-600 hover:underline">Part-time</p>
-                        </div>
+                        <p class="px-5 pb-6" maxlength='20'><?php echo $row['job_about']?></p>
                         <div>
 
                 </div>
@@ -311,29 +308,6 @@
                         <?php
                         }
                         ?> 
-                <!-- Pagination Start -->
-                <div class="flex justify-center py-4">
-                    <nav aria-label="Page navigation example">
-                        <ul class="flex list-style-none">
-                            <li class="page-item disabled"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                                href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-                            <li class="page-item active"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                                href="#">1</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">2</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">3</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Pagination End -->
             </section>
             <!--/ Job Profile Catalog-->
 

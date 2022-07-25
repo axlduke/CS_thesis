@@ -21,7 +21,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$address','$password','$type','','','','','')";
+				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','','','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and `password`='$password'";
 					$result = $conn->query($sql);
@@ -67,7 +67,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','$type','$business','$permit','','','')";
+				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','$business','$permit','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -112,7 +112,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','$type','','','$company','','')";
+				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','','','$company','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -125,7 +125,7 @@ include "db.php";
 						$_SESSION['address'] = $row['address'];
 						$_SESSION['type'] = $row['type'];
 						$_SESSION['password'] = $row['password'];
-						header('Location: ../jobs.php');
+						header('Location: ../admin-jobs.php');
 					}
 				} else{
 					echo '<script>window.alert("ERROR ON USERS!")</script>';
@@ -164,6 +164,7 @@ include "db.php";
 				$_SESSION['type'] = $row['type'];
 				$_SESSION['address'] = $row['address'];
 				$_SESSION['mode'] = $row['mode'];
+				$_SESSION['company'] = $row['company'];
                 $row['user_id'] =$_SESSION['user_id'];
                 if ($row['type'] == 0) {
                         header("Refresh:0 url=../admin.php");
