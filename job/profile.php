@@ -15,8 +15,8 @@
         $contact = $row['contact'];
         $pictures = $row['pictures'];
         $email = $row['email'];
+        $password = $row['password'];
         $address = $row['address'];
-        $about = $row['about'];
         $company = $row['company'];
         require_once('../auth/db.php');
         if($_SESSION['type']== 3){
@@ -141,17 +141,6 @@
                 </div>
                 <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $fname?></h1>
                 <h3 class="font-lg text-semibold leading-6 text-gray-600"><?php ?></h3>
-                <p class="text-sm leading-6 text-gray-500 hover:text-gray-600"><?php echo $about?></p>
-                <ul class="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm hover:text-gray-700 hover:shadow">
-                    <li class="flex items-center py-3">
-                    <span>Status</span>
-                    <span class="ml-auto"><span class="rounded bg-green-500 py-1 px-2 text-sm text-white">Active</span></span>
-                    </li>
-                    <li class="flex items-center py-3">
-                    <span>Member since</span>
-                    <span class="ml-auto">Nov 07, 2016</span>
-                    </li>
-                </ul>
                 </div>
                 <!-- End of profile card -->
                 <div class="my-4"></div>
@@ -233,10 +222,6 @@
                                                             <dt class="text-sm font-medium text-gray-500">Password</dt>
                                                             <input name="password" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $password ?>">
                                                         </div>
-                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                            <input name="about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $about ?>">
-                                                        </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Contact</dt>
                                                             <input name="contact" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $contact ?>">
@@ -255,112 +240,7 @@
                     </div>
                 </div>
                 <!-- End of about section -->
-        
-                <div class="my-1"></div>
-        
-                <!-- Experience and education -->
-                <div class="rounded-sm bg-white p-3 shadow-sm">
-                    <div class="grid grid-cols-2">
-                        <div>
-                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                            <span clas="text-green-500">
-                            <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            </span>
-                            <span class="tracking-wide">Experience</span>
-                        </div>
-                        <ul class="list-inside space-y-2">
-                            <li>
-                            <div class="text-teal-600">Owner at Her Company Inc.</div>
-                            <div class="text-xs text-gray-500">March 2020 - Now</div>
-                            </li>
-                            <li>
-                            <div class="text-teal-600">Owner at Her Company Inc.</div>
-                            <div class="text-xs text-gray-500">March 2020 - Now</div>
-                            </li>
-                            <li>
-                            <div class="text-teal-600">Owner at Her Company Inc.</div>
-                            <div class="text-xs text-gray-500">March 2020 - Now</div>
-                            </li>
-                            <li>
-                            <div class="text-teal-600">Owner at Her Company Inc.</div>
-                            <div class="text-xs text-gray-500">March 2020 - Now</div>
-                            </li>
-                        </ul>
-                        </div>
-                        <div>
-                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                            <span clas="text-green-500">
-                            <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                <path fill="#fff" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                            </svg>
-                            </span>
-                            <span class="tracking-wide">Education</span>
-                        </div>
-                        <ul class="list-inside space-y-2">
-                            <li>
-                            <div class="text-teal-600">Masters Degree in Oxford</div>
-                            <div class="text-xs text-gray-500">March 2020 - Now</div>
-                            </li>
-                            <li>
-                            <div class="text-teal-600">Bachelors Degreen in LPU</div>
-                            <div class="text-xs text-gray-500">March 2020 - Now</div>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-                    <!-- End of Experience and education grid -->
-                    <div>
-                        <button class="myBtn_multi focus:shadow-outline hover:shadow-xs block w-full rounded-lg p-3 text-sm font-semibold text-blue-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none">
-                            Update Qualification
-                        </button>
-                        <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-content relative w-auto pointer-events-none">
-                                <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                    <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                        <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                            <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                User Candidate Profile
-                                            </h5>
-                                            <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                            </button>
-                                        </div>
-                                        <div class="border-t border-gray-200">
-                                            <dl>
-                                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                    <dt class="text-sm font-medium text-gray-500">Full name</dt>
-                                                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Margot Foster</dd>
-                                                </div>
-                                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                    <dt class="text-sm font-medium text-gray-500">Application for</dt>
-                                                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Backend Developer</dd>
-                                                </div>
-                                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                    <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                                                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
-                                                </div>
-                                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                    <dt class="text-sm font-medium text-gray-500">Salary expectation</dt>
-                                                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">$---,---</dd>
-                                                </div>
-                                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                    <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                </div>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             </div>
         </div>

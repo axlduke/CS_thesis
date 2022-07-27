@@ -116,12 +116,13 @@
     </nav>
 
     <!--Container-->
-    <div class="container w-full mx-auto pt-20">
+    <div class="flex justify-center container w-full mx-auto pt-20">
 
-        <div class="grid grid-cols-3 gap-1 my-10">
-            <div id="piechart_div" class="border-2 border-black w-[25rem] h-[25rem]"></div>
-            <div id="barchart_div" class="border-2 border-black w-auto h-auto"></div>
-            <div id="column chart_div" class="border-2 border-black w-auto h-auto"></div>
+        <div class="grid grid-cols-2 align-items  gap-3 my-10 ">
+            <div id="piechart_div" class="border-2 border-teal-400 w-[30rem] h-96 shadow-lg"></div>
+            <!-- <div id="barchart_div" class="border-2 border-teal-400 w-80 h-80 shadow-lg"></div> -->
+            <!-- <div id="column chart_div" class="border-2 border-teal-400 w-[30rem] h-96 shadow-lg"></div> -->
+            <div id="chart_div" class="border-2 border-teal-400 w-[30rem] h-96 shadow-lg"></div>
         </div>
 
 
@@ -165,12 +166,11 @@
 
         </div>
     </footer>
-
     <script type="text/javascript">
 	$(document).ready(function() {
 
             $.ajax({
-                url : "data.php",
+                url : "data-job.php",
                 dataType : "JSON",
                 success : function(result) {
                     google.charts.load('current', {
@@ -208,25 +208,25 @@
                     
                     legend : 'none'
                 };
-                var barchart = new google.visualization.BarChart(document
-                        .getElementById('barchart_div'));
-                barchart.draw(data, barchart_options);
+                // var barchart = new google.visualization.BarChart(document
+                //         .getElementById('barchart_div'));
+                // barchart.draw(data, barchart_options);
                 
             
 
                 
                 var column_options = {
-                    title : 'Column Chart: Country wise Participant',
+                    title : 'Total: Gender',
                     
                     legend: { position: 'bottom' }
                 };
-                var columnchart = new google.visualization.ColumnChart(document
-                        .getElementById('column chart_div'));
-                columnchart.draw(data, column_options);
+                // var columnchart = new google.visualization.ColumnChart(document
+                //         .getElementById('column chart_div'));
+                // columnchart.draw(data, column_options);
                 
                 
                 var area_options = {
-                    title : 'Donut Chart: Country wise Participant',
+                    title : 'total: Job Seekers',
                                     
                     legend: 'none'
                 };
@@ -236,6 +236,7 @@
 
         });
     </script>
+
 
     <script>
     /*Toggle dropdown list*/

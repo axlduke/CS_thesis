@@ -136,6 +136,11 @@
             <div class="flex flex-wrap">
                 <div class="w-full md:w-1/2 xl:w-1/3 p-3">
                     <!--Metric Card-->
+                    <?php
+                        $result = mysqli_query($conn,"SELECT count(post_id) FROM jobs_post");
+                        $row = mysqli_fetch_array($result);
+                        $post = $row[0];
+                    ?>
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
@@ -143,7 +148,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-500">Total Jobs Posted</h5>
-                                <h3 class="font-bold text-3xl">49 <span class="text-green-500"><i class="fas fa-copy"></i></span></h3>
+                                <h3 class="font-bold text-3xl"><?php echo $post?> <span class="text-green-500"><i class="fas fa-copy"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -166,14 +171,19 @@
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-3">
                     <!--Metric Card-->
+                    <?php
+                        $result = mysqli_query($conn,"SELECT count(apply_id) FROM applicants");
+                        $row = mysqli_fetch_array($result);
+                        $apply = $row[0];
+                    ?>
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="rounded p-3 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Total Proposed</h5>
-                                <h3 class="font-bold text-3xl">30</h3>
+                                <h5 class="font-bold uppercase text-gray-500">Total Apply</h5>
+                                <h3 class="font-bold text-3xl"><?php echo $apply?></h3>
                             </div>
                         </div>
                     </div>

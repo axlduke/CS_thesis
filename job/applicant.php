@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pulls
+Issues
+Marketplace
+Explore
+ 
+@axlduke 
+axlduke
+/
+CS_thesis
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+More
+CS_thesis/job/applicant.php /
+@axlduke
+axlduke umay
+Latest commit ab414f4 2 days ago
+ History
+ 2 contributors
+@axlduke@AEArtemis
+458 lines (399 sloc)  28 KB
+
 <?php
     session_start();
     include "../auth/db.php";
@@ -153,7 +182,7 @@
                     <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
 
                         <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="logo" />
+                            <img class="ml-2 w-10 rounded-full" src="../img/<?php echo $row['logo']?>" alt="logo" />
                             <div>
                                 <h1 class="mb-1 py-3 text-xl font-bold text-gray-700"><?php echo $row['job_title']?></h1>
                             </div>
@@ -165,9 +194,9 @@
                             <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-7 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">  
                                 <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
                                     <div class="flex items-center space-x-5">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
+                                        <img src="../img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
                                         <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed">Software Engineer</h2>
+                                        <h2 class="leading-relaxed"><?php echo $row['job_title']?></h2>
                                         <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
                                         </div>
                                     </div>
@@ -207,7 +236,7 @@
                                                                 class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                                                         </div>
                                                     </div>
-                                                    <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                                                    <div class="-mx-4 h-80 overflow-y-auto sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                                                         <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                                                             <table class="min-w-full leading-normal">
                                                                 <thead>
@@ -240,7 +269,7 @@
                                                                             <div class="flex items-center">
                                                                                 <div class="flex-shrink-0 w-10 h-10">
                                                                                     <img class="w-full h-full rounded-full"
-                                                                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                                                                                        src="../img/<?php echo $fetch['pictures']?>"
                                                                                         alt="" />
                                                                                 </div>
                                                                                 <div class="ml-3">

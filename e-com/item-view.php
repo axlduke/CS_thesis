@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    include "../auth/db.php";
+    
+    if (!isset($_SESSION['user_id'])){
+		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+		echo '<script>window.location.replace("login.php");</script>';
+	}
+    $user_id = $_SESSION['user_id'];
+    $sql_query = "SELECT * FROM user WHERE type = 1";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $user_id = $row['user_id'];
+        $fname = $row['fname'];
+        $contact = $row['contact'];
+        $pictures = $row['pictures'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Starter Template - Day Admin Template: Tailwind Toolbox</title>
+    <title>Item-view</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -34,7 +52,7 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User"> <span class="hidden md:inline-block">Hi, User </span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?> </span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -69,12 +87,12 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20" id="nav-content">
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-gray-900 border-b-2 border-orange-600 border-pink-600">
-                            <i class="fas fa-home fa-fw mr-3 text-pink-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                        <a href="../main.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-orange-400 border-b-2 hover:border-orange-400">
+                            <i class="fas fa-home fa-fw mr-3 "></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="job/post.html" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="cart.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="fa fa-shopping-cart fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Cart</span>
                         </a>
                     </li>
@@ -89,18 +107,18 @@
         <div class="px-6 flex container">
             <div class=" bg-white items-center">
                 <div class="px-20">
-                    <img id="feature" src="../img/shoes.jpg" class="py-6 px-2 pt-5 mt-5 aspect-square w-full sm:w-70 md:w-64 lg:w-[26rem] lg:aspect-square" alt="item-photo">
-                    <div class="grid grid-cols-3 lg:grid-cols-3 gap-1 lg:w-[26rem] lg:h-auto">
-                        <div class="w-24 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                    <img id="feature" src="../img/shoes.jpg" class="py-6 px-2 pt-5 mt-5 aspect-square w-[26rem] sm:w-70 md:w-64 lg:w-[26rem] lg:aspect-square" alt="item-photo">
+                    <div class="grid grid-cols-3 lg:grid-cols-3 gap-2 lg:w-[26rem] lg:h-auto">
+                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
                             <img class="thumbnail active" src="../img/shoes1.jpg" alt="item-photo">
                         </div>
-                        <div class="w-24 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
                             <img class="thumbnail" src="../img/shoes2.jpg" alt="item-photo">
                         </div>
-                        <div class="w-24 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
                             <img class="thumbnail" src="../img/shoes3.jpg" alt="item-photo3">
                         </div>
-                        <div class="w-24 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
                             <img class="thumbnail" src="../img/shoes4.jpg" alt="item-photo4">
                         </div>
                     </div>

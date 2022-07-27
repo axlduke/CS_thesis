@@ -24,6 +24,7 @@
                 header('location: login.php');
         }
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -136,15 +137,18 @@
         <div id="job" data-tab-content class="active">
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-
-
+                    <?php
+                    $post = "SELECT * from jobs_post";
+                    $results=mysqli_query($conn, $post);
+                    while($row=mysqli_fetch_array($results)){
+                    ?>
                     <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
                         <div class="mb-8">
-                            <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
+                            <img src="img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
                         </div>
                         <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold">Amazon</p>
-                            <p class="text-base text-gray-400 font-normal">Senior Machine Learning Engineer</p>
+                            <p class="text-md text-gray-700 font-bold"><?php echo $row['job_company']?></p>
+                            <p class="text-base text-gray-400 font-normal"><?php echo $row['job_title']?></p>
                             <button class="myBtn_multi hover:bg-blue-400 hover:text-blue-600 text-base text-black p-1 rounded-md mt-4 ease-in-out duration-500">
                                 <a href="#_" class="p-1">
                                     View 
@@ -158,7 +162,7 @@
                                         <div class="overflow-hidden bg-white shadow sm:rounded-lg">
                                             <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                                                 <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Senior Machine Learning Engineer
+                                                    <?php echo $row['job_title']?>
                                                 </h5>
                                                 <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
                                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
@@ -168,44 +172,33 @@
                                                 <dl>
                                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                         <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Amazon</dd>
+                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_company']?></dd>
                                                     </div>
                                                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                         <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Machine Learning is an integral part of how we design products, operate, and pursue Cash App’s mission to serve the unbanked as well as disrupt traditional financial institutions. Our massive scale and deep trove of transaction data create an endless number of opportunities to use artificial intelligence to better understand our customers and offer new products and experiences that can improve their lives. 
-                                                            We are a highly creative group that prefers to solve problems from first principles; we move quickly, make incremental changes, and deploy to production every day.</dd>
+                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_about']?></dd>
                                                     </div>
                                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">This role is part of our Cash App's ML team and will be deeply embedded within one of our product teams - here are the workstreams we're currently hiring for</dd>
+                                                        <dt class="text-sm font-medium text-gray-500">Job Experience</dt>
+                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_experience']?></dd>
                                                     </div>
                                                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                         <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">3+ years experience with applied Machine Learning or Deep Learning
-                                                            A graduate degree in Computer Science, AI, ML, Applied Math, Stats, Physics, or a related technical field
-                                                            Worked with Product, Design, and Engineering to prioritize, scope, design, and deploy ML models
-                                                            A track record of providing mentorship and technical leadership
-                                                            An appreciation for the connection between the software you build and the experience it delivers to customers</dd>
+                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_qualification']?></dd>
                                                     </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Python (NumPy, Pandas, sklearn, xgboost, TensorFlow, keras, etc.)
-                                                            MySQL, Snowflake, GCP/AWS and Tableau
-                                                            Java
-                                                        </dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Apply for: </dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <div class="da">
-                                                                <button class="p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>
-                                                            </div>
-                                                        </dd>
-                                                    </div>
+                                                    <form action="job/apply-auth.php" method="post" role="form">
+                                                        <div class="flex justify-center bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dd class=" mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                                <div class="da">
+                                                                    <input name="employer_id" class="hidden" type="text" value="<?php echo $row['employer_id']?>">
+                                                                    <input name="job_id" class="hidden" type="text" value="<?php echo $row['post_id']?>">
+                                                                    <input name="user_id" class="hidden" type="text" value="<?php echo $user_id?>">
+                                                                    <input name="fname" class="hidden" type="text" value="<?php echo $fname;?>">
+                                                                    <button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>
+                                                                </div>
+                                                            </dd>
+                                                        </div>
+                                                    </form>
                                                 </dl>
                                             </div>
                                         </div>
@@ -214,6 +207,10 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                                }
+                        
+                    ?>
                     
 
                 </div>
@@ -409,7 +406,9 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center py-4">
+
+
+        <!-- <div class="flex justify-center py-4">
             <nav aria-label="Page navigation example">
                 <ul class="flex list-style-none">
                     <li class="page-item disabled"><a
@@ -429,7 +428,9 @@
                         href="#">Next</a></li>
                 </ul>
             </nav>
-        </div>
+        </div> -->
+
+
     </main>
     <!-- E-commerce End -->
     

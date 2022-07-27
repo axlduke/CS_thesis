@@ -12,7 +12,6 @@
         $job_title = $_POST['job_title'];
         $job_experience = $_POST['job_experience'];
         $job_qualification = $_POST['job_qualification'];
-        $job_technology = $_POST['job_technology'];
         $date = date('Y-m-d H:i:s');
         $job_about = $_POST['job_about'];
 
@@ -20,7 +19,7 @@
             if (is_uploaded_file($_FILES['job_logo']['tmp_name'])) {
                 if (move_uploaded_file($_FILES['job_logo']['tmp_name'], $logo)) {
 
-                    $post ="INSERT INTO jobs_post (employer_id, job_company, job_title, job_experience, job_qualification, job_technology, logo, date_posted, job_about) VALUES ('$employer_id','$job_company','$job_title','$job_experience','$job_qualification','$job_technology','$logo','$date','$job_about')";
+                    $post ="INSERT INTO jobs_post (employer_id, job_company, job_title, job_experience, job_qualification, logo, date_posted, job_about) VALUES ('$employer_id','$job_company','$job_title','$job_experience','$job_qualification','$logo','$date','$job_about')";
                     $result = mysqli_query($conn, $post);
                     if($result){
                         header("Location: post.php");

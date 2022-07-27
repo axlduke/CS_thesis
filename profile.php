@@ -148,7 +148,7 @@
                                 <span class="block text-white font-normal">or</span>
                                 <span class="block text-white font-normal">Browse files</span>            
                                 </div>
-                            </div> <input type="file" class="h-full w-full opacity-0" name="pic">
+                            </div> <input type="file" class="h-full w-full opacity-0" name="pic" required>
                             <button name="upload" type="submit" class="absolute block text-yellow-400 font-normal mt-32">Upload</button>
                         </div>
                     </form>
@@ -200,7 +200,7 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $address ?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $Country ?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>
@@ -239,7 +239,7 @@
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Address</dt>
-                                                            <input name="address" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $address ?>">
+                                                            <input name="Country" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $Country ?>">
                                                         </div>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Email address</dt>

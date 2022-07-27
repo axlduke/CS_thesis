@@ -93,7 +93,7 @@
                 </div>
                 <div class="flex  lg:ml-[62rem] lg:px-6">
                     <div class="w-10 z-10 lg:pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-magnify text-gray-400 text-lg"></i></div>
-                    <input name="contact" type="text" class="w-full sm:-ml-10 lg:-ml-10 lg:pl-12 lg:pr-3 lg:py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Search...">
+                    <input name="contact" type="text" class="w-full pl-2 sm:-ml-10 lg:-ml-10 lg:pl-12 lg:pr-3 lg:py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Search...">
                 </div>
             </div>
             <!-- Start of E-commerce -->

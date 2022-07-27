@@ -57,7 +57,7 @@
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="#">
-                    Job Management
+                    Job Management 
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -185,10 +185,6 @@
                                                         <input name="job_qualification" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
                                                     </div>
                                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Technologies We Use (and Teach)</dt>
-                                                        <input name="job_technology" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                         <dt class="text-sm font-medium text-gray-500">About</dt>
                                                         <input name="job_about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
                                                     </div>
@@ -215,8 +211,10 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-2">
                         <?php
+                        // $job_company = $row['company'];
                         while($row = $results -> fetch_assoc()){
                             $post_id = $row['post_id'];
+                            // $job_company = $row['company'];
                             $logo = $row['logo'];
                         ?>
 
@@ -248,11 +246,11 @@
                                             <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
                                             <div class="flex flex-col">
                                                 <label class="leading-loose">Job Title</label>
-                                                <input name="job_title" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job title" value="<?php echo $row['job_title']?>"/>
+                                                <input name="job_title" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_title']?>"/>
                                             </div>
                                             <div class="flex flex-col">
                                                 <label class="leading-loose">Company Name</label>
-                                                <input name="job_company" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" placeholder="Job Experience Description" value="<?php echo $row['job_company']?>"/>
+                                                <input name="job_company" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_company']?>">
                                             </div>
                                             <div class="flex flex-col">
                                                 <label class="leading-loose">Job Experience</label>
@@ -263,19 +261,16 @@
                                                 <input name="job_qualification" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_qualification']?>">
                                             </div>
                                             <div class="flex flex-col">
-                                                <label class="leading-loose">Technology | Languages use</label>
-                                                <input name="job_technology" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_technology']?>"/>
-                                            </div>
-                                            <div class="flex flex-col">
                                                 <label class="leading-loose">Job Description</label>
                                                 <input name="job_about" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_about']?>" />
+                                                <input name="post_id" type="text" class="hidden" value="<?php echo $row['post_id']?>">
                                             </div>
                                             </div>
                                             <div class="flex items-center space-x-4 pt-4">
-                                                <!-- <button type="button" class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
+                                                <!-- <button type="btn" class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
                                                     <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
                                                 </button> -->
-                                                <button name="updateform" type="submit" value="<?php echo $row['post_id']?>" class="close close_multi flex w-full items-center justify-center rounded-md hover:bg-teal-400 transition eas-in-out duration-500 px-4 py-3 text-teal-700 focus:outline-none">Save</button>
+                                                <button name="updateform" type="submit" class="close close_multi flex w-full items-center justify-center rounded-md hover:bg-teal-400 transition eas-in-out duration-500 px-4 py-3 text-teal-700 focus:outline-none">Save</button>
                                             </div>
                                         </div>
                                     </div>

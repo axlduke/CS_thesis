@@ -6,7 +6,7 @@ include "db.php";
 
 		$fname = $_POST['fname'];
 		$contact = $_POST['contact'];
-		$address = $_POST['address'];
+		$Country = $_POST['Country'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$type = $_POST['type'];
@@ -21,7 +21,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','','','','','')";
+				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$Country','$password','','$type','','','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and `password`='$password'";
 					$result = $conn->query($sql);
@@ -32,7 +32,7 @@ include "db.php";
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['type'] = $row['type'];
 						$_SESSION['email'] = $row['email'];
-						$_SESSION['address'] = $row['address'];
+						$_SESSION['Country'] = $row['Country'];
 						$_SESSION['password'] = $row['password'];
 
 						header("Location: ../main.php");
@@ -50,7 +50,7 @@ include "db.php";
 
 		$fname = $_POST['fname'];
 		$contact = $_POST['contact'];
-		$address = $_POST['address'];
+		$Country = $_POST['Country'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$type = $_POST['type'];
@@ -67,7 +67,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','$business','$permit','','','')";
+				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$Country','$password','','$type','$business','$permit','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -78,7 +78,7 @@ include "db.php";
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
 						$_SESSION['type'] = $row['type'];
-						$_SESSION['address'] = $row['address'];
+						$_SESSION['Country'] = $row['Country'];
 						$_SESSION['password'] = $row['password'];
 						header('Location: ../shop.php');
 					}
@@ -96,7 +96,7 @@ include "db.php";
 
 		$fname = $_POST['fname'];
 		$contact = $_POST['contact'];
-		$address = $_POST['address'];
+		$Country = $_POST['Country'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$type = $_POST['type'];
@@ -112,7 +112,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','','','$company','','')";
+				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$Country','$password','','$type','','','$company','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -122,7 +122,7 @@ include "db.php";
 						$_SESSION['user_id'] = $row['user_id'];
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
-						$_SESSION['address'] = $row['address'];
+						$_SESSION['Country'] = $row['Country'];
 						$_SESSION['type'] = $row['type'];
 						$_SESSION['password'] = $row['password'];
 						header('Location: ../admin-jobs.php');
@@ -162,7 +162,7 @@ include "db.php";
 				$_SESSION['fname'] = $row['fname'];
 				$_SESSION['contact'] = $row['contact'];
 				$_SESSION['type'] = $row['type'];
-				$_SESSION['address'] = $row['address'];
+				$_SESSION['Country'] = $row['Country'];
 				$_SESSION['mode'] = $row['mode'];
 				$_SESSION['company'] = $row['company'];
                 $row['user_id'] =$_SESSION['user_id'];
