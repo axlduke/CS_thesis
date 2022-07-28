@@ -1,11 +1,11 @@
-<!-- <?php
+<?php
     session_start();
     include "../auth/db.php";
     
     if (!isset($_SESSION['user_id'])){
 		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
 		echo '<script>window.location.replace("login.php");</script>';
-	}
+    }
     $user_id = $_SESSION['user_id'];
     $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
     $result = $conn->query($sql_query);
@@ -14,8 +14,19 @@
         $fname = $row['fname'];
         $contact = $row['contact'];
         $pictures = $row['pictures'];
+        $email = $row['email'];
+        $business = $row['business'];
+        $permit = $row['permit'];
+        require_once('../auth/db.php');
+        if($_SESSION['type']== 2){
+        }
+        else{
+            header('location: ../login.php');
+        }
     }
-?> -->
+    $products_posted="SELECT * from products where seller_id = ".$_SESSION['user_id'];
+    $results=mysqli_query($conn,$products_posted);
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +35,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Posted Jobs</title>
+    <title>Posted Items</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -125,22 +136,22 @@
             <!-- Start of E-commerce -->
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 mt-28">
                 <div class="flex relative mt-1 py-3">
-                    <form action="#_" method="post" enctype="multipart/form-data">
+                    <form action="post_product_action.php" method="post" enctype="multipart/form-data">
                         <div class="flex modal modal_multi fade fixed hidden top-0 left-0 h-full w-full px-5 py-20 outline-none sm:py-32 lg:py-20 lg:mt-20 lg:mb-20">
                             <div class="modal-content mx-auto w-[80rem] rounded-md bg-white py-5 px-5 shadow-lg">
                                 <div class="divide-gray-200">
                                     <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Product Name</div>
-                                            <input name="productName" type="text" class="border border-gray-300 rounded-md pl-3">
+                                            <input name="product_name" type="text" class="border border-gray-300 rounded-md pl-3">
                                         </div>
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Product Description</div>
-                                            <input name="productDes" type="text" class="border border-gray-300 rounded-md pl-3">
+                                            <input name="product_description" type="text" class="border border-gray-300 rounded-md pl-3">
                                         </div>
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
-                                            <div class="px-4 py-2 font-semibold text-sm">Categories</div>
-                                            <input list="categories" name="category" class="border border-gray-300 rounded-md pl-3" placeholder="Search...">
+                                            <div class="px-4 py-2 font-semibold text-sm">Product Category</div>
+                                            <input list="product_category" name="product_category" class="border border-gray-300 rounded-md pl-3" placeholder="Search...">
                                             <datalist id="categories">
                                                 <option value="women clothes">
                                                 <option value="men clothes">
@@ -175,7 +186,7 @@
                                         <div class="grid lg:grid-cols-3 grid-cols-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Weight</div>
                                             <input name="weight" type="text" class="border border-gray-300 rounded-md pl-3" placeholder="max 50kg">
-                                            <input list="kilo" name="shippingFee" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost">
+                                            <input list="kilo" name="shipping_fee" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost">
                                             <datalist id="kilo">
                                                 <option value="100 = 10kg">
                                                 <option value="200 = 20kg">
@@ -191,6 +202,7 @@
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Price</div>
                                             <input name="price" type="text" class="border border-gray-300 rounded-md pl-3">
+
                                         </div>
                                     </div>
                                     <div class="grid lg:grid-cols-4 grid-cols-1 py-2">
@@ -201,12 +213,12 @@
                                                 <i class="uil uil-image text-gray-300 text-4xl"></i>
                                                 <span class="block text-gray-400 font-normal">or</span>
                                                 
-                                                <span class="block text-blue-400 font-normal">Browse files</span>
+                                                <span class="block text-blue-400 font-normal">Upload Image</span>
                                                 
                                                 </div>
-                                            </div> <input type="file" class="h-full w-full opacity-0" name="permit">
+                                            </div> <input type="file" class="h-full w-full opacity-0" name="image">
                                         </div>
-                                        <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+<!--                                         <div class="grid-cols-4 relative h-24 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                                             <div class="absolute">
                                                 <div class="flex flex-col items-center "> 
                                                 <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
@@ -254,12 +266,12 @@
                                                 </div>
                                             </div> <input type="file" class="h-full w-full opacity-0" name="permit">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="flex items-center space-x-4 pt-4">
                                     <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
                                         <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
                                     </button>
-                                    <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -276,26 +288,35 @@
                 <div class="mb-5 flex justify-center">
                     <div class="flex max-w-full">
                         <table class="table-auto bg-white px-5"> 
-                        <thead class="">
+                        <thead class="">                       
                             <tr class="bg-slate-700">
-                            <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
-                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">No.</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Quantity</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Product Name</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">Category</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Product Description</i></th>
+                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Price</i></th>
                             </tr>
                         </thead>
                         <!-- PHP script -->
                         <tbody class="">
+                            <?php
+                            $i=1;
+                            while($row = $results -> fetch_assoc()){
+                                $product_id = $row['product_id'];
+                               
+                            ?> 
                             <tr class="">
-                            <td class="py-5 lg:px-28">#123456</td>
-                            <td class="py-5 lg:px-28">03/07/2022</td>
-                            <td class="py-5 text-red-300 underline lg:px-28">
-                                <a href="invoice.php">view</a> <!-- ID OF THE CURRENT ORDER-->
-                            </td>
-                            <td class="py-5 lg:px-28">₱1,500</td>
-                            <td class="py-5 lg:px-28">Shipping</td>
+                            <td class="py-5 lg:px-28"><?php echo $i;?></td> 
+                            <td class="py-5 lg:px-28"><?php echo $row['quantity'];?></td>    
+                            <td class="py-5 lg:px-28"><?php echo $row['product_name'];?></td>
+                            <td class="py-5 lg:px-28"><?php echo $row['product_category'];?></td>
+                            <td class="py-5 lg:px-28"><?php echo $row['product_description'];?></td>
+                            <td class="py-5 lg:px-28"><?php echo $row['price'];?></td>
                             </tr>
+                                <?php $i += 1;
+                                }
+                            ?>
                         </tbody>
                         </table>
                     </div>

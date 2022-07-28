@@ -6,8 +6,8 @@
 		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
 		echo '<script>window.location.replace("login.php");</script>';
 	}
-    $user_id = $_SESSION['user_id'];
-    $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
+    $seller_id = $_SESSION['user_id'];
+    $sql_query = "SELECT * FROM user WHERE user_id ='$seller_id'";
     $result = $conn->query($sql_query);
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
@@ -69,7 +69,7 @@
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
-                                <li><a href="auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="../auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -142,6 +142,7 @@
                     <tr class="bg-slate-700">
                     <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
                     <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
+                    <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Product Name</i></th>
                     <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
                     <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
                     <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
@@ -149,15 +150,27 @@
                 </thead>
                 <!-- PHP script -->
                 <tbody class="">
+                    <?php
+                    $products_posted="SELECT * from products WHERE seller_id ='$seller_id'";                
+                    $results=mysqli_query($conn,$products_posted);                 
+                        while($row = $results -> fetch_assoc()){
+                            $product_id = $row['product_id'];
+                            $products_ordered="SELECT * from orders WHERE product_id = ".$row['product_id'];  
+                            $res=mysqli_query($conn,$products_ordered);
+                             while($fetch = $res-> fetch_assoc()){
+                    ?>
                     <tr class="">
-                    <td class="py-5 lg:px-28">#123456</td>
-                    <td class="py-5 lg:px-28">03/07/2022</td>
+                    <td class="py-5 lg:px-28"><?php echo $fetch['order_id']; ?></td>
+                    <td class="py-5 lg:px-28"><?php echo $fetch['date_ordered']; ?></td>
+                    <td class="py-5 lg:px-28"><?php echo $row['product_name']; ?></td>
                     <td class="py-5 text-red-300 underline lg:px-28">
                         <a href="invoice.php">view</a> <!-- ID OF THE CURRENT ORDER-->
                     </td>
-                    <td class="py-5 lg:px-28">₱1,500</td>
-                    <td class="py-5 lg:px-28">Shipping</td>
+                    <td class="py-5 lg:px-28"><?php echo $row['price']; ?></td>
+                    <td class="py-5 lg:px-28"><?php echo $fetch['order_status']; ?></td>
                     </tr>
+                    <?php 
+                        }}?>
                 </tbody>
                 </table>
             </div>
