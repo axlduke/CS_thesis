@@ -15,7 +15,6 @@
         $contact = $row['contact'];
         $pictures = $row['pictures'];
         $email = $row['email'];
-        $address = $row['address'];
         $about = $row['about'];
         $company = $row['company'];
         require_once('../auth/db.php');

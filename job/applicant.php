@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pulls
-Issues
-Marketplace
-Explore
- 
-@axlduke 
-axlduke
-/
-CS_thesis
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-More
-CS_thesis/job/applicant.php /
-@axlduke
-axlduke umay
-Latest commit ab414f4 2 days ago
- History
- 2 contributors
-@axlduke@AEArtemis
-458 lines (399 sloc)  28 KB
-
 <?php
     session_start();
     include "../auth/db.php";
@@ -48,7 +19,6 @@ Latest commit ab414f4 2 days ago
     $jobs_posted="SELECT * from jobs_post where employer_id = ".$_SESSION['user_id'];
     $result=mysqli_query($conn,$jobs_posted);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,11 +26,12 @@ Latest commit ab414f4 2 days ago
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Posted Jobs</title>
+    <title>Applicant</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <!--Replace with your tailwind.css once created-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
@@ -145,6 +116,11 @@ Latest commit ab414f4 2 days ago
                             <i class="fa fa-comment-alt fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Message</span>
                         </a>
                     </li>
+                    <li class="mr-6 my-2 md:my-0" disabled>
+                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-teal-300 border-b-2 border-white hover:border-teal-300">
+                            <i class="uil uil-user-square fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">View Profile</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -154,234 +130,124 @@ Latest commit ab414f4 2 days ago
     <!--Container-->
     <div class="container w-full mx-auto pt-12">
 
-        <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
+        <div class="flex justify-center w-full px-4 md:mt-8 mb-16 text-gray-800 leading-normal">
             <!--Console Content-->
-            <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
-                <label for="table-search" class="sr-only">Search</label>
-                <div class="flex relative mt-1 py-3 ">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd">
-                            </path>
-                        </svg>
-                    </div>
-                    <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Position...">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                    <?php
-                    if (mysqli_num_rows($result) > 0) {
-                    $i=0;
-                    while($row = mysqli_fetch_array($result)) {
-                            $applicant="select * from applicants where job_id = ".$row['post_id'];
-                    ?>
-                    <div class="mr-3 flex w-80 cursor-pointer flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="../img/<?php echo $row['logo']?>" alt="logo" />
+            <section class="max-w-6xl mx-4 sm:px-6 lg:px-4 lg:mt-20 mt-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                    <div class="flex w-[26rem] cursor-pointer flex-col rounded-lg bg-white shadow-lg px-5">
+                        <div class="mb-2 mt-5 flex items-center space-x-5 ">
+                            <img class="ml-2 w-12 rounded-md" src="../img/prof1.jpg" alt="logo" />
                             <div>
-                                <h1 class="mb-1 py-3 text-xl font-bold text-gray-700"><?php echo $row['job_title']?></h1>
-                            </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-7 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">  
-                                <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                    <div class="flex items-center space-x-5">
-                                        <img src="../img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                        <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                        <h2 class="leading-relaxed"><?php echo $row['job_title']?></h2>
-                                        <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p>
-                                        </div>
-                                    </div>
-                                    <div class="divide-y divide-gray-200">
-                                        <body class="antialiased font-sans bg-gray-200">
-                                            <div class="container mx-auto px-4 sm:px-8">
-                                                <div class="py-8">
-                                                    <div>
-                                                        <h2 class="text-2xl font-semibold leading-tight">Applicants List</h2>
-                                                    </div>
-                                                    <div class="my-2 flex sm:flex-row flex-col">
-                                                        <div class="flex flex-row mb-1 sm:mb-0">
-                                                            <div class="relative">
-                                                                <select
-                                                                    class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                                                    <option>5</option>
-                                                                    <option>10</option>
-                                                                    <option>20</option>
-                                                                </select>
-                                                                <div
-                                                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="block relative">
-                                                            <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
-                                                                <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
-                                                                    <path
-                                                                        d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
-                                                                    </path>
-                                                                </svg>
-                                                            </span>
-                                                            <input placeholder="Search"
-                                                                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="-mx-4 h-80 overflow-y-auto sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                                                        <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                                                            <table class="min-w-full leading-normal">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th
-                                                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                                            Name
-                                                                        </th>
-                                                                        <th
-                                                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                                            Date Applied
-                                                                        </th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php 
-                                                                    $fetch_applicant_id=mysqli_query($conn,$applicant);
-
-                                                                    if (mysqli_num_rows($fetch_applicant_id) > 0) {
-                                                                    while($get_row = mysqli_fetch_array($fetch_applicant_id)) { 
-                                                                    ?>                                                                   
-                                                                    <tr>
-                                                                        <?php 
-                                                                            $applicant_list="select * from user where user_id = ".$get_row['user_id'];
-                                                                            $query=mysqli_query($conn,$applicant_list);
-                                                                                if (mysqli_num_rows($query) > 0) {
-                                                                                    while($fetch = mysqli_fetch_array($query)) {
-                                                                        ?>
-                                                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                                            <div class="flex items-center">
-                                                                                <div class="flex-shrink-0 w-10 h-10">
-                                                                                    <img class="w-full h-full rounded-full"
-                                                                                        src="../img/<?php echo $fetch['pictures']?>"
-                                                                                        alt="" />
-                                                                                </div>
-                                                                                <div class="ml-3">
-                                                                                    <p class="text-gray-900 whitespace-no-wrap">
-                                                                                        
-                                                                                        <?php echo $fetch['fname'];} }?>
-
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                                <?php echo $get_row['date_applied'];?>
-                                                                            </p>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <?php
-                                                                            }
-                                                                        } 
-                                                                    ?>
-                                                                </tbody>
-
-                                                            </table>
-                                                            <div
-                                                                class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-                                                                <span class="text-xs xs:text-sm text-gray-900">
-                                                                    Showing 1 to 4 of 50 Entries
-                                                                </span>
-                                                                <div class="inline-flex mt-2 xs:mt-0">
-                                                                    <button
-                                                                        class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
-                                                                        Prev
-                                                                    </button>
-                                                                    <button
-                                                                        class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
-                                                                        Next
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </body>
-                                        <div class="flex items-center space-x-4 pt-4">
-                                            <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                            </button>
-                                            <button class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h1 class="mb-1 text-xl font-bold text-gray-700">Associate Software Engineer</h1>
                             </div>
                         </div>
-                        <p class="px-5 pb-6" maxlength='20'><?php echo $row['job_about']?></p>
-                        <div>
-
-                </div>
-                </div>  
                         <?php
-                        }
+                            if(isset($_POST['search']))
+                            {
+                                $valueToSearch = $_POST['valueToSearch'];
+                                $query = "SELECT * FROM `applicants` WHERE CONCAT(`fname`, `date_applied`) LIKE '%".$valueToSearch."%'";
+                                $search_result = filterTable($query);
+                                
+                            }
+                            else {
+                                $query = "SELECT * FROM `applicants`";
+                                $search_result = filterTable($query);
+                            }
+                            function filterTable($query)
+                            {
+                                $connect = mysqli_connect("localhost", "root", "", "propose");
+                                $filter_Result = mysqli_query($connect, $query);
+                                return $filter_Result;
+                            }
                         ?>
-
-                        <?php
-                        }
-                        ?> 
+                        <form action="applicant.php" method="POST">
+                            <div>
+                                <input name="valueToSearch" type="text" class="border-2 border-teal-300 rounded-md pl-3 py-1 outline-none" placeholder="Search....">
+                                <button name="search" type="submit"><i class="uil uil-search"></i></button>
+                            </div>
+                            <table class="mt-3">
+                                <thead>
+                                    <tr>
+                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Name</th>
+                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Action</th>
+                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">...</th>
+                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">...</th>
+                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php 
+                                    while($row = mysqli_fetch_array($search_result)):
+                                        $search_result="SELECT * from applicants where job_id = ".$row['post_id'];
+                                ?>
+                                    <tr class="max-w-xl border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                        <td>
+                                            <div class="flex items-center">
+                                                <div class="h-10 w-10 flex-shrink-0">
+                                                    <img class="h-full w-full rounded-full" src="../img/<?php ?>" alt="">
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="whitespace-no-wrap text-gray-900"><?php echo $row['fname']?></>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                            <p class="whitespace-no-wrap text-black hover:text-teal-400">
+                                                <a href="view-user-profile.php">view</a>
+                                            </p>
+                                        </td>
+                                        <form action="" method="post">
+                                            <td class="border-b border-gray-200 bg-white px-1 py-5 text-sm">
+                                                <p class="whitespace-no-wrap text-black hover:text-green-600 hover:bg-green-400 hover:rounded-md hover:p-1">
+                                                    <button name="accept" type="submit">Accept</button>
+                                                </p>
+                                            </td>
+                                            <td class="border-b border-gray-200 bg-white px-1 py-5 text-sm">
+                                                <p class="whitespace-no-wrap text-black hover:text-red-600 hover:bg-red-400 hover:rounded-md hover:p-1">
+                                                    <button name="decline" type="submit">Decline</button>
+                                                </p>
+                                            </td>
+                                        </form>
+                                        <td class="border-b border-gray-200 bg-white px-2 py-5 text-sm">
+                                            <p class="whitespace-no-wrap text-gray-900"><?php echo $row['date_applied']?></p>
+                                        </td>
+                                    </tr>
+                                <?php endwhile;?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>  
             </section>
-            <!--/ Job Profile Catalog-->
-
         </div>
-
-
     </div>
     <!--/container-->
 
-    <footer class="bg-white border-t border-gray-400 shadow">
-        <div class="container max-w-md mx-auto flex py-8">
-
-            <div class="w-full mx-auto flex flex-wrap">
-                <div class="flex w-full md:w-1/2 ">
-                    <div class="px-8">
-                        <h1 class="font-bold font-bold text-gray-900">DWCL BS - Computer Science 4</h1>
-                        <h3 class="font-bold font-bold text-gray-900">Developer</h3>
-                        <p class="py-4 text-gray-600 text-sm">
-                            Ace Malto <br>
-                            Mark Limpo
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex w-full md:w-1/2">
-                    <div class="px-8">
-                        <h3 class="font-bold font-bold text-gray-900">Social</h3>
-                        <ul class="list-reset items-center text-sm pt-3">
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Facebook</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Instagram</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">LinkedIn</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script>
+        $(document).ready(function() {
+            $("#search-box").keyup(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "readCountry.php",
+                    data: 'keyword=' + $(this).val(),
+                    beforeSend: function() {
+                        $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+                    },
+                    success: function(data) {
+                        $("#suggesstion-box").show();
+                        $("#suggesstion-box").html(data);
+                        $("#search-box").css("background", "#FFF");
+                    }
+                });
+            });
+        });
+        // To select country name
+        function selectCountry(val) {
+            $("#search-box").val(val);
+            $("#suggesstion-box").hide();
+        }
+        // End of Jquery Script
         var modalparent = document.getElementsByClassName("modal_multi");
 
         // Get the button that opens the modal

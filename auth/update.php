@@ -7,12 +7,12 @@
         $fname = $_POST['fname'];
         $contact = $_POST['contact'];
         $email = $_POST['email'];
-        $address = $_POST['address'];
+        $Country = $_POST['Country'];
         $password = $_POST['password'];
         $about = $_POST['about'];
         $mode = $_POST['mode'];
     
-        $sql = "UPDATE user SET fname = '$fname', contact = '$contact', email = '$email', address = '$address', password = '$password', mode = '$mode', about = '$about' WHERE user_id ='$user_id'";
+        $sql = "UPDATE user SET fname = '$fname', contact = '$contact', email = '$email', address = '$Country', password = '$password', mode = '$mode', about = '$about' WHERE user_id ='$user_id'";
         $result = mysqli_query($conn, $sql);
         if($result){
             echo $_SESSION['about_success'] = '<script>window.alert("Updated successfully")</script>';
