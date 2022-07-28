@@ -271,7 +271,7 @@
                                     <button class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
                                         <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
                                     </button>
-                                    <button name="post_product_button" class="flex w-full items-center justify-center rounded-md bg-blue-500 px-4 py-3 text-white focus:outline-none">Save</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -290,6 +290,7 @@
                         <table class="table-auto bg-white px-5"> 
                         <thead class="">                       
                             <tr class="bg-slate-700">
+                            <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">No.</i></th>
                             <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Quantity</i></th>
                             <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Product Name</i></th>
                             <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">Category</i></th>
@@ -300,18 +301,20 @@
                         <!-- PHP script -->
                         <tbody class="">
                             <?php
+                            $i=1;
                             while($row = $results -> fetch_assoc()){
                                 $product_id = $row['product_id'];
                                
                             ?> 
                             <tr class="">
+                            <td class="py-5 lg:px-28"><?php echo $i;?></td> 
                             <td class="py-5 lg:px-28"><?php echo $row['quantity'];?></td>    
                             <td class="py-5 lg:px-28"><?php echo $row['product_name'];?></td>
                             <td class="py-5 lg:px-28"><?php echo $row['product_category'];?></td>
                             <td class="py-5 lg:px-28"><?php echo $row['product_description'];?></td>
                             <td class="py-5 lg:px-28"><?php echo $row['price'];?></td>
                             </tr>
-                                <?php
+                                <?php $i += 1;
                                 }
                             ?>
                         </tbody>

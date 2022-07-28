@@ -2,7 +2,7 @@
 session_start();
 include '../auth/db.php';
 $seller_id = $_SESSION['user_id'];
-echo $seller_id;
+// echo $seller_id;
         if(isset($_POST['post_product_button']))
 			{
 			$type = explode('.', $_FILES['image']['name']);
