@@ -278,91 +278,29 @@
                             
 
                         </div>
-                            <div class="max-w-md px-5 pb-5">
-                                <h3 class="text-xs md:text-md lg:text-xl tracking-tight text-gray-900" maxlength='20'><?php echo $row['job_about']?></h3>
+                            <div class="px-5 pb-5">
+                            <p style="overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 5; 
+                                -webkit-box-orient: vertical;"><?php echo $row['job_about']?></p>
                             </div>
                         <div>
-                        <!-- Button for General User for Apply or Message -->
                         </div>
                     </div>
                     <?php
                         }
                     ?>
-                    
                 </div>
-
-                
                 </div>
-                <!-- Pagination Start -->
-                <!-- <div class="flex justify-center py-4">
-                    <nav aria-label="Page navigation example">
-                        <ul class="flex list-style-none overflow-auto">
-                            <li class="page-item disabled"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                                href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-                            <li class="page-item active"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                                href="#">1</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">2</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">3</a></li>
-                            <li class="page-item"><a
-                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                href="#">Next</a></li>
-                        </ul>
-                    </nav>
-                </div> -->
-                <!-- Pagination End -->
             </section>
-            <!--/ Job Profile Catalog-->
-
         </div>
 
 
     </div>
     <!--/container-->
 
-    <footer class="bg-white border-t border-gray-400 shadow mt-[22.9rem]">
-        <div class="container max-w-md mx-auto flex py-8">
-
-            <div class="w-full mx-auto flex flex-wrap">
-                <div class="flex w-full md:w-1/2 ">
-                    <div class="px-8">
-                        <h1 class="font-bold font-bold text-gray-900">DWCL BS - Computer Science 4</h1>
-                        <h3 class="font-bold font-bold text-gray-900">Developer</h3>
-                        <p class="py-4 text-gray-600 text-sm">
-                            Ace Malto <br>
-                            Mark Limpo
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex w-full md:w-1/2">
-                    <div class="px-8">
-                        <h3 class="font-bold font-bold text-gray-900">Social</h3>
-                        <ul class="list-reset items-center text-sm pt-3">
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Facebook</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">Instagram</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1" href="#">LinkedIn</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </footer>
-
+    
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");
 
