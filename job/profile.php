@@ -16,16 +16,13 @@
         $pictures = $row['pictures'];
         $email = $row['email'];
         $password = $row['password'];
-        $address = $row['address'];
+        $Country = $row['Country'];
         $company = $row['company'];
         require_once('../auth/db.php');
         if($_SESSION['type']== 3){
         }
         else{
             header('location: login.php');
-        }
-            if(!isset($_SESSION['user_id'])){
-                header('location: login.php');
         }
     }
 ?>
@@ -177,7 +174,7 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $address ?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $Country ?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>

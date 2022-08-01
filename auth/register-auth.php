@@ -53,6 +53,7 @@ include "db.php";
 		$Country = $_POST['Country'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
+		$Country = $_POST['Country'];
 		$type = $_POST['type'];
 		$business = $_POST['business'];
 		$permit = $_POST['permit'];
@@ -101,6 +102,7 @@ include "db.php";
 		$password = $_POST['password'];
 		$type = $_POST['type'];
 		$company = $_POST['company'];
+		$Country = $_POST['Country'];
 
 		$query =mysqli_query($conn, "SELECT * FROM account WHERE email = '$email'");
 		if(mysqli_num_rows($query) > 0){

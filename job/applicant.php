@@ -19,6 +19,7 @@
     $jobs_posted="SELECT * from jobs_post where employer_id = ".$_SESSION['user_id'];
     $result=mysqli_query($conn,$jobs_posted);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Applicant</title>
+    <title>Posted Jobs</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -66,7 +67,7 @@
                         </button>
                         <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
-                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
+                                <li><a href="profile.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
@@ -117,7 +118,7 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0" disabled>
-                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-teal-300 border-b-2 border-white hover:border-teal-300">
+                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-500 hover:text-teal-300 border-b-2 border-white hover:border-teal-300">
                             <i class="uil uil-user-square fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">View Profile</span>
                         </a>
                     </li>
@@ -130,27 +131,37 @@
     <!--Container-->
     <div class="container w-full mx-auto pt-12">
 
-        <div class="flex justify-center w-full px-4 md:mt-8 mb-16 text-gray-800 leading-normal">
+        <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
             <!--Console Content-->
-            <section class="max-w-6xl mx-4 sm:px-6 lg:px-4 lg:mt-20 mt-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                    <div class="flex w-[26rem] cursor-pointer flex-col rounded-lg bg-white shadow-lg px-5">
-                        <div class="mb-2 mt-5 flex items-center space-x-5 ">
-                            <img class="ml-2 w-12 rounded-md" src="../img/prof1.jpg" alt="logo" />
-                            <div>
-                                <h1 class="mb-1 text-xl font-bold text-gray-700">Associate Software Engineer</h1>
+            <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
+                <div class="grid lg:grid-cols-2 gap-4">
+                <?php
+                    if (mysqli_num_rows($result) > 0) {
+                    $i=0;
+                    while($row = mysqli_fetch_array($result)) {
+                            $applicant="SELECT * from applicants where job_id = ".$row['post_id'];
+                    ?>
+                    <div class="mt-10">
+                        <div class="inline-block min-w-full bg-teal-100 overflow-hidden rounded-lg shadow-lg">
+                            <div class="flex mt-5 items-center ml-4">
+                                <div class="h-10 w-10 flex-shrink-0">
+                                    <img class="h-full w-full rounded-full" src="../img/<?php echo $row['logo']?>" alt="" />
+                                </div>
+                                <div class="mt-5">
+                                    <h1 class="ml-4 font-bold"><?php echo $row['job_title']?></h1>
+                                </div>
                             </div>
-                        </div>
-                        <?php
+                            <?php
                             if(isset($_POST['search']))
                             {
                                 $valueToSearch = $_POST['valueToSearch'];
-                                $query = "SELECT * FROM `applicants` WHERE CONCAT(`fname`, `date_applied`) LIKE '%".$valueToSearch."%'";
+                                // $sql = "SELECT * FROM jobs_post INNER JOIN applicants ON jobs_post.post_id = applicants.apply_id WHERE CONCAT(`fname`, `date_applied`) LIKE '%".$valueToSearch."%'";
+                                $query = "SELECT * FROM `applicants` INNER JOIN jobs_post WHERE CONCAT(`fname`, `date_applied`) LIKE '%".$valueToSearch."%'";
                                 $search_result = filterTable($query);
                                 
                             }
                             else {
-                                $query = "SELECT * FROM `applicants`";
+                                $query = "SELECT * FROM `applicants` WHERE user_id = $user _id ";
                                 $search_result = filterTable($query);
                             }
                             function filterTable($query)
@@ -159,95 +170,85 @@
                                 $filter_Result = mysqli_query($connect, $query);
                                 return $filter_Result;
                             }
-                        ?>
-                        <form action="applicant.php" method="POST">
-                            <div>
+                            ?>
+                            <div class="pt-3 pl-3">
                                 <input name="valueToSearch" type="text" class="border-2 border-teal-300 rounded-md pl-3 py-1 outline-none" placeholder="Search....">
-                                <button name="search" type="submit"><i class="uil uil-search"></i></button>
+                                <button name="search" type="submit"><i class="uil uil-search hover:text-lg"></i></button>
                             </div>
-                            <table class="mt-3">
+                            <table class="min-w-full leading-normal">
                                 <thead>
                                     <tr>
-                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Name</th>
-                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Action</th>
-                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">...</th>
-                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">...</th>
-                                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Date</th>
+                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">Name</th>
+                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">....</th>
+                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">....</th>
+                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">....</th>
+                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">Date Applied</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                <?php 
-                                    while($row = mysqli_fetch_array($search_result)):
-                                        $search_result="SELECT * from applicants where job_id = ".$row['post_id'];
-                                ?>
-                                    <tr class="max-w-xl border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                        <td>
-                                            <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0">
-                                                    <img class="h-full w-full rounded-full" src="../img/<?php ?>" alt="">
-                                                </div>
-                                                <div class="ml-3">
-                                                    <p class="whitespace-no-wrap text-gray-900"><?php echo $row['fname']?></>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                            <p class="whitespace-no-wrap text-black hover:text-teal-400">
-                                                <a href="view-user-profile.php">view</a>
-                                            </p>
-                                        </td>
-                                        <form action="" method="post">
-                                            <td class="border-b border-gray-200 bg-white px-1 py-5 text-sm">
-                                                <p class="whitespace-no-wrap text-black hover:text-green-600 hover:bg-green-400 hover:rounded-md hover:p-1">
-                                                    <button name="accept" type="submit">Accept</button>
-                                                </p>
-                                            </td>
-                                            <td class="border-b border-gray-200 bg-white px-1 py-5 text-sm">
-                                                <p class="whitespace-no-wrap text-black hover:text-red-600 hover:bg-red-400 hover:rounded-md hover:p-1">
-                                                    <button name="decline" type="submit">Decline</button>
-                                                </p>
-                                            </td>
-                                        </form>
-                                        <td class="border-b border-gray-200 bg-white px-2 py-5 text-sm">
-                                            <p class="whitespace-no-wrap text-gray-900"><?php echo $row['date_applied']?></p>
-                                        </td>
-                                    </tr>
-                                <?php endwhile;?>
+                                    <tbody class="">
+                                    <?php 
+                                    $fetch_applicant_id=mysqli_query($conn,$applicant);
+
+                                    if (mysqli_num_rows($fetch_applicant_id) > 0) {
+                                    while($get_row = mysqli_fetch_array($fetch_applicant_id)) { 
+                                    ?>
+                                                    <tr class="">
+                                                    <?php 
+                                                        $applicant_list="SELECT * from user where user_id = ".$get_row['user_id'];
+                                                        $query=mysqli_query($conn,$applicant_list);
+                                                            if (mysqli_num_rows($query) > 0) {
+                                                                while($fetch = mysqli_fetch_array($query)) {
+                                                    ?>
+                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                <div class="flex items-center">
+                                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                                        <img class="h-full w-full rounded-full" src="../img/<?php echo $fetch['pictures']?>" alt="" />
+                                                                    </div>
+                                                                    <div class="ml-3">
+                                                                        <p class="whitespace-no-wrap text-gray-900"><?php echo $fetch['fname']?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                <a href="view-user-profile.php?user=<?php echo $fetch['user_id'];?>&name=<?php echo $fetch['fname'];?>&email=<?php echo $fetch['email'];?>&add=<?php echo $fetch['Country']?>&cont=<?php echo $fetch['contact'];?>&mod=<?php echo $fetch['mode'];?>&type=<?php echo $fetch['type'];?>&about=<?php echo $fetch['about'];?>&pic=<?php echo $fetch['pictures'];?>" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-teal-700">VIEW</a>
+                                                            </td>
+                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                <button name="accept" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-green-700">ACCEPT</button>
+                                                            </td>
+                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                <button name="decline" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-red-700">DECLINE</button>
+                                                            </td>
+                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                <p class="whitespace-no-wrap text-gray-900"><?php echo $get_row['date_applied']?></p>
+                                                            </td>
+                                                        <?php
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tr>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
                                 </tbody>
                             </table>
-                        </form>
+                        </div>
                     </div>
-                </div>  
+                <?php
+                        }
+                    }
+                ?>
+                </div>
             </section>
+            <!--/ Job Profile Catalog-->
+
         </div>
+
+
     </div>
     <!--/container-->
 
-
     <script>
-        $(document).ready(function() {
-            $("#search-box").keyup(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "readCountry.php",
-                    data: 'keyword=' + $(this).val(),
-                    beforeSend: function() {
-                        $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
-                    },
-                    success: function(data) {
-                        $("#suggesstion-box").show();
-                        $("#suggesstion-box").html(data);
-                        $("#search-box").css("background", "#FFF");
-                    }
-                });
-            });
-        });
-        // To select country name
-        function selectCountry(val) {
-            $("#search-box").val(val);
-            $("#suggesstion-box").hide();
-        }
-        // End of Jquery Script
         var modalparent = document.getElementsByClassName("modal_multi");
 
         // Get the button that opens the modal

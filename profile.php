@@ -14,7 +14,7 @@
         $fname = $row['fname'];
         $contact = $row['contact'];
         $email = $row['email'];
-        $address = $row['address'];
+        $Country = $row['Country'];
         $password = $row['password'];
         $about = $row['about'];
         $pictures = $row['pictures'];

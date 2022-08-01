@@ -1,4 +1,31 @@
 <?php
+    // session_start();
+    // include "../auth/db.php";
+    
+    // if (!isset($_SESSION['user_id'])){
+	// 	echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+	// 	echo '<script>window.location.replace("login.php");</script>';
+	// }
+    // $user_id = $_SESSION['user_id'];
+    // $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
+    // $result = $conn->query($sql_query);
+    // while($row = $result->fetch_array()){
+    //     $user_id = $row['user_id'];
+    //     $fname = $row['fname'];
+    //     $contact = $row['contact'];
+    //     $email = $row['email'];
+    //     $address = $row['address'];
+    //     $password = $row['password'];
+    //     $about = $row['about'];
+    //     $pictures = $row['pictures'];
+    //     $mode = $row['mode'];
+    //     if ($row['mode'] == 'user'){
+    //         echo $_SESSION['userMode'] = '<span class="rounded bg-red-500 py-1 px-2 text-sm text-white">User</span>';
+    //     } else{
+    //         echo $_SESSION['userMode'] = '<span class="rounded bg-green-500 py-1 px-2 text-sm text-white">Work</span>';
+    //     }
+    // }
+
     session_start();
     include "../auth/db.php";
     
@@ -9,22 +36,28 @@
     $user_id = $_SESSION['user_id'];
     $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
     $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $user_id = $row['user_id'];
-        $fname = $row['fname'];
-        $contact = $row['contact'];
-        $email = $row['email'];
-        // $address = $row['address'];
-        $password = $row['password'];
-        $about = $row['about'];
-        $pictures = $row['pictures'];
-        $mode = $row['mode'];
-        if ($row['mode'] == 'user'){
-            echo $_SESSION['userMode'] = '<span class="rounded bg-red-500 py-1 px-2 text-sm text-white">User</span>';
-        } else{
-            echo $_SESSION['userMode'] = '<span class="rounded bg-green-500 py-1 px-2 text-sm text-white">Work</span>';
+    while($employer = $result->fetch_array()){
+        $user_id = $employer['user_id'];
+        $fname = $employer['fname'];
+        $pictures = $employer['pictures'];
+        require_once('../auth/db.php');
+        if($_SESSION['type']== 3){
+        }
+        else{
+            header('location: login.php');
         }
     }
+
+    $user = $_GET['user'];
+    $name = $_GET['name'];
+    $email = $_GET['email'];
+    $add = $_GET['add'];
+    $cont = $_GET['cont'];
+    $mod = $_GET['mod'];
+    $type = $_GET['type'];
+    $about = $_GET['about'];
+    $pic = $_GET['pic'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +107,7 @@
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="main.php">
-                    Dashboard
+                    Dashboard <?php echo $user?>
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -82,7 +115,7 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?></span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?></span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -150,10 +183,9 @@
             </div>
         </div>
     </nav>
-
+    
     <!--Container-->
-
-    <div class="mt-9 mb-5 lg:mt-18 overflow-auto">
+    <div class="mt-9 lg:mt-20 mb-5 lg:mt-18 overflow-auto">
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap md:-mx-2 md:flex">
                 
@@ -162,20 +194,16 @@
                 <!-- Profile Card -->
                 <div class="border-t-4 border-green-400 bg-white p-3">
                 <div class="image overflow-hidden">
-                    <img class="w-[27rem] h-[26rem]" src="img/<?php echo $pictures?>" alt="profile" />
+                    <img class="w-[27rem] h-[26rem]" src="<?php echo $pic?>" alt="profile"/>
                 </div>
-                <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $fname?></h1>
+                <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $name?></h1>
                 <h3 class="font-lg text-semibold leading-6 text-gray-600"><?php ?></h3>
                 <p class="text-sm leading-6 text-gray-500 hover:text-gray-600"><?php echo $about?></p>
                 <ul class="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm hover:text-gray-700 hover:shadow">
                     <li class="flex items-center py-3">
-                    <span>Status</span>
+                    <span>About</span>
                     <span class="ml-auto">
-                    <?php
-                        if(isset($_SESSION['userMode'])) {
-                            echo $_SESSION['userMode'];
-                        }
-                    ?>
+                        <?php echo $about?>
                     </span>
                     </li>
                 </ul>
@@ -202,15 +230,15 @@
                         <div class="grid text-sm md:grid-cols-2">
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Full Name</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $fname?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $name?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Contact No.</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $contact ?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $cont?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $Country ?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $add ?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>
@@ -473,7 +501,6 @@
             </div>
         </div>
     </div>
-    
     
     <!--/container-->
     <footer class="bg-white border-t border-gray-400 shadow">
