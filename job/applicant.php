@@ -151,26 +151,6 @@
                                     <h1 class="ml-4 font-bold"><?php echo $row['job_title']?></h1>
                                 </div>
                             </div>
-                            <?php
-                            if(isset($_POST['search']))
-                            {
-                                $valueToSearch = $_POST['valueToSearch'];
-                                // $sql = "SELECT * FROM jobs_post INNER JOIN applicants ON jobs_post.post_id = applicants.apply_id WHERE CONCAT(`fname`, `date_applied`) LIKE '%".$valueToSearch."%'";
-                                $query = "SELECT * FROM `applicants` INNER JOIN jobs_post WHERE CONCAT(`fname`, `date_applied`) LIKE '%".$valueToSearch."%'";
-                                $search_result = filterTable($query);
-                                
-                            }
-                            else {
-                                $query = "SELECT * FROM `applicants` WHERE user_id = $user _id ";
-                                $search_result = filterTable($query);
-                            }
-                            function filterTable($query)
-                            {
-                                $connect = mysqli_connect("localhost", "root", "", "propose");
-                                $filter_Result = mysqli_query($connect, $query);
-                                return $filter_Result;
-                            }
-                            ?>
                             <div class="pt-3 pl-3">
                                 <input name="valueToSearch" type="text" class="border-2 border-teal-300 rounded-md pl-3 py-1 outline-none" placeholder="Search....">
                                 <button name="search" type="submit"><i class="uil uil-search hover:text-lg"></i></button>

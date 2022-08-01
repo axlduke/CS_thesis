@@ -135,7 +135,7 @@
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     <?php
-                    $post = "SELECT * from jobs_post";
+                    $post = "SELECT * from jobs_post ORDER BY rand()";
                     $results=mysqli_query($conn, $post);
                     while($row=mysqli_fetch_array($results)){
                     ?>
@@ -236,7 +236,7 @@
                                 <span class="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">5.0</span>
                             </div> -->
                             <div class="flex items-center justify-between">
-                                <span class="text-md lg:text-2xl font-bold text-gray-900 text-orange-500"><?php echo $get_products['price']; ?></span>
+                                <span class="text-md lg:text-2xl font-bold text-gray-900 text-orange-500"><?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
                                 <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white">15 sold</span>
                             </div>
                         </div>
