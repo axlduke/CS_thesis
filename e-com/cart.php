@@ -3,18 +3,28 @@
     include "../auth/db.php";
     
     if (!isset($_SESSION['user_id'])){
-		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-		echo '<script>window.location.replace("login.php");</script>';
-	}
+        echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+        echo '<script>window.location.replace("login.php");</script>';
+    }
     $user_id = $_SESSION['user_id'];
-    $sql_query = "SELECT * FROM user WHERE type = 1";
+    $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
     $result = $conn->query($sql_query);
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fname = $row['fname'];
         $contact = $row['contact'];
         $pictures = $row['pictures'];
+        // require_once('auth/db.php');
+        if($_SESSION['type']==1){
+        }
+        else{
+            header('location: login.php');
+        }
+            if(!isset($_SESSION['user_id'])){
+                header('location: login.php');
+        }
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +61,7 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block"><?php echo $fname?> </span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="../img/<?php echo $pictures?>" alt="Avatar of User"> <span class="hidden md:inline-block  font-bold"><?php echo $fname?> </span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                 <g>
                                     <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
@@ -140,25 +150,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                     <?php
+                                    $products_posted="SELECT * from cart WHERE user_id ='$user_id'";                
+                                    $results=mysqli_query($conn,$products_posted);      
+                                        $cartTotal = 0;           
+                                        while($row = $results -> fetch_assoc()){
+                                            $products_ordered="SELECT * from products WHERE product_id = ".$row['product_id'];  
+                                            $res=mysqli_query($conn,$products_ordered);
+                                             while($fetch = $res-> fetch_assoc()){       
+                                            $cartTotal += ($fetch["price"] * $row["quantity"]);                                      
+                                    ?>                                   
                                     <tr class="border-b">
                                         <td class="whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <img src="../img/shoes.jpg" class="w-[28rem] lg:w-52" alt="">
+                                            <img src="<?php echo $fetch['image'] ?>" class="w-[28rem] lg:w-52" alt="">
                                         </td>
                                         <td class="text-xs lg:text-base text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            Nike Air Max 720
+                                            <?php echo $fetch['product_name']; ?>
                                             <br>
                                             white - orange
                                         </td>
                                         <td class="text-sm text-orange-500 font-light px-6 py-4 whitespace-nowrap">
-                                            ₱16,000
+                                            PHP <?php echo number_format($fetch['price'], 2, '.', ',') ?>
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            2
+                                            <?php echo $row['quantity']; ?>
                                         </td>
                                         <td class="text-sm text-red-500 font-light px-6 py-4 whitespace-nowrap">
                                             <a href="">Delete</a>
                                         </td>
                                     </tr>
+                                    <?php 
+                                        } 
+                                    }?>
                                 </tbody>
                             </table>
                         </div>
@@ -175,7 +198,8 @@
                         </h1>
                     </a>
                     <h1 class="lg:text-2xl text-orange-600 leading-tight mt-[13px] pl-8 lg:ml-[26rem]">
-                        ₱16,000
+                        PHP <?php echo number_format($cartTotal, 2, '.', ',') ?>
+                        <input type="hidden" name="cart_total" value="<?php echo $cartTotal ?>">
                     </h1>
                 </div>
                 <div class="flex">

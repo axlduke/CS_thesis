@@ -155,7 +155,7 @@
                             }
                             function filterTable($query)
                             {
-                                $connect = mysqli_connect("localhost", "root", "", "propose");
+                                $connect = mysqli_connect("localhost", "root", "", "job");
                                 $filter_Result = mysqli_query($connect, $query);
                                 return $filter_Result;
                             }
@@ -187,7 +187,7 @@
                                                     <img class="h-full w-full rounded-full" src="../img/<?php ?>" alt="">
                                                 </div>
                                                 <div class="ml-3">
-                                                    <p class="whitespace-no-wrap text-gray-900"><?php echo $row['fname']?></>
+                                                    <p class="whitespace-no-wrap text-gray-900"><?php echo $row['fname']?></p>
                                                 </div>
                                             </div>
                                         </td>
