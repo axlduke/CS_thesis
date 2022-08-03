@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="../dist/output.css" rel="stylesheet">
 
 </head>
@@ -156,10 +157,20 @@
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="lg:ml-52 text-sm font-medium text-gray-500">Quantity</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">-<?php echo $quantity?> + </dd>
-                        <dd class="lg:ml-[22rem] mt-1 text-sm text-gray-400 sm:col-span-2 sm:mt-0">49 piecese available</dd>
+                        <!-- <dd class="lg:ml-[22rem] mt-1 text-sm text-gray-400 sm:col-span-2 sm:mt-0">49 piecese available</dd> -->
+                        <dt class="lg:ml-40 text-sm font-medium text-gray-500">
+                            <button class="border border-2 border-red-600 text-red-600 bg-red-200 hover:bg-red-300 py-3 px-3"><i class="uil uil-shopping-cart"></i>
+                            <a href="e-com/item-view.php?item=<?php echo $item ?>&seller=<?php echo $seller ?>&product=<?php echo $product ?>&quantity=<?php echo $quantity ?>&price=<?php echo $price ?>&desc=<?php echo $desc ?>&cat=<?php echo $cat ?>&fee=<?php echo $fee ?>&a=<?php echo $a ?>&b=<?php echo $b ?>&c=<?php echo $c ?>&d=<?php echo $d ?>&e=<?php echo $e ?>">Add Cart</a>
+                            </button>
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                            <button class="border border-2 border-red-600 text-white bg-red-600 hover:bg-red-800 py-3 px-3">
+                                <a href="">Buy Now</a>
+                            </button>
+                        </dd>
                         </div>
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Product Description</dt>
+                        <dt class="lg:ml-40 text-sm font-medium text-gray-500">Product Description</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $desc?>
                         </dd>
                         </div>
