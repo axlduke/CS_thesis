@@ -176,7 +176,7 @@
                                             <?php echo $row['quantity']; ?>
                                         </td>
                                         <td class="text-sm text-red-500 font-light px-6 py-4 whitespace-nowrap">
-                                            <a href="">Delete</a>
+                                            <a href="add-cart-action.php?i=<?php echo $row['cart_id']?>">Delete</a>
                                         </td>
                                     </tr>
                                     <?php 

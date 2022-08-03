@@ -11,8 +11,20 @@
         $sql = "INSERT INTO `cart`(`product_id`, `user_id`, `quantity`) VALUES ('$product_id','$user_id','$quantity')";
         $result = mysqli_query($conn, $sql);
         if($result){
-            header('location: item-view.php');
+            $referer = $_SERVER['HTTP_REFERER'];
+            header("Location: $referer"); 
         }
     }
 
+?>
+
+<?php
+    session_start();
+    include '../auth/db.php';
+
+    $i = $_GET['i'];
+    $query = "DELETE FROM cart WHERE cart_id ='$i' ";
+    if($conn->query($query) === TRUE){
+        header('Location: cart.php?msg=Successfully Deleted!');
+    }
 ?>
