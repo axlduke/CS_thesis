@@ -162,7 +162,7 @@
                                     ?>                                   
                                     <tr class="border-b">
                                         <td class="whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <img src="<?php echo $fetch['image'] ?>" class="w-[28rem] lg:w-52" alt="">
+                                            <img src="../img/<?php echo $fetch['file1'] ?>" class="w-36 lg:w-36" alt="product_image">
                                         </td>
                                         <td class="text-xs lg:text-base text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <?php echo $fetch['product_name']; ?>

@@ -155,19 +155,26 @@
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $product?></dd>
                         </div>
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Quantity</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">-<?php echo $quantity?> + </dd>
+                            <dt class="lg:ml-52 text-sm font-medium text-gray-500">Quantity</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">-<?php echo $quantity?> + </dd>
                         <!-- <dd class="lg:ml-[22rem] mt-1 text-sm text-gray-400 sm:col-span-2 sm:mt-0">49 piecese available</dd> -->
-                        <dt class="lg:ml-40 text-sm font-medium text-gray-500">
-                            <button class="border border-2 border-red-600 text-red-600 bg-red-200 hover:bg-red-300 py-3 px-3"><i class="uil uil-shopping-cart"></i>
-                            <a href="e-com/item-view.php?item=<?php echo $item ?>&seller=<?php echo $seller ?>&product=<?php echo $product ?>&quantity=<?php echo $quantity ?>&price=<?php echo $price ?>&desc=<?php echo $desc ?>&cat=<?php echo $cat ?>&fee=<?php echo $fee ?>&a=<?php echo $a ?>&b=<?php echo $b ?>&c=<?php echo $c ?>&d=<?php echo $d ?>&e=<?php echo $e ?>">Add Cart</a>
-                            </button>
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                            <button class="border border-2 border-red-600 text-white bg-red-600 hover:bg-red-800 py-3 px-3">
-                                <a href="">Buy Now</a>
-                            </button>
-                        </dd>
+                            <form action="add-cart-action.php" method="post">
+                                <dt class="lg:ml-40 text-sm font-medium text-gray-500">
+                                    <input name="product_id" value="<?php echo $item?>" type="text" class="hidden">
+                                    <input name="user_id" value="<?php echo $user_id?>" type="text" class="hidden">
+                                    <input name="quantity" value="<?php echo $quantity?>" type="text" class="hidden">
+                                    <button name="add-cart-action" type="submit" class="border border-2 border-red-600 text-red-600 bg-red-200 hover:bg-red-300 py-3 px-3"><i class="uil uil-shopping-cart"></i>
+                                        Add Cart
+                                    </button>
+                                </dt>
+                            </form>
+                            <form action="buy-now-action.php" method="post">
+                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                    <button name="buy-now-action" type="submit" class="border border-2 border-red-600 text-white bg-red-600 hover:bg-red-800 py-3 px-3">
+                                        Buy Now
+                                    </button>
+                                </dd>
+                            </form>
                         </div>
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="lg:ml-40 text-sm font-medium text-gray-500">Product Description</dt>
