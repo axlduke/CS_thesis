@@ -16,7 +16,7 @@
         $pictures = $row['pictures'];
         $email = $row['email'];
         $password = $row['password'];
-        $Country = $row['Country'];
+        $address = $row['address'];
         $company = $row['company'];
         require_once('../auth/db.php');
         if($_SESSION['type']== 3){
@@ -174,7 +174,7 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $Country ?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $address ?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>

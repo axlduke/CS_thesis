@@ -14,7 +14,7 @@
         $fname = $row['fname'];
         $contact = $row['contact'];
         $email = $row['email'];
-        $Country = $row['Country'];
+        $address = $row['address'];
         $password = $row['password'];
         $about = $row['about'];
         $pictures = $row['pictures'];
@@ -200,7 +200,7 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                            <p type="text" class="border border-gray-300 p-2"><?php echo $Country ?></p>
+                            <p type="text" class="border border-gray-300 p-2"><?php echo $address ?></p>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>
@@ -239,7 +239,7 @@
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Address</dt>
-                                                            <input name="Country" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $Country ?>">
+                                                            <input name="address" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 p-2 sm:mt-0" value="<?php echo $address ?>">
                                                         </div>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Email address</dt>
@@ -279,9 +279,11 @@
                 <!-- End of about section -->
         
                 <div class="my-1"></div>
-        
-                <!-- Experience and education -->
-                <div class="rounded-sm bg-white p-3 shadow-sm">
+                
+                <?php
+                    if($mode == 'work'){
+                        echo $_SESSION['showCredentials'] = '
+                        <div class="rounded-sm bg-white p-3 shadow-sm">
                     <div class="grid grid-cols-2">
                         <div>
                         <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
@@ -593,6 +595,13 @@
                             </div>
                     </div>
                 </div>
+                        ';
+                    } elseif ($mode != 'work'){
+                        
+                    }
+                ?>
+                <!-- Experience and education -->
+                
                     <!-- End of Experience and education grid -->
             </div>
             </div>

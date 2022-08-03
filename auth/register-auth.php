@@ -6,10 +6,11 @@ include "db.php";
 
 		$fname = $_POST['fname'];
 		$contact = $_POST['contact'];
-		$Country = $_POST['Country'];
+		$address = $_POST['address'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$type = $_POST['type'];
+		$mode = $_POST['mode'];
 
 		$query =mysqli_query($conn, "SELECT * FROM account WHERE email = '$email'");
 		if(mysqli_num_rows($query) > 0){
@@ -21,7 +22,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$Country','$password','','$type','','','','','')";
+				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$address','$password','$mode','$type','','','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and `password`='$password'";
 					$result = $conn->query($sql);
@@ -32,7 +33,8 @@ include "db.php";
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['type'] = $row['type'];
 						$_SESSION['email'] = $row['email'];
-						$_SESSION['Country'] = $row['Country'];
+						$_SESSION['address'] = $row['address'];
+						$_SESSION['mode'] = $row['mode'];
 						$_SESSION['password'] = $row['password'];
 
 						header("Location: ../main.php");
@@ -50,10 +52,10 @@ include "db.php";
 
 		$fname = $_POST['fname'];
 		$contact = $_POST['contact'];
-		$Country = $_POST['Country'];
+		$address = $_POST['address'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-		$Country = $_POST['Country'];
+		$address = $_POST['address'];
 		$type = $_POST['type'];
 		$business = $_POST['business'];
 		$permit = $_POST['permit'];
@@ -68,7 +70,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$Country','$password','','$type','$business','$permit','','','')";
+				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','$business','$permit','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -79,9 +81,9 @@ include "db.php";
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
 						$_SESSION['type'] = $row['type'];
-						$_SESSION['Country'] = $row['Country'];
+						$_SESSION['address'] = $row['address'];
 						$_SESSION['password'] = $row['password'];
-						header('Location: ../shop.php');
+						header('Location: ../admin-seller.php');
 					}
 				} else{
 					echo '<script>window.alert("ERROR ON USERS!")</script>';
@@ -97,12 +99,12 @@ include "db.php";
 
 		$fname = $_POST['fname'];
 		$contact = $_POST['contact'];
-		$Country = $_POST['Country'];
+		$address = $_POST['address'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$type = $_POST['type'];
 		$company = $_POST['company'];
-		$Country = $_POST['Country'];
+		$address = $_POST['address'];
 
 		$query =mysqli_query($conn, "SELECT * FROM account WHERE email = '$email'");
 		if(mysqli_num_rows($query) > 0){
@@ -114,7 +116,7 @@ include "db.php";
 			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
 			if($conn->query($query_account) === TRUE){
 				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$Country','$password','','$type','','','$company','','')";
+				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','','','$company','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -124,7 +126,7 @@ include "db.php";
 						$_SESSION['user_id'] = $row['user_id'];
 						$_SESSION['fname'] = $row['fname'];
 						$_SESSION['email'] = $row['email'];
-						$_SESSION['Country'] = $row['Country'];
+						$_SESSION['address'] = $row['address'];
 						$_SESSION['type'] = $row['type'];
 						$_SESSION['password'] = $row['password'];
 						header('Location: ../admin-jobs.php');
@@ -164,7 +166,7 @@ include "db.php";
 				$_SESSION['fname'] = $row['fname'];
 				$_SESSION['contact'] = $row['contact'];
 				$_SESSION['type'] = $row['type'];
-				$_SESSION['Country'] = $row['Country'];
+				$_SESSION['address'] = $row['address'];
 				$_SESSION['mode'] = $row['mode'];
 				$_SESSION['company'] = $row['company'];
                 $row['user_id'] =$_SESSION['user_id'];

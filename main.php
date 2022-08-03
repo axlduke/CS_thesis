@@ -13,6 +13,7 @@
         $user_id = $row['user_id'];
         $fname = $row['fname'];
         $contact = $row['contact'];
+        $mode = $row['mode'];
         $pictures = $row['pictures'];
         require_once('auth/db.php');
         if($_SESSION['type']==1){
@@ -38,6 +39,8 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="main.css">
     <script src="js/tab.js" defer></script>
 
@@ -50,7 +53,7 @@
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold px-3" href="#">
-                    JobEcom
+                    JobEcom <?php echo $mode?>
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -191,7 +194,14 @@
                                                                     <input name="job_id" class="hidden" type="text" value="<?php echo $row['post_id']?>">
                                                                     <input name="user_id" class="hidden" type="text" value="<?php echo $user_id?>">
                                                                     <input name="fname" class="hidden" type="text" value="<?php echo $fname;?>">
-                                                                    <button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>
+                                                                    <?php 
+                                                                        if($mode == 'work'){
+                                                                            echo $_SESSION['show'] = '<button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>';
+                                                                        } elseif($mode != 'work'){
+
+                                                                        }
+                                                                    ?>
+                                                                    <!-- <button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button> -->
                                                                 </div>
                                                             </dd>
                                                         </div>
@@ -216,33 +226,59 @@
         <!-- End Jobs -->
 
         <!-- Ecommerce Start -->
+        <style media="screen">
+        .carousel-cell {
+            width: 100%;
+            }
+
+            /* cell number */
+            .carousel-cell:before {
+            display: block;
+            }
+        </style>
         <div id="e-com" data-tab-content>
+            <!-- <div class="main-carousel">
+                <div class="cell"><img src="img/ace.png"></div>
+                <div class="cell"><img src="img/aldon.png"></div>
+                <div class="cell"><img src="img/diannne.png"></div>
+                <div class="cell"><img src="img/mark.png"></div>
+                <div class="cell"><img src="img/ivy.png"></div>
+            </div> -->
+
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-2 px-10 mb-5">
             <?php     
             $products_posted="SELECT * from products ORDER BY rand()";
             $results=mysqli_query($conn,$products_posted);
             while($get_products = $results -> fetch_assoc()){
-                 $product_id = $get_products['product_id'];
+                $product_id = $get_products['product_id'];
+                $seller_id = $get_products['seller_id'];
+                $product_name = $get_products['product_name'];
+                $quantity = $get_products['quantity'];
+                $price = $get_products['price'];
+                $product_description = $get_products['product_description'];
+                $product_category = $get_products['product_category'];
+                $shipping_fee = $get_products['shipping_fee'];
+                $file1 = $get_products['file1'];
+                $file2 = $get_products['file2'];
+                $file3 = $get_products['file3'];
+                $file4 = $get_products['file4'];
+                $file5 = $get_products['file5'];
             ?>
-                <div class="max-w-sm rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
-                    <a href="#">
-                        <img class="rounded-t-lg p-5 aspect-square w-full" src="<?php echo $get_products['image']; ?>" alt="product image" />
+
+                <div class="w-40 rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+                    <a href="e-com/item-view.php?item=<?php echo $product_id?>&seller=<?php echo $seller_id?>&product=<?php echo $product_name?>&quantity=<?php echo $quantity?>&price=<?php echo $price?>&desc=<?php echo $product_description?>&cat=<?php echo $product_category?>&fee=<?php echo $shipping_fee?>&a=<?php echo $file1?>&b=<?php echo $file2 ?>&c=<?php echo $file3?>&d=<?php echo $file4?>&e=<?php echo $file5?>">
+                        <img class="rounded-t-lg p-5 aspect-square w-full" src="img/<?php echo $file1?>" alt="product image" />
                         <div class="px-5 pb-5">
                             <h3 class="text-sm lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate"><?php echo $get_products['product_name']; ?></h3>
-                            <!-- <div class="mt-2.5 mb-5 flex items-center">
-                                <svg class="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <span class="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">5.0</span>
-                            </div> -->
                             <div class="flex items-center justify-between">
-                                <span class="text-md lg:text-2xl font-bold text-gray-900 text-orange-500"><?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
+                                <span class="text-md lg:text-md lg:fold-bold text-md text-orange-400">₱<?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
                                 <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white">15 sold</span>
                             </div>
                         </div>
                     </a>
                 </div>  <?php }?>
-            </div>      
+            </div>
+
         </div>
 
 
@@ -309,7 +345,14 @@
 
         </div>
     </footer>
-
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script type="text/javascript">
+        $('.main-carousel').flickity({
+            cellAlign: 'left',
+            wrapAround: true,
+            freeScroll: true
+        })
+    </script>
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");
 

@@ -73,7 +73,7 @@
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
-                                <li><a href="auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="../auth/logout.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -105,8 +105,8 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="posted-items.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-orange-400 border-b-2 border-white border-orange-400">
-                            <i class="uil uil-clipboard-notes fa-fw mr-3 text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Items</span>
+                        <a href="posted-items.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                            <i class="uil uil-clipboard-notes fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Items</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
@@ -149,16 +149,6 @@
                 <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $fname?></h1>
                 <h3 class="font-lg text-semibold leading-6 text-gray-600"><?php ?></h3>
                 <p class="text-sm leading-6 text-gray-500 hover:text-gray-600"><?php echo $about?></p>
-                <ul class="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm hover:text-gray-700 hover:shadow">
-                    <li class="flex items-center py-3">
-                    <span>Status</span>
-                    <span class="ml-auto"><span class="rounded bg-green-500 py-1 px-2 text-sm text-white">Active</span></span>
-                    </li>
-                    <li class="flex items-center py-3">
-                    <span>Member since</span>
-                    <span class="ml-auto">Nov 07, 2016</span>
-                    </li>
-                </ul>
                 </div>
                 <!-- End of profile card -->
                 <div class="my-4"></div>

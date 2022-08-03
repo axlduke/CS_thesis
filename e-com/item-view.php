@@ -15,6 +15,20 @@
         $contact = $row['contact'];
         $pictures = $row['pictures'];
     }
+
+    $item = $_GET["item"];
+    $seller = $_GET["seller"];
+    $product = $_GET["product"];
+    $quantity = $_GET["quantity"];
+    $price = $_GET["price"];
+    $desc = $_GET["desc"];
+    $cat = $_GET["cat"];
+    $fee = $_GET["fee"];
+    $a = $_GET["a"];
+    $b = $_GET["b"];
+    $c = $_GET["c"];
+    $d = $_GET["d"];
+    $e = $_GET["e"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +45,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="../dist/output.css" rel="stylesheet">
 
 </head>
 
@@ -103,55 +117,55 @@
     </nav>
 
     <!--Container-->
-    <div class="container w-full mx-auto pt-20 pb-13">
+    <div class="container w-full mx-auto mt-20 pb-13">
         <div class="px-6 flex container">
-            <div class=" bg-white items-center">
-                <div class="px-20">
-                    <img id="feature" src="../img/shoes.jpg" class="py-6 px-2 pt-5 mt-5 aspect-square w-[26rem] sm:w-70 md:w-64 lg:w-[26rem] lg:aspect-square" alt="item-photo">
-                    <div class="grid grid-cols-3 lg:grid-cols-3 gap-2 lg:w-[26rem] lg:h-auto">
-                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail active" src="../img/shoes1.jpg" alt="item-photo">
+            <div class="items-center">
+                <div class="grid grid-rows-3 bg-white lg:grid-rows-2 grid-flow-col gap-4 py-10 px-5 lg:px-20 lg:h-[50rem] h-[50rem]">
+                    <img id="feature" src="../img/<?php echo $a?>" class="py-6 aspect-square w-[45rem] lg:w-[26rem] lg:aspect-square" alt="item-photo">
+                    <div class="grid grid-cols-4 lg:grid-cols-4 lg:w-[26rem] -mt-40 lg:-mt-32 lg:px-5 -mb-10 mb-20">
+                        <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                            <img class="thumbnail active rounded-md" src="../img/<?php echo $b?>" alt="item-photo">
                         </div>
-                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail" src="../img/shoes2.jpg" alt="item-photo">
+                        <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                            <img class="thumbnail active rounded-md" src="../img/<?php echo $c?>" alt="item-photo">
                         </div>
-                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail" src="../img/shoes3.jpg" alt="item-photo3">
+                        <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                            <img class="thumbnail active rounded-md" src="../img/<?php echo $d?>" alt="item-photo">
                         </div>
-                        <div class="w-24 p-1 lg:w-36 px-3 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail" src="../img/shoes4.jpg" alt="item-photo4">
+                        <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
+                            <img class="thumbnail active rounded-md" src="../img/<?php echo $e?>" alt="item-photo">
                         </div>
                     </div>
+                    <dl class="items lg:mt-5 -mt-16">
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Product Name</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $product?></dd>
+                        </div>
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Price</dt>
+                        <dd class="mt-1 text-sm text-orange-400 sm:col-span-2 sm:mt-0"><?php echo number_format($price, 2, '.', ',')?></dd>
+                        </div>
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Color</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"></dd>
+                        </div>
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Brand</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $product?></dd>
+                        </div>
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Quantity</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">-<?php echo $quantity?> + </dd>
+                        <dd class="lg:ml-[22rem] mt-1 text-sm text-gray-400 sm:col-span-2 sm:mt-0">49 piecese available</dd>
+                        </div>
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="lg:ml-52 text-sm font-medium text-gray-500">Product Description</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $desc?>
+                        </dd>
+                        </div>
+                    </dl>
                 </div>      
-                <dl class="lg:ml-96 lg:-mt-[29rem] items">
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="lg:ml-52 text-sm font-medium text-gray-500">Product Name</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Nike Air</dd>
-                    </div>
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="lg:ml-52 text-sm font-medium text-gray-500">Price</dt>
-                    <dd class="mt-1 text-sm text-orange-400 sm:col-span-2 sm:mt-0">₱22,490 - ₱24,490</dd>
-                    </div>
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="lg:ml-52 text-sm font-medium text-gray-500">Color</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">White Orange</dd>
-                    </div>
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="lg:ml-52 text-sm font-medium text-gray-500">Brand</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Nike</dd>
-                    </div>
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="lg:ml-52 text-sm font-medium text-gray-500">Quantity</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">- 1 + </dd>
-                    <dd class="lg:ml-[22rem] mt-1 text-sm text-gray-400 sm:col-span-2 sm:mt-0">49 piecese available</dd>
-                    </div>
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="lg:ml-52 text-sm font-medium text-gray-500">Product Description</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">The largest, most advanced Always-on Retina display yet makes everything you do with your Apple Watch Series 7 bigger and better. Series 7 is the most durable Apple Watch ever built, with an even more crack-resistant front crystal. Advanced features let you measure your blood oxygen level,1 take an ECG anytime,2 and access mindfulness and sleep tracking apps. You can also track dozens of workouts, including new tai chi and pilates. Product Specifications<br>
-                    watchOS 8 introduces new workout types, the Mindfulness app, the new Portraits watch face, and enhancements to Messages
-                    </dd>
-                    </div>
-                </dl>
+                
                 <div class="bg-gray-100 max-w-full rounded-md py-5 sm:grid mt-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dd class="mt-1 text-sm bg-white text-gray-900 sm:col-span-2 sm:mt-0">
                         <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">

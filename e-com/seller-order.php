@@ -106,7 +106,7 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="invoice.php" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
+                        <a href="#_" class="block py-1 md:py-3 pl-1 align-middle no-underline text-gray-400 hover:text-orange-400 border-b-2 border-white hover:border-orange-400">
                             <i class="uil uil-receipt fa-fw mr-3 hover:text-orange-400"></i><span class="pb-1 md:pb-0 text-sm">Invoice</span>
                         </a>
                     </li>
@@ -140,42 +140,63 @@
                 <table class="table-auto bg-white px-5"> 
                 <thead class="">
                     <tr class="bg-slate-700">
-                    <th class="py-5 lg:px-28"><i class="uil uil-bars text-white">Order ID</i></th>
-                    <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Order Date</i></th>
-                    <th class="py-5 lg:px-28"><i class="uil uil-calendar-alt text-white">Product Name</i></th>
-                    <th class="py-5 lg:px-28"><i class="uil uil-shopping-bag text-white">View</i></th>
-                    <th class="py-5 lg:px-28"><i class="uil uil-pricetag-alt text-orange-400">Price</i></th>
-                    <th class="py-5 lg:px-28"><i class="uil uil-signal text-green-300">Status</i></th>
+                    <th class="py-5 lg:px-26"><i class=" text-orange-400">Order ID</i></th>
+                    <th class="py-5 lg:px-26"><i class=" text-orange-400">Order Date</i></th>
+                    <th class="py-5 lg:px-26"><i class=" text-orange-400">Product Name</i></th>
+                    <th class="py-5 lg:px-26"><i class=" text-orange-400">Receipt</i></th>
+                    <th class="py-5 lg:px-26"><i class=" text-orange-400">Price</i></th>
+                    <th class="py-5 lg:px-26"><i class=" text-green-300">Status</i></th>
                     </tr>
                 </thead>
                 <!-- PHP script -->
                 <tbody class="">
                     <?php
+                    $i=1;
                     $products_posted="SELECT * from products WHERE seller_id ='$seller_id'";                
                     $results=mysqli_query($conn,$products_posted);                 
                         while($row = $results -> fetch_assoc()){
                             $product_id = $row['product_id'];
                             $products_ordered="SELECT * from orders WHERE product_id = ".$row['product_id'];  
                             $res=mysqli_query($conn,$products_ordered);
-                             while($fetch = $res-> fetch_assoc()){
+                            while($fetch = $res-> fetch_assoc()){
                     ?>
                     <tr class="">
-                    <td class="py-5 lg:px-28"><?php echo $fetch['order_id']; ?></td>
-                    <td class="py-5 lg:px-28"><?php echo $fetch['date_ordered']; ?></td>
-                    <td class="py-5 lg:px-28"><?php echo $row['product_name']; ?></td>
-                    <td class="py-5 text-red-300 underline lg:px-28">
-                        <a href="invoice.php">view</a> <!-- ID OF THE CURRENT ORDER-->
-                    </td>
-                    <td class="py-5 lg:px-28"><?php echo $row['price']; ?></td>
-                    <td class="py-5 lg:px-28"><?php echo $fetch['order_status']; ?></td>
+                        <td class="py-5 lg:px-28"><?php echo $i;?></td>
+                        <td class="py-5 lg:px-18 bg-orange-400"><?php echo $fetch['date_ordered']; ?></td>
+                        <td class="py-5 lg:px-28" style="overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1; 
+                                -webkit-box-orient: vertical;"><?php echo $row['product_name']; ?></td>
+
+                        <td class="py-5 text-red-300 underline lg:px-28">
+                            <a href="invoice.php">view</a> <!-- ID OF THE CURRENT ORDER-->
+                        </td>
+                        <?php
+                            if (isset($_POST['update'])){
+                                $update = $_POST['update'];
+                                $update = "UPDATE `orders` SET `order_status`='$update' WHERE `user_id`='$seller_id'";
+                                $result = mysqli_query($conn, $update);
+                                if($result){
+                                    
+                                    // header('location: seller-order.php');
+                                }
+                            }
+                        ?>     
+                        <form action="seller-order.php" method="post">
+                            <td class="py-5 lg:px-28">
+                                <button type="submit" name="update" value="Preparing" class="hover:bg-green-300 hover:text-green-600">Confirm</button>
+                            </td>
+                        </form>
+                        <td class="py-5 lg:px-28"><?php echo $fetch['order_status']; ?></td>
                     </tr>
-                    <?php 
+                    <?php $i += 1;
                         }}?>
                 </tbody>
                 </table>
             </div>
         </div>
-    </div>        
+    </div> 
 
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");

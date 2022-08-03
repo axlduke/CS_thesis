@@ -7,16 +7,18 @@
         $fname = $_POST['fname'];
         $contact = $_POST['contact'];
         $email = $_POST['email'];
-        $Country = $_POST['Country'];
+        $address = $_POST['address'];
         $password = $_POST['password'];
-        $about = $_POST['about'];
         $mode = $_POST['mode'];
+        $about = $_POST['about'];
     
-        $sql = "UPDATE user SET fname = '$fname', contact = '$contact', email = '$email', address = '$Country', password = '$password', mode = '$mode', about = '$about' WHERE user_id ='$user_id'";
-        $result = mysqli_query($conn, $sql);
+        $sql1 = "UPDATE user SET fname = '$fname', contact = '$contact', email = '$email', `address` = '$address', `password` = '$password', mode = '$mode', about = '$about' 
+        WHERE `user_id` ='$user_id'";
+        $result = mysqli_query($conn, $sql1);
         if($result){
-            echo $_SESSION['about_success'] = '<script>window.alert("Updated successfully")</script>';
+            // echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             header('location: ../profile.php');
+            // echo "Error";
         }
     }
 ?>

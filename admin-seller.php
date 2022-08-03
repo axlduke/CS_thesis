@@ -129,7 +129,7 @@
     </nav>
     <!--Container-->
     <div class="flex justify-center w-full mt-28 mb-5">
-        <div class="flex grid grid-cols-1 lg:grid-cols-5 grid-flow-row lg:gap-3 justify-items-stretch px-5">
+        <div class="flex grid grid-cols-1 gap-1 lg:grid-cols-5 grid-flow-row lg:gap-3 justify-items-stretch px-5">
             <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
                 <div class="mb-5">
                     <i class="uil uil-bill text-5xl text-orange-400"></i>
@@ -167,7 +167,7 @@
                     <p class="text-base text-gray-400">Gross Profit Margin</p>
                 </div>
             </div>
-            <div class="row-span-2 container max-w-full mx-auto items-center text-center bg-white rounded drop-shadow-lg px-5 md:px-0">
+            <!-- <div class="lg:row-span-2 container max-w-full mx-auto items-center text-center bg-white rounded drop-shadow-lg px-5 md:px-0">
                 <div class="mb-1 tracking-wide px-4 py-6" >
                     <h2 class="text-gray-800 font-semibold mt-1">67 Users reviews</h2>
                     <div class="border-b -mx-8 px-8 pb-3">
@@ -183,7 +183,7 @@
                             <div class="w-1/5 text-gray-700 pl-3">
                             <span class="text-sm">51%</span>
                             </div>
-                        </div><!-- first -->
+                        </div>
                         <div class="flex items-center mt-1 py-3">
                             <div class="w-1/5 text-indigo-500 tracking-tighter">
                             <span>4 star</span>
@@ -196,7 +196,7 @@
                             <div class="w-1/5 text-gray-700 pl-3">
                             <span class="text-sm">17%</span>
                             </div>
-                        </div><!-- second -->
+                        </div>
                         <div class="flex items-center mt-1 py-3">
                             <div class="w-1/5 text-indigo-500 tracking-tighter">
                             <span>3 star</span>
@@ -209,7 +209,7 @@
                             <div class="w-1/5 text-gray-700 pl-3">
                             <span class="text-sm">19%</span>
                             </div>
-                        </div><!-- thierd -->
+                        </div>
                         <div class="flex items-center mt-1 py-3">
                             <div class=" w-1/5 text-indigo-500 tracking-tighter">
                             <span>2 star</span>
@@ -222,7 +222,7 @@
                             <div class="w-1/5 text-gray-700 pl-3">
                             <span class="text-sm">8%</span>
                             </div>
-                        </div><!-- 4th -->
+                        </div>
                         <div class="flex items-center mt-1 py-3">
                             <div class="w-1/5 text-indigo-500 tracking-tighter">
                             <span>1 star</span>
@@ -235,7 +235,7 @@
                             <div class="w-1/5 text-gray-700 pl-3">
                             <span class="text-sm">5%</span>
                             </div>
-                        </div><!-- 5th -->
+                        </div>
                     </div>
                 </div>
                 <div class="w-full px-4">
@@ -243,7 +243,7 @@
                         Here is the result for the latest Responsible would recommmend this 100 customers
                     </p>
                 </div>
-            </div>
+            </div> -->
             <div class="col-span-2 w-full bg-white shadow-2xl overflow-hidden rounded-lg flex flex-col justify-center items-center">
                 <div class="mb-1">
                     Goal Completion
