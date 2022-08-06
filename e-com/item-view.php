@@ -1,25 +1,33 @@
 <?php
-    session_start();
-    include "../auth/db.php";
-    
-    if (!isset($_SESSION['user_id'])){
-		echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-		echo '<script>window.location.replace("login.php");</script>';
-	}
-    $user_id = $_SESSION['user_id'];
-    $sql_query = "SELECT * FROM user WHERE type = 1";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $user_id = $row['user_id'];
-        $fname = $row['fname'];
-        $contact = $row['contact'];
-        $pictures = $row['pictures'];
-    }
+        session_start();
+        include "../auth/db.php";
+        
+        if (!isset($_SESSION['user_id'])){
+            echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
+            echo '<script>window.location.replace("login.php");</script>';
+        }
+        $user_id = $_SESSION['user_id'];
+        $sql_query = "SELECT * FROM user WHERE user_id ='$user_id'";
+        $result = $conn->query($sql_query);
+        while($row = $result->fetch_array()){
+            $user_id = $row['user_id'];
+            $fname = $row['fname'];
+            $contact = $row['contact'];
+            $mode = $row['mode'];
+            $pictures = $row['pictures'];
+            require_once('../auth/db.php');
+            if($_SESSION['type']==1){
+            }
+            else{
+                header('location: login.php');
+            }
+        }
 
     $item = $_GET["item"];
     $seller = $_GET["seller"];
     $product = $_GET["product"];
     $quantity = $_GET["quantity"];
+    $sellprof = $_GET["sellprof"];
     $price = $_GET["price"];
     $desc = $_GET["desc"];
     $cat = $_GET["cat"];
@@ -121,7 +129,7 @@
     <div class="container w-full mx-auto mt-20 pb-13">
         <div class="px-6 flex container">
             <div class="items-center">
-                <div class="grid grid-rows-3 bg-white lg:grid-rows-2 grid-flow-col gap-4 py-10 px-5 lg:px-20 lg:h-[50rem] h-[50rem]">
+                <div class="grid grid-rows-1 bg-white lg:grid-rows-2 grid-flow-col gap-4 py-10 px-5 lg:px-20 lg:h-[50rem] h-[50rem]">
                     <img id="feature" src="../img/<?php echo $a?>" class="py-6 aspect-square w-[45rem] lg:w-[26rem] lg:aspect-square" alt="item-photo">
                     <div class="grid grid-cols-4 lg:grid-cols-4 lg:w-[26rem] -mt-40 lg:-mt-32 lg:px-5 -mb-10 mb-20">
                         <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
@@ -184,57 +192,68 @@
                     </dl>
                 </div>      
                 
-                <div class="bg-gray-100 max-w-full rounded-md py-5 sm:grid mt-5 sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dd class="mt-1 text-sm bg-white text-gray-900 sm:col-span-2 sm:mt-0">
-                        <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                <div class="flex w-0 flex-1 items-center">
-                                <!-- Heroicon name: solid/paper-clip -->
-                                <img src="../img/prof1.jpg" class="w-14 lg:w-18 rounded-full" alt="">
-                                <span class="px-3 w-0 flex-1 truncate">Mac Power </span>
+                <div class="col-span-2 grid lg:grid-rows-2 grid-flow-col">
+                    <div class="bg-gray-100 max-w-full rounded-md py-5 sm:grid mt-5 sm:grid-cols-3 sm:gap-4">
+                        <dd class="mt-1 text-sm bg-white text-gray-900 sm:col-span-2 sm:mt-0">
+                            <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
+                                <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                    <div class="flex w-0 flex-1 items-center">
+                                    <!-- Heroicon name: solid/paper-clip -->
+                                    <img src="../img/<?php echo $sellprof?>" class="w-14 lg:w-18 rounded-full" alt="">
+                                    <span class="px-3 w-0 flex-1 truncate">Mac Power </span>
+                                    </div>
+                                    <div class="ml-4 flex-shrink-0">
+                                    <a href="#" class="font-medium text-indigo-600 border border-red-500 p-1 mr-1 hover:text-indigo-500"> ViewShop </a>
+                                    <a href="#" class="font-medium text-white border border-red-500 bg-red-400 hover:bg-red-600 p-1"> Message </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </dd>
+                    </div>
+    
+                    <div class="bg-gray-100 max-w-full rounded-md py-5 row-span-2 sm:grid -mt-2 lg:grid-rows-3 lg:gap-2">
+                        <dd class="mt-1 px-5 py-5 text-sm antialiased bg-white text-gray-900 sm:col-span-2 sm:mt-0">
+                            <h2 class="px-3 py-3">Product Rating</h2>
+                            <p class="px-3 text-2xl text-orange-400">5.0 out of 5</p>
+                            <div class="flex items-center px-3 py-2 mb-3">
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-sm font-medium px-3 py-2 text-gray-500 dark:text-gray-400">1,745 overall ratings</p>
+                            <hr class="py-3">
+                            <div class="mb-3">
+                                <div class="flex items-center justify-between">
+                                    <img src="../img/prof1.jpg" class="w-12 lg:w-18 rounded-full" alt="">
+                                    <p class="px-3 w-0 flex-1 truncate">Ace Malto</p>
                                 </div>
-                                <div class="ml-4 flex-shrink-0">
-                                <a href="#" class="font-medium text-indigo-600 border border-red-500 p-1 mr-1 hover:text-indigo-500"> ViewShop </a>
-                                <a href="#" class="font-medium text-red-500 border border-red-500 p-1 hover:text-indigo-500"> Message </a>
+                                <span class="text-sm px-3 w-0 ml-11 flex-1 text-gray-400 truncate">2022-03-09</span>
+                                <p class="px-3 py-3 lg:px-16">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa doloribus consequatur laboriosam, distinctio maxime atque ut, nostrum nemo iusto deleniti cupiditate accusantium at, iure suscipit minima a obcaecati. Reiciendis, mollitia?</p>
+                                <div class="grid grid-cols-3 gap-1 lg:grid-cols-3 lg:ml-12 lg:w-[26rem] lg:h-auto mb-3">
+                                    <div class="w-24 lg:w-36 px-3">
+                                        <img src="../img/shoes2.jpg" alt="item-photo">
+                                    </div>
+                                    <div class="w-24 lg:w-36 px-3">
+                                        <img src="../img/shoes3.jpg" alt="item-photo">
+                                    </div>
+                                    <div class="w-24 lg:w-36 px-3">
+                                        <img src="../img/shoes4.jpg" alt="item-photo">
                                 </div>
-                            </li>
-                        </ul>
-                    </dd>
-                </div>
+                            </div>
+                        </dd>
+                    </div>
 
-                <div class="bg-gray-100 max-w-full rounded-md py-5 sm:grid -mt-2 sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dd class="mt-1 px-5 py-5 text-sm antialiased bg-white text-gray-900 sm:col-span-2 sm:mt-0">
-                        <h2 class="px-3 py-3">Product Rating</h2>
-                        <p class="px-3 text-2xl text-orange-400">5.0 out of 5</p>
-                        <div class="flex items-center px-3 py-2 mb-3">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <div class="bg-white px-5 my-10 row-span-3">
+                        <div class="grid grid-cols-2">
+                            <div class="border border-black">1</div>
+                            <div class="border border-black">2</div>
                         </div>
-                        <p class="text-sm font-medium px-3 py-2 text-gray-500 dark:text-gray-400">1,745 overall ratings</p>
-                        <hr class="py-3">
-                        <div class="mb-3">
-                            <div class="flex items-center justify-between">
-                                <img src="../img/prof1.jpg" class="w-12 lg:w-18 rounded-full" alt="">
-                                <p class="px-3 w-0 flex-1 truncate">Ace Malto</p>
-                            </div>
-                            <span class="text-sm px-3 w-0 ml-11 flex-1 text-gray-400 truncate">2022-03-09</span>
-                            <p class="px-3 py-3 lg:px-16">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa doloribus consequatur laboriosam, distinctio maxime atque ut, nostrum nemo iusto deleniti cupiditate accusantium at, iure suscipit minima a obcaecati. Reiciendis, mollitia?</p>
-                            <div class="grid grid-cols-3 gap-1 lg:grid-cols-3 lg:ml-12 lg:w-[26rem] lg:h-auto mb-3">
-                                <div class="w-24 lg:w-36 px-3">
-                                    <img src="../img/shoes2.jpg" alt="item-photo">
-                                </div>
-                                <div class="w-24 lg:w-36 px-3">
-                                    <img src="../img/shoes3.jpg" alt="item-photo">
-                                </div>
-                                <div class="w-24 lg:w-36 px-3">
-                                    <img src="../img/shoes4.jpg" alt="item-photo">
-                            </div>
-                        </div>
-                    </dd>
+                    </div>
+
                 </div>
+                
             </div>
             <!-- <dl class="">
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

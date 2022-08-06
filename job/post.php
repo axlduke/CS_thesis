@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <!--Replace with your tailwind.css once created-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 
 
@@ -147,7 +149,7 @@
                         </svg>
                     </div>
 
-                    <input type="text" id="table-search" class="bg-gray-50 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
+                    <input id="myInput" type="text" onkeyup="filterTextInput()" class="bg-gray-50 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
                         <button class="myBtn_multi ml-2 hover:text-teal-600 hover:bg-teal-300 transition duration-700 ease-in-out p-2 hover:rounded-md">
                             <a href="#_" class="text-xs md:text-md lg:text-xl">Create Post</a>
                         </button>
@@ -161,46 +163,46 @@
                                 <div class="modal-content relative w-auto pointer-events-none">
                                     <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                                         <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    Create Job Post
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
+                                                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
+                                                        Create Job Post
+                                                    </h5>
+                                                    <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
+                                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                                                    </button>
                                                 </div>
                                                 <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Title</dt>
-                                                        <input name="job_title" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                        <input name="job_experience" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <input name="job_qualification" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                        <input name="job_about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">logo</dt>
-                                                        <input name="job_logo" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Create: </dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                            <div class="da">
-                                                                <button name="post" type="submit" class="p-3 rounded-md hover:bg-teal-400 hover:text-teal-600 ease-in-out duration-500">Save</button>
-                                                            </div>
-                                                        </dd>
-                                                    </div>
-                                                </dl>
-                                            </div>
+                                                    <dl>
+                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Job Title 1</dt>
+                                                            <input name="job_title" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                        </div>
+                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Role</dt>
+                                                            <input name="job_experience" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                        </div>
+                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
+                                                            <input name="job_qualification" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                        </div>
+                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">About</dt>
+                                                            <input name="job_about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                        </div>
+                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">logo</dt>
+                                                            <input name="job_logo" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                        </div>
+                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Create: </dt>
+                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                                <div class="da">
+                                                                    <button name="post" type="submit" class="p-3 rounded-md hover:bg-teal-400 hover:text-teal-600 ease-in-out duration-500">Save</button>
+                                                                </div>
+                                                            </dd>
+                                                        </div>
+                                                    </dl>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -216,76 +218,77 @@
                             // $job_company = $row['company'];
                             $logo = $row['logo'];
                         ?>
-
-                    <div class="flex w-80 cursor-pointer hover:bg-gray-50 flex-col items-center justify-center rounded-lg bg-white shadow-lg">
-                        <div class="mb-2 flex items-center space-x-4">
-                            <img class="ml-2 w-10 rounded-full" src="../img/<?= $logo?>" alt="logo" />
+                    <div id="list-of-divs">
+                        <div data-content="<?php echo $row['job_title']?>" class="div flex w-80 cursor-pointer hover:bg-gray-50 flex-col items-center justify-center rounded-lg bg-white shadow-lg">
+                            <div class="mb-2 flex items-center space-x-4">
+                                <img class="ml-2 w-10 rounded-full" src="../img/<?= $logo?>" alt="logo" />
+                                <div>
+                                    <h1 class="mb-1 py-3 text-sm md:text-md lg:text-xl font-bold text-gray-700"><?php echo $row['job_title']?></h1>
+                                </div>
+                                <button class="myBtn_multi">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                    </svg>
+                                </button>
+                                <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
+    
+    
+                                    <form action="update_post.php" method="post" role="form">
+    
+                                        <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
+                                            <div class="flex items-center space-x-5">
+                                                <img src="../img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
+                                                <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
+                                                <h2 class="leading-relaxed">Update Jobs Information</h2>
+                                                <!-- <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p> -->
+                                                </div>
+                                            </div>
+                                            <div class="divide-y divide-gray-200">
+                                                <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Job Title</label>
+                                                    <input name="job_title" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_title']?>"/>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Company Name</label>
+                                                    <input name="job_company" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_company']?>">
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Job Experience</label>
+                                                    <input name="job_experience" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_experience']?>">
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Job Qualification</label>
+                                                    <input name="job_qualification" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_qualification']?>">
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Job Description</label>
+                                                    <input name="job_about" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_about']?>" />
+                                                    <input name="post_id" type="text" class="hidden" value="<?php echo $row['post_id']?>">
+                                                </div>
+                                                </div>
+                                                <div class="flex items-center space-x-4 pt-4">
+                                                    <!-- <button type="btn" class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
+                                                        <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
+                                                    </button> -->
+                                                    <button name="updateform" type="submit" class="close close_multi flex w-full items-center justify-center rounded-md hover:bg-teal-400 transition eas-in-out duration-500 px-4 py-3 text-teal-700 focus:outline-none">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+    
+                            </div>
+                                <div id="myList" class="px-5 pb-5">
+                                <p style="overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 5; 
+                                    -webkit-box-orient: vertical;"><?php echo $row['job_about']?></p>
+                                </div>
                             <div>
-                                <h1 class="mb-1 py-3 text-sm md:text-md lg:text-xl font-bold text-gray-700"><?php echo $row['job_title']?></h1>
                             </div>
-                            <button class="myBtn_multi">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition duration-200 hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto">
-
-
-                                <form action="update_post.php" method="post" role="form">
-
-                                    <div class="modal-content mx-auto max-w-md bg-white py-5 px-5 rounded-md shadow-lg">
-                                        <div class="flex items-center space-x-5">
-                                            <img src="../img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                                            <div class="block self-start pl-2 text-xl font-semibold text-gray-700">
-                                            <h2 class="leading-relaxed">Update Jobs Information</h2>
-                                            <!-- <p class="text-sm font-normal leading-relaxed text-gray-500">Job title</p> -->
-                                            </div>
-                                        </div>
-                                        <div class="divide-y divide-gray-200">
-                                            <div class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
-                                            <div class="flex flex-col">
-                                                <label class="leading-loose">Job Title</label>
-                                                <input name="job_title" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_title']?>"/>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <label class="leading-loose">Company Name</label>
-                                                <input name="job_company" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_company']?>">
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <label class="leading-loose">Job Experience</label>
-                                                <input name="job_experience" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_experience']?>">
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <label class="leading-loose">Job Qualification</label>
-                                                <input name="job_qualification" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_qualification']?>">
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <label class="leading-loose">Job Description</label>
-                                                <input name="job_about" type="text" class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-600 focus:border-gray-900 focus:outline-none focus:ring-gray-500 sm:text-sm" value="<?php echo $row['job_about']?>" />
-                                                <input name="post_id" type="text" class="hidden" value="<?php echo $row['post_id']?>">
-                                            </div>
-                                            </div>
-                                            <div class="flex items-center space-x-4 pt-4">
-                                                <!-- <button type="btn" class="close close_multi flex w-full items-center justify-center rounded-md px-4 py-3 text-gray-900 focus:outline-none">
-                                                    <svg class="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
-                                                </button> -->
-                                                <button name="updateform" type="submit" class="close close_multi flex w-full items-center justify-center rounded-md hover:bg-teal-400 transition eas-in-out duration-500 px-4 py-3 text-teal-700 focus:outline-none">Save</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            
-
-                        </div>
-                            <div class="px-5 pb-5">
-                            <p style="overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 5; 
-                                -webkit-box-orient: vertical;"><?php echo $row['job_about']?></p>
-                            </div>
-                        <div>
                         </div>
                     </div>
                     <?php
@@ -299,6 +302,27 @@
 
     </div>
     <!--/container-->
+    
+    <script>
+        function filterTextInput() {
+            var input, radios, radio_filter, text_filter, td0, i, divList;
+            input = document.getElementById("myInput");
+            text_filter = input.value.toUpperCase();
+            divList = $(".div");
+                
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < divList.length; i++) {
+                td0 = divList[i].getAttribute('data-content');
+                if (td0) {
+                if (td0.toUpperCase().indexOf(text_filter) > -1) {
+                    divList[i].style.display = "";
+                } else {
+                    divList[i].style.display = "none";
+                }
+                } 
+            }
+        }
+    </script>
 
     
     <script>

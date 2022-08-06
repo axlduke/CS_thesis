@@ -135,6 +135,7 @@
     <!-- Jobs Part -->
     <main class="tab-content">
         <div id="job" data-tab-content class="active">
+            <input id="myInput" type="text" onkeyup="filterTextInput()" class="bg-gray-50 ml-52 -mt-10 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
             <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     <?php
@@ -142,71 +143,73 @@
                     $results=mysqli_query($conn, $post);
                     while($row=mysqli_fetch_array($results)){
                     ?>
-                    <div class="w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                        <div class="mb-8">
-                            <img src="img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                        </div>
-                        <div class="text-center">
-                            <p class="text-md text-gray-700 font-bold"><?php echo $row['job_company']?></p>
-                            <p class="text-base text-gray-400 font-normal"><?php echo $row['job_title']?></p>
-                            <button class="myBtn_multi hover:bg-blue-400 hover:text-blue-600 text-base text-black p-1 rounded-md mt-4 ease-in-out duration-500">
-                                <a href="#_" class="p-1">
-                                    View 
-                                </a>
-                            </button>
-                            <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-content relative w-auto pointer-events-none">
-                                    <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                        <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                    <?php echo $row['job_title']?>
-                                                </h5>
-                                                <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                </button>
-                                                </div>
-                                                <div class="border-t border-gray-200">
-                                                <dl>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_company']?></dd>
+                    <div id="list-of-divs">
+                        <div data-content="<?php echo $row['job_title']?>" class="div w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img src="img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
+                            </div>
+                            <div class="text-center">
+                                <p class="text-md text-gray-700 font-bold"><?php echo $row['job_company']?></p>
+                                <p class="text-base text-gray-400 font-normal"><?php echo $row['job_title']?></p>
+                                <button class="myBtn_multi hover:bg-blue-400 hover:text-blue-600 text-base text-black p-1 rounded-md mt-4 ease-in-out duration-500">
+                                    <a href="#_" class="p-1">
+                                        View 
+                                    </a>
+                                </button>
+                                <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                                    id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-content relative w-auto pointer-events-none">
+                                        <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                                            <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+                                                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
+                                                        <?php echo $row['job_title']?>
+                                                    </h5>
+                                                    <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
+                                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                                                    </button>
                                                     </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_about']?></dd>
-                                                    </div>
-                                                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Job Experience</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_experience']?></dd>
-                                                    </div>
-                                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                        <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_qualification']?></dd>
-                                                    </div>
-                                                    <form action="job/apply-auth.php" method="post" role="form">
-                                                        <div class="flex justify-center bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dd class=" mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                                <div class="da">
-                                                                    <input name="employer_id" class="hidden" type="text" value="<?php echo $row['employer_id']?>">
-                                                                    <input name="job_id" class="hidden" type="text" value="<?php echo $row['post_id']?>">
-                                                                    <input name="user_id" class="hidden" type="text" value="<?php echo $user_id?>">
-                                                                    <input name="fname" class="hidden" type="text" value="<?php echo $fname;?>">
-                                                                    <?php 
-                                                                        if($mode == 'work'){
-                                                                            echo $_SESSION['show'] = '<button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>';
-                                                                        } elseif($mode != 'work'){
-
-                                                                        }
-                                                                    ?>
-                                                                    <!-- <button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button> -->
-                                                                </div>
-                                                            </dd>
+                                                    <div class="border-t border-gray-200">
+                                                    <dl>
+                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Company Name</dt>
+                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_company']?></dd>
                                                         </div>
-                                                    </form>
-                                                </dl>
+                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Job Description</dt>
+                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_about']?></dd>
+                                                        </div>
+                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Job Experience</dt>
+                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_experience']?></dd>
+                                                        </div>
+                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                            <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
+                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_qualification']?></dd>
+                                                        </div>
+                                                        <form action="job/apply-auth.php" method="post" role="form">
+                                                            <div class="flex justify-center bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                                <dd class=" mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                                    <div class="da">
+                                                                        <input name="employer_id" class="hidden" type="text" value="<?php echo $row['employer_id']?>">
+                                                                        <input name="job_id" class="hidden" type="text" value="<?php echo $row['post_id']?>">
+                                                                        <input name="user_id" class="hidden" type="text" value="<?php echo $user_id?>">
+                                                                        <input name="fname" class="hidden" type="text" value="<?php echo $fname;?>">
+                                                                        <?php 
+                                                                            if($mode == 'work'){
+                                                                                echo $_SESSION['show'] = '<button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>';
+                                                                            } elseif($mode != 'work'){
+    
+                                                                            }
+                                                                        ?>
+                                                                        <!-- <button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button> -->
+                                                                    </div>
+                                                                </dd>
+                                                            </div>
+                                                        </form>
+                                                    </dl>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -237,6 +240,7 @@
             }
         </style>
         <div id="e-com" data-tab-content>
+            <input id="myInput2" type="text" onkeyup="filterTextInputs()" class="bg-gray-50 ml-52 -mt-10 mb-5 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Products...">
             <!-- <div class="main-carousel">
                 <div class="cell"><img src="img/ace.png"></div>
                 <div class="cell"><img src="img/aldon.png"></div>
@@ -264,19 +268,20 @@
                 $file4 = $get_products['file4'];
                 $file5 = $get_products['file5'];
             ?>
-
-                <div class="w-40 rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
-                    <a href="e-com/item-view.php?item=<?php echo $product_id?>&seller=<?php echo $seller_id?>&product=<?php echo $product_name?>&quantity=<?php echo $quantity?>&price=<?php echo $price?>&desc=<?php echo $product_description?>&cat=<?php echo $product_category?>&fee=<?php echo $shipping_fee?>&a=<?php echo $file1?>&b=<?php echo $file2 ?>&c=<?php echo $file3?>&d=<?php echo $file4?>&e=<?php echo $file5?>">
-                        <img class="rounded-t-lg p-5 aspect-square w-full" src="img/<?php echo $file1?>" alt="product image" />
-                        <div class="px-5 pb-5">
-                            <h3 class="text-sm lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate"><?php echo $get_products['product_name']; ?></h3>
-                            <div class="flex items-center justify-between">
-                                <span class="text-md lg:text-md lg:fold-bold text-md text-orange-400">₱<?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
-                                <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white">15 sold</span>
+                <div id="list-of-divs">
+                    <div data-contents="<?php echo $get_products['product_name']; ?>" class="divs w-40 rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+                        <a href="e-com/item-view.php?item=<?php echo $product_id?>&seller=<?php echo $seller_id?>&sellprof=<?php echo $pictures?>&product=<?php echo $product_name?>&quantity=<?php echo $quantity?>&price=<?php echo $price?>&desc=<?php echo $product_description?>&cat=<?php echo $product_category?>&fee=<?php echo $shipping_fee?>&a=<?php echo $file1?>&b=<?php echo $file2 ?>&c=<?php echo $file3?>&d=<?php echo $file4?>&e=<?php echo $file5?>">
+                            <img class="rounded-t-lg p-5 aspect-square w-full" src="img/<?php echo $file1?>" alt="product image" />
+                            <div class="px-5 pb-5">
+                                <h3 class="text-sm lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate"><?php echo $get_products['product_name']; ?></h3>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-md lg:text-md lg:fold-bold text-md text-orange-400">₱<?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
+                                    <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white">15 sold</span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>  <?php }?>
+                        </a>
+                    </div>  
+                </div><?php }?>
             </div>
 
         </div>
@@ -345,14 +350,48 @@
 
         </div>
     </footer>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script type="text/javascript">
-        $('.main-carousel').flickity({
-            cellAlign: 'left',
-            wrapAround: true,
-            freeScroll: true
-        })
+    <!-- Search div -->
+
+    <script>
+        function filterTextInput() {
+            var input, radios, radio_filter, text_filter, td0, i, divList;
+            input = document.getElementById("myInput");
+            text_filter = input.value.toUpperCase();
+            divList = $(".div");
+                
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < divList.length; i++) {
+                td0 = divList[i].getAttribute('data-content');
+                if (td0) {
+                if (td0.toUpperCase().indexOf(text_filter) > -1) {
+                    divList[i].style.display = "";
+                } else {
+                    divList[i].style.display = "none";
+                }
+                } 
+            }
+        }
+        function filterTextInputs() {
+            var input, radios, radio_filter, text_filter, td0, i, divList;
+            input = document.getElementById("myInput2");
+            text_filter = input.value.toUpperCase();
+            divList = $(".divs");
+                
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < divList.length; i++) {
+                td0 = divList[i].getAttribute('data-contents');
+                if (td0) {
+                if (td0.toUpperCase().indexOf(text_filter) > -1) {
+                    divList[i].style.display = "";
+                } else {
+                    divList[i].style.display = "none";
+                }
+                } 
+            }
+        }
     </script>
+
+    <!-- End Search div -->
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");
 

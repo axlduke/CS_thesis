@@ -36,7 +36,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!--Replace with your tailwind.css once created-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
-
+    <!-- data table -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 
 </head>
@@ -152,10 +154,10 @@
                                 </div>
                             </div>
                             <div class="pt-3 pl-3">
-                                <input name="valueToSearch" type="text" class="border-2 border-teal-300 rounded-md pl-3 py-1 outline-none" placeholder="Search....">
+                                <input id="myInput" onkeyup="myFunction()" type="text" class="border-2 border-teal-300 rounded-md pl-3 py-1 outline-none" placeholder="Search names">
                                 <button name="search" type="submit"><i class="uil uil-search hover:text-lg"></i></button>
                             </div>
-                            <table class="min-w-full leading-normal">
+                            <table class="min-w-full leading-normal display" id="myTable">
                                 <thead>
                                     <tr>
                                         <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">Name</th>
@@ -190,7 +192,7 @@
                                                                 </div>
                                                             </td>
                                                             <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                                                <a href="view-user-profile.php?user=<?php echo $fetch['user_id'];?>&name=<?php echo $fetch['fname'];?>&email=<?php echo $fetch['email'];?>&add=<?php echo $fetch['Country']?>&cont=<?php echo $fetch['contact'];?>&mod=<?php echo $fetch['mode'];?>&type=<?php echo $fetch['type'];?>&about=<?php echo $fetch['about'];?>&pic=<?php echo $fetch['pictures'];?>" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-teal-700">VIEW</a>
+                                                                <a href="view-user-profile.php?user=<?php echo $fetch['user_id'];?>&name=<?php echo $fetch['fname'];?>&email=<?php echo $fetch['email'];?>&add=<?php echo $fetch['address']?>&cont=<?php echo $fetch['contact'];?>&mod=<?php echo $fetch['mode'];?>&type=<?php echo $fetch['type'];?>&about=<?php echo $fetch['about'];?>&pic=<?php echo $fetch['pictures'];?>" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-teal-700">VIEW</a>
                                                             </td>
                                                             <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                                                                 <button name="accept" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-green-700">ACCEPT</button>
@@ -227,6 +229,27 @@
 
     </div>
     <!--/container-->
+
+    <script >
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+                }       
+            }
+        }
+    </script>
 
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");
