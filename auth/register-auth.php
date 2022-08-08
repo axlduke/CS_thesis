@@ -19,9 +19,6 @@ include "db.php";
 		}
 		else{
 
-			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
-			if($conn->query($query_account) === TRUE){
-				$account_id = $conn->insert_id;
 				$query_user = "INSERT INTO user  VALUES('','$account_id','$fname','$contact','$email','$address','$password','$mode','$type','','','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and `password`='$password'";
@@ -42,9 +39,7 @@ include "db.php";
 				} else{
 					echo '<script>window.alert("ERROR ON USERS!")</script>';
 				}
-			} else{
-				echo '<script>window.alert("ERROR ON ACCOUNTS!")</script>';
-			}
+
 		}
 	}
 
@@ -60,17 +55,14 @@ include "db.php";
 		$business = $_POST['business'];
 		$permit = $_POST['permit'];
 
-		$query =mysqli_query($conn, "SELECT * FROM account WHERE email = '$email'");
+		$query =mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
 		if(mysqli_num_rows($query) > 0){
 			echo '<script>window.alert("Email is already taken")</script>';
 			echo "<script>window.history.go(-1);</script>";
 		}
 		else{
 
-			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
-			if($conn->query($query_account) === TRUE){
-				$account_id = $conn->insert_id;
-				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','$business','$permit','','','')";
+				$query_user = "INSERT INTO user VALUES('','$fname','$contact','$email','$address','$password','','$type','$business','$permit','','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
 					$result = $conn->query($sql);
@@ -88,9 +80,7 @@ include "db.php";
 				} else{
 					echo '<script>window.alert("ERROR ON USERS!")</script>';
 				}
-			} else{
-				echo '<script>window.alert("ERROR ON ACCOUNTS!")</script>';
-			}
+
 		}
 	}
 
@@ -113,9 +103,6 @@ include "db.php";
 		}
 		else{
 
-			$query_account = "INSERT INTO account VALUE('','$email','$password','$type')";
-			if($conn->query($query_account) === TRUE){
-				$account_id = $conn->insert_id;
 				$query_user = "INSERT INTO user VALUES('','$account_id','$fname','$contact','$email','$address','$password','','$type','','','$company','','')";
 				if($conn->query($query_user) === TRUE){
 					$sql = "SELECT * FROM user WHERE email = '$email' and password='$password'";
@@ -135,10 +122,7 @@ include "db.php";
 					echo '<script>window.alert("ERROR ON USERS!")</script>';
 					echo "<script>window.history.go(-1);</script>";
 				}
-			} else{
-				echo '<script>window.alert("ERROR ON ACCOUNTS!")</script>';
-				echo "<script>window.history.go(-1);</script>";
-			}
+
 		}
 	}
 

@@ -130,19 +130,19 @@
         <div class="px-6 flex container">
             <div class="items-center">
                 <div class="grid grid-rows-1 bg-white lg:grid-rows-2 grid-flow-col gap-4 py-10 px-5 lg:px-20 lg:h-[50rem] h-[50rem]">
-                    <img id="feature" src="../img/<?php echo $a?>" class="py-6 aspect-square w-[45rem] lg:w-[26rem] lg:aspect-square" alt="item-photo">
+                    <img id="feature" src="product_images/<?php echo $a?>" class="py-6 aspect-square w-[45rem] lg:w-[26rem] lg:aspect-square" alt="item-photo">
                     <div class="grid grid-cols-4 lg:grid-cols-4 lg:w-[26rem] -mt-40 lg:-mt-32 lg:px-5 -mb-10 mb-20">
                         <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail active rounded-md" src="../img/<?php echo $b?>" alt="item-photo">
+                            <img class="thumbnail active rounded-md" src="product_images/<?php echo $b?>" alt="item-photo">
                         </div>
                         <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail active rounded-md" src="../img/<?php echo $c?>" alt="item-photo">
+                            <img class="thumbnail active rounded-md" src="product_images/<?php echo $c?>" alt="item-photo">
                         </div>
                         <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail active rounded-md" src="../img/<?php echo $d?>" alt="item-photo">
+                            <img class="thumbnail active rounded-md" src="product_images/<?php echo $d?>" alt="item-photo">
                         </div>
                         <div class="mt-24 lg:mt-48 w-16 h-16 lg:w-20 lg:h-20 opacity-50 hover:opacity-100 lg:opacity-50  lg:hover:opacity-100">
-                            <img class="thumbnail active rounded-md" src="../img/<?php echo $e?>" alt="item-photo">
+                            <img class="thumbnail active rounded-md" src="product_images/<?php echo $e?>" alt="item-photo">
                         </div>
                     </div>
                     <dl class="items lg:mt-5 -mt-16">

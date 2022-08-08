@@ -43,6 +43,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="main.css">
     <script src="js/tab.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -229,27 +231,49 @@
         <!-- End Jobs -->
 
         <!-- Ecommerce Start -->
-        <style media="screen">
-        .carousel-cell {
-            width: 100%;
-            }
-
-            /* cell number */
-            .carousel-cell:before {
-            display: block;
-            }
-        </style>
         <div id="e-com" data-tab-content>
+        <div class="owl-carousel owl-theme -mt-16 mb-12">
+            <div class="item"><img src="img/clothing.jpg"></div>
+            <div class="item"><img src="img/bike.png"></div>
+            <div class="item"><img src="img/branding.jpg"></div>    
+            <div class="item"><img src="img/furnitures.jpg"></div> 
+            <div class="item"><img src="img/computer.jpg"></div> 
+            <div class="item"><img src="img/home.jpg"></div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript"> 
+        $('.owl-carousel').owlCarousel({    
+            loop:true,
+            items: 3,
+            autoWidth: false,
+            margin:0,
+            stagePadding: 0,
+            nav: false,
+            autoplay: true,
+            center: true,
+            touchDrag: true,
+            mouseDrag: true,
+            autoplayTimeout: 1000,
+            autoplayHoverPause: true,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                600:{
+                    items:3,
+                },
+                1000:{
+                    items:5,
+                },
+                1400:{
+                    items:3,
+                }                
+            }
+        });                    
+        </script>
             <input id="myInput2" type="text" onkeyup="filterTextInputs()" class="bg-gray-50 ml-52 -mt-10 mb-5 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Products...">
-            <!-- <div class="main-carousel">
-                <div class="cell"><img src="img/ace.png"></div>
-                <div class="cell"><img src="img/aldon.png"></div>
-                <div class="cell"><img src="img/diannne.png"></div>
-                <div class="cell"><img src="img/mark.png"></div>
-                <div class="cell"><img src="img/ivy.png"></div>
-            </div> -->
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-2 px-10 mb-5">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-8 gap-2 lg:gap-8 px-10 mb-5">
             <?php     
             $products_posted="SELECT * from products ORDER BY rand()";
             $results=mysqli_query($conn,$products_posted);
@@ -271,12 +295,19 @@
                 <div id="list-of-divs">
                     <div data-contents="<?php echo $get_products['product_name']; ?>" class="divs w-40 rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
                         <a href="e-com/item-view.php?item=<?php echo $product_id?>&seller=<?php echo $seller_id?>&sellprof=<?php echo $pictures?>&product=<?php echo $product_name?>&quantity=<?php echo $quantity?>&price=<?php echo $price?>&desc=<?php echo $product_description?>&cat=<?php echo $product_category?>&fee=<?php echo $shipping_fee?>&a=<?php echo $file1?>&b=<?php echo $file2 ?>&c=<?php echo $file3?>&d=<?php echo $file4?>&e=<?php echo $file5?>">
-                            <img class="rounded-t-lg p-5 aspect-square w-full" src="img/<?php echo $file1?>" alt="product image" />
+                            <img class="rounded-t-lg p-5 aspect-square w-full" src="e-com/product_images/<?php echo $file1?>" alt="product image" />
                             <div class="px-5 pb-5">
                                 <h3 class="text-sm lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate"><?php echo $get_products['product_name']; ?></h3>
                                 <div class="flex items-center justify-between">
+                                    <?php
+                                        $total_sold = " SELECT  SUM(quantity) as sum FROM orders WHERE product_id =". $get_products['product_id'];
+                                        $sold=mysqli_query($conn,$total_sold);
+                                        $val = $sold -> fetch_array();
+                                        $total = $val['sum'];
+                                    ?>
                                     <span class="text-md lg:text-md lg:fold-bold text-md text-orange-400">₱<?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
-                                    <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white">15 sold</span>
+                                    <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white"><?php if ($total == null) {  
+                                } else {echo $total," SOLD"; }?></span>
                                 </div>
                             </div>
                         </a>
@@ -285,31 +316,6 @@
             </div>
 
         </div>
-
-
-        <!-- <div class="flex justify-center py-4">
-            <nav aria-label="Page navigation example">
-                <ul class="flex list-style-none">
-                    <li class="page-item disabled"><a
-                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                        href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-                    <li class="page-item active"><a
-                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                        href="#">1</a></li>
-                    <li class="page-item"><a
-                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                        href="#">2</a></li>
-                    <li class="page-item"><a
-                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                        href="#">3</a></li>
-                    <li class="page-item"><a
-                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                        href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div> -->
-
-
     </main>
     <!-- E-commerce End -->
     

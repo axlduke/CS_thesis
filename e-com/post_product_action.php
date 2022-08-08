@@ -1,9 +1,10 @@
 <?php 
 session_start();
 include '../auth/db.php';
-$seller_id = $_SESSION['user_id'];
+// $seller_id = $_SESSION['user_id'];
 // echo $seller_id;
-    if(isset($_POST['post_product_button'])){
+if(isset($_POST['post_product'])){
+        $seller_id = $_POST['seller_id'];
         $location="product_images/";
         $file1=$_FILES['img1']['name'];
         $file_tmp1=$_FILES['img1']['tmp_name'];
@@ -22,19 +23,18 @@ $seller_id = $_SESSION['user_id'];
 		$product_description=$_POST['product_description'];
 		$product_category=$_POST['product_category'];
 		$shipping_fee= $_POST['shipping_fee'];
-
-        $sql = "INSERT INTO products (seller_id, product_name, quantity,price,product_description, product_category, shipping_fee,file1,file2,file3,file4,file5) 
-        VALUES ('$seller_id', '$product_name','$quantity','$price','$product_description','$product_category','$shipping_fee','$file1','$file2','$file3','$file4','$file5')";
-        $result = mysqli_query($conn, $sql); 
-        if($result){
+        $brand = $_POST['brand'];
+        $product_sql = "INSERT INTO products (seller_id, brand, product_name, quantity, price, product_description, product_category, shipping_fee, file1, file2, file3, file4, file5) VALUES ('$seller_id', '$brand', '$product_name', '$quantity', '$price', '$product_description', '$product_category', '$shipping_fee', '$file1', '$file2', '$file3', '$file4', '$file5');";
+        if($conn->query($product_sql) === TRUE){
             move_uploaded_file($file_tmp1, $location.$file1);
             move_uploaded_file($file_tmp2, $location.$file2);
             move_uploaded_file($file_tmp3, $location.$file3);
             move_uploaded_file($file_tmp4, $location.$file4);
             move_uploaded_file($file_tmp5, $location.$file5);
             header('location: posted-items.php');
-            
+        } else{
+            echo "Error: " . $product_sql . "<br>" . $conn->error;
         }
-
+        
     }
 ?>

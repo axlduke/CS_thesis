@@ -147,13 +147,17 @@
                                             <div class="px-4 py-2 font-semibold text-sm">Product Name</div>
                                             <input name="product_name" type="text" class="border border-gray-300 rounded-md pl-3" required>
                                         </div>
+                                        <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2 py-2">
+                                            <div class="px-4 py-2 font-semibold text-sm">Brand Name</div>
+                                            <input name="brand" type="text" class="border border-gray-300 rounded-md pl-3" required>
+                                        </div>
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Product Description</div>
                                             <input name="product_description" type="text" class="border border-gray-300 rounded-md pl-3" required>
                                         </div>
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Product Category</div>
-                                            <input list="categories" name="product_category" class="border border-gray-300 rounded-md pl-3" placeholder="Search..." required>
+                                            <input list="categories" name="product_category" class="border border-gray-300 rounded-md pl-3" placeholder="Search within selection" required>
                                             <datalist id="categories">
                                                 <option value="women clothes">
                                                 <option value="men clothes">
@@ -173,6 +177,7 @@
                                                 <option value="pets">
                                                 <option value="mom & baby">
                                                 <option value="baby & kids fashion">
+                                                <option value="mobile accessories">
                                                 <option value="gaming & consoles">
                                                 <option value="cameras & drones">
                                                 <option value="home & living">
@@ -187,7 +192,6 @@
                                         </div>
                                         <div class="grid lg:grid-cols-3 grid-cols-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Weight</div>
-                                            <input name="weight" type="text" class="border border-gray-300 rounded-md pl-3" placeholder="max 50kg" required>
                                             <input list="kilo" name="shipping_fee" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost" required>
                                             <datalist id="kilo">
                                                 <option value="100 = 10kg">
@@ -204,7 +208,7 @@
                                         <div class="grid lg:grid-cols-2 grid-cols-1 py-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Price</div>
                                             <input name="price" type="text" class="border border-gray-300 rounded-md pl-3" required>
-
+                                            <input name="seller_id" type="text" class="hidden" value="<?php echo $user_id?>">
                                         </div>
                                     </div>
                                         <input type="file" class="file-input h-full w-full" name="img1" >
@@ -216,7 +220,7 @@
                                         <button type="button" class="close close_multi ml-3 text-white rounded-md text-black hover:text-red-600 hover:bg-red-400 p-2 cursor-pointer ease-in-out duration-500">
                                             <svg class="mr-3 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Close
                                         </button>
-                                    <button name="post_product_button" type="submit" class="flex w-full items-center justify-center rounded-md bg-blue-300 hover:bg-blue-600 hover:text-white px-4 ease-in-out duration-500 py-3 text-gray-900 focus:outline-none">
+                                    <button name="post_product" type="submit" class="flex w-full items-center justify-center rounded-md bg-blue-300 hover:bg-blue-600 hover:text-white px-4 ease-in-out duration-500 py-3 text-gray-900 focus:outline-none">
                                         Post
                                     </button>
                                     </div>
@@ -226,18 +230,18 @@
                 </div>
             </section>
                 <div class="flex justify-center mb-3">
-                    <input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Items...">
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Items...">
                     <button class="myBtn_multi ml-3 bg-blue-500 text-white rounded-md hover:text-white hover:bg-blue-700 p-2 cursor-pointer ease-in-out duration-300">
                         Create Post
                     </button>
                 </div>
                 <div class="mb-5 flex justify-center">
                     <div class="flex max-w-full">
-                        <table class="table-auto bg-white px-5"> 
+                        <table id="myTable" class="table-auto bg-white px-5"> 
                         <thead class="">                       
                             <tr class="bg-slate-700">
-                            <th class="py-5 px-5 lg:px-28"><i class="text-green-300 text-xs">No.</i></th>
-                            <th class="py-5 px-5 lg:px-28"><i class="text-white text-xs">Product</i></th>
+                                <th class="py-5 px-5 lg:px-28"><i class="text-white text-xs">Product</i></th>
+                                <th class="py-5 px-5 lg:px-28"><i class="text-green-300 text-xs">Quantity</i></th>
                             <th class="py-5 px-5 lg:px-28"><i class="text-white text-xs">View</i></th>
                             <th class="py-5 px-5 lg:px-28"><i class="text-green-300 text-xs">Action</i></th>
                             </tr>
@@ -248,18 +252,42 @@
                             $i=1;
                             while($row = $results -> fetch_assoc()){
                                 $product_id = $row['product_id'];
+                                $seller_id = $row['seller_id'];
+                                $brand = $row['brand'];
+                                $product_name = $row['product_name'];
+                                $quantity = $row['quantity'];
+                                $price = $row['price'];
+                                $product_description = $row['product_description'];
+                                $product_category = $row['product_category'];
+                                $shipping_fee = $row['shipping_fee'];
+                                $file1 = $row['file1'];
+                                $file2 = $row['file2'];
+                                $file3 = $row['file3'];
+                                $file4 = $row['file4'];
+                                $file5 = $row['file5'];
                             ?> 
                             <tr class="">
-                            <td class="py-5 px-5 lg:px-28"><?php echo $i;?></td>  
+                            <!-- <td class="py-5 px-5 lg:px-28"><?php echo $i;?></td>   -->
                             <td class="py-5 px-5 lg:px-28"><?php echo $row['product_name'];?></td>
                             <td class="py-5 px-5 lg:px-28">
+                                <?php
+                                    if($row['quantity'] > 0){
+                                        echo $quant = '<p class="bg-green-300 px-5 rounded-md text-green-600"> '.$row['quantity'].' </p>';
+                                    }else{
+                                        echo $quant = '<p class="bg-red-300 px-5 rounded-md text-red-600">out of stock</p>';
+                                    }
+                                ?>
+                            </td>
+                            <td class="py-5 px-5 lg:px-28">
                                 <button>
-                                    View
+                                    <a class="text-blue-400" href="seller-item-view.php?item=<?php echo $product_id?>&brand=<?php echo $brand?>&seller=<?php echo $seller_id?>&sellprof=<?php echo $pictures?>&product=<?php echo $product_name?>&quantity=<?php echo $quantity?>&price=<?php echo $price?>&desc=<?php echo $product_description?>&cat=<?php echo $product_category?>&fee=<?php echo $shipping_fee?>&a=<?php echo $file1?>&b=<?php echo $file2 ?>&c=<?php echo $file3?>&d=<?php echo $file4?>&e=<?php echo $file5?>">
+                                        view
+                                    </a>
                                 </button>
                             </td>
-                            <form action="" method="post">
+                            <form action="delete-action.php" method="post">
                                 <td class="py-5 px-5 lg:px-28">
-                                    <button name="delete" value="" type="submit" class="hover:text-red-400">Delete</button>
+                                    <button name="delete" type="submit" value="<?php echo $row['product_id'];?>" class="bg-red-300 hover:bg-red-300 px-5 rounded-md text-red-600">Delete</button>
                                 </td>
                             </form>
                             </tr>
@@ -309,6 +337,26 @@
         </div>
     </footer>
     <script src="upload-scipt.js"></script>
+    <script>
+        function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+    }
+    </script>
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");
 
