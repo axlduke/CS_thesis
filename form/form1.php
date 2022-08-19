@@ -48,31 +48,58 @@
                                     <label for="" class="text-xs font-semibold px-1">Address</label>
                                     <div class="flex">
                                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-home-outline text-gray-400 text-lg"></i></div>
-                                        <input name="address" type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="(Barangay Name TC) TabacoCity, LegazpiCity" required><br>
+                                        <input list="address" name="address" type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Select Address" required>
+                                            <datalist id="address">
+                                                <option value="Tabaco City">
+                                                <option value="Legazpi City">
+                                                <option value="Bacacay Albay">
+                                                <option value="Malilipot Albay">
+                                                <option value="Sto. Domingo Albay">
+                                                <option value="tiwi Albay">
+                                            </datalist>
                                     </div>
-                                    <small>FORMAT: TC - Tabaco City, LC - Legazpi City</small>
+
                                 </div>
-                            </div>
-                            <div class="flex -mx-3">
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-xs font-semibold px-1">Contact</label>
                                     <div class="flex">
                                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-phone-outline text-gray-400 text-lg"></i></div>
-                                        <input name="contact" type="tel" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" placeholder="0970-345-2345" required maxlength="15">
+                                        <input name="contact" type="tel" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="0970-345-2345" required maxlength="11">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="flex -mx-3">
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-xs font-semibold px-1">Password</label>
                                     <div class="flex">
                                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
-                                        <input name="password" type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Password" required>
-                                        <input name="mode" value="user">
+                                        <input id="password" name="password" type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Password">
                                     </div>
                                 </div>
+                                <div class="w-1/2 px-3 mb-5">
+                                    <label for="" class="text-xs font-semibold px-1">Re-Password</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
+                                        <input id="re_password" name="re_password" type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Password">
+                                    </div>
+                                </div>
+                                <script>
+                                    function matchPassword() {  
+                                        var pw1 = document.getElementById("password");  
+                                        var pw2 = document.getElementById("re_password");  
+                                        if(pw1 != pw2)  
+                                        {   
+                                            alert("Passwords did not match");  
+                                        } else {  
+                                            alert("Password created successfully");  
+                                        }  
+                                    }  
+                                </script>
                             </div>
                             <input name="type" type="text" value="1" hidden>
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mb-5">
+                                    <input type="text" name="mode" value="user" class="hidden">
                                     <button name="users" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
                                 </div>
                             </div>

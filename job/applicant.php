@@ -36,9 +36,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!--Replace with your tailwind.css once created-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
-    <!-- data table -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
 
 
 </head>
@@ -133,9 +131,9 @@
     <!--Container-->
     <div class="container w-full mx-auto pt-12">
 
-        <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
+        <div class="w-full md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
             <!--Console Content-->
-            <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
+            <section class="max-w-6xl mx-auto px-4 lg:px-4 py-3">
                 <div class="grid lg:grid-cols-2 gap-4">
                 <?php
                     if (mysqli_num_rows($result) > 0) {
@@ -153,67 +151,64 @@
                                     <h1 class="ml-4 font-bold"><?php echo $row['job_title']?></h1>
                                 </div>
                             </div>
-                            <div class="pt-3 pl-3">
-                                <input id="myInput" onkeyup="myFunction()" type="text" class="border-2 border-teal-300 rounded-md pl-3 py-1 outline-none" placeholder="Search names">
-                                <button name="search" type="submit"><i class="uil uil-search hover:text-lg"></i></button>
+                            <div class="pt-3 px-12 flex justify-between py-4">
+                                <div>Name</div>
+                                <div>..</div>
+                                <div>..</div>
+                                <div>..</div>
+                                <div>Date</div>
                             </div>
-                            <table class="min-w-full leading-normal display" id="myTable">
-                                <thead>
-                                    <tr>
-                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">Name</th>
-                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">....</th>
-                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">....</th>
-                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">....</th>
-                                        <th class="border-b-2 border-gray-200 bg-teal-100 px-5 py-3 text-left text-xs font-semibold font-bold uppercase tracking-wider text-gray-600">Date Applied</th>
-                                    </tr>
-                                </thead>
-                                    <tbody class="">
-                                    <?php 
-                                    $fetch_applicant_id=mysqli_query($conn,$applicant);
-
-                                    if (mysqli_num_rows($fetch_applicant_id) > 0) {
-                                    while($get_row = mysqli_fetch_array($fetch_applicant_id)) { 
-                                    ?>
-                                                    <tr class="">
-                                                    <?php 
-                                                        $applicant_list="SELECT * from user where user_id = ".$get_row['user_id'];
-                                                        $query=mysqli_query($conn,$applicant_list);
-                                                            if (mysqli_num_rows($query) > 0) {
-                                                                while($fetch = mysqli_fetch_array($query)) {
-                                                    ?>
-                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                                                <div class="flex items-center">
-                                                                    <div class="h-10 w-10 flex-shrink-0">
-                                                                        <img class="h-full w-full rounded-full" src="../img/<?php echo $fetch['pictures']?>" alt="" />
-                                                                    </div>
-                                                                    <div class="ml-3">
-                                                                        <p class="whitespace-no-wrap text-gray-900"><?php echo $fetch['fname']?></p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                                                <a href="view-user-profile.php?user=<?php echo $fetch['user_id'];?>&name=<?php echo $fetch['fname'];?>&email=<?php echo $fetch['email'];?>&add=<?php echo $fetch['address']?>&cont=<?php echo $fetch['contact'];?>&mod=<?php echo $fetch['mode'];?>&type=<?php echo $fetch['type'];?>&about=<?php echo $fetch['about'];?>&pic=<?php echo $fetch['pictures'];?>" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-teal-700">VIEW</a>
-                                                            </td>
-                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                                                <button name="accept" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-green-700">ACCEPT</button>
-                                                            </td>
-                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                                                <button name="decline" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-red-700">DECLINE</button>
-                                                            </td>
-                                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                                                <p class="whitespace-no-wrap text-gray-900"><?php echo $get_row['date_applied']?></p>
-                                                            </td>
-                                                        <?php
-                                                                }
-                                                            }
+                            <div class="overflow-x-auto overflow-y-auto relative" style="height: 405px;">
+                                <table class="border-collapse scroll-smooth min-w-full leading-normal table-striped relative">
+                                        <tbody class="">
+                                        <?php 
+                                        $fetch_applicant_id=mysqli_query($conn,$applicant);
+    
+                                        if (mysqli_num_rows($fetch_applicant_id) > 0) {
+                                        while($get_row = mysqli_fetch_array($fetch_applicant_id)) { 
+                                        ?>
+                                                        <tr class="">
+                                                        <?php 
+                                                            $applicant_list="SELECT * from user where user_id = ".$get_row['user_id'];
+                                                            $query=mysqli_query($conn,$applicant_list);
+                                                                if (mysqli_num_rows($query) > 0) {
+                                                                    while($fetch = mysqli_fetch_array($query)) {
                                                         ?>
-                                                    </tr>
-                                            <?php
+                                                                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                    <div class="flex items-center">
+                                                                        <div class="h-10 w-10 flex-shrink-0">
+                                                                            <img class="h-full w-full rounded-full" src="../img/<?php echo $fetch['pictures']?>" alt="" />
+                                                                        </div>
+                                                                        <div class="ml-3">
+                                                                            <p class="whitespace-no-wrap text-gray-900"><?php echo $fetch['fname']?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                    <a href="view-user-profile.php?user=<?php echo $fetch['user_id'];?>&name=<?php echo $fetch['fname'];?>&email=<?php echo $fetch['email'];?>&add=<?php echo $fetch['address']?>&cont=<?php echo $fetch['contact'];?>&mod=<?php echo $fetch['mode'];?>&type=<?php echo $fetch['type'];?>&about=<?php echo $fetch['about'];?>&pic=<?php echo $fetch['pictures'];?>" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-teal-700">VIEW</a>
+                                                                </td>
+                                                                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                    <button name="accept" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-green-700">ACCEPT</button>
+                                                                </td>
+                                                                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                    <button name="decline" type="submit" class="whitespace-no-wrap text-gray-900 hover:font-bold hover:text-red-700">DECLINE</button>
+                                                                </td>
+                                                                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                                    <p class="whitespace-no-wrap text-gray-900"><?php echo $get_row['date_applied']?></p>
+                                                                </td>
+                                                            <?php
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </tr>
+                                                <?php
+                                                        }
                                                     }
-                                                }
-                                            ?>
-                                </tbody>
-                            </table>
+                                                ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
                 <?php
@@ -229,27 +224,6 @@
 
     </div>
     <!--/container-->
-
-    <script >
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-                }       
-            }
-        }
-    </script>
 
     <script>
         var modalparent = document.getElementsByClassName("modal_multi");

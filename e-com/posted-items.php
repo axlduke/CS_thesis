@@ -192,7 +192,8 @@
                                         </div>
                                         <div class="grid lg:grid-cols-3 grid-cols-2 py-2">
                                             <div class="px-4 py-2 font-semibold text-sm">Weight</div>
-                                            <input list="kilo" name="shipping_fee" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost" required>
+                                            <input name="shipping_fee" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost" required>
+                                            <input list="kilo" name="weight" class="border border-gray-300 rounded-md pl-1" placeholder="Shipping Cost" required>
                                             <datalist id="kilo">
                                                 <option value="100 = 10kg">
                                                 <option value="200 = 20kg">

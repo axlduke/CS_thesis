@@ -45,8 +45,6 @@
     <script src="js/tab.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- iconscount -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 
 </head>
@@ -107,17 +105,6 @@
                     <li class="mr-6 my-2 md:my-0">
                         <a href="e-com/cart.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400 ease-in-out duration-500">
                             <i class="fa fa-shopping-cart fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Cart</span>
-                            <?php
-                            include 'e-com/cart.php';
-                                if(isset($_SESSION['notif'])) {
-                                    echo $_SESSION['notif'];
-                                }
-                            ?>
-                        </a>
-                    </li>
-                    <li class="mr-6 my-2 md:my-0">
-                        <a href="message.php" class="block py-1 md:py-3 pl-1 text-lg align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400 ease-in-out duration-500">
-                            <i class="uil uil-facebook-messenger-alt fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Message</span>
                         </a>
                     </li>
                 </ul>
@@ -150,108 +137,101 @@
             </ul>
         </div>
     </div>
-
-    <!-- Jobs Part -->
-    <main class="tab-content">
-        <div id="job" data-tab-content class="active">
-        <form action="search_jobs.php" method="post">
+        <!-- Ecommerce Start -->
+        <div id="e-com" data-tab-content class="active">
+        <div class="owl-carousel owl-theme -mt-16 mb-12">
+            <div class="item"><img src="img/clothing.jpg"></div>
+            <div class="item"><img src="img/bike.png"></div>
+            <div class="item"><img src="img/branding.jpg"></div>    
+            <div class="item"><img src="img/furnitures.jpg"></div> 
+            <div class="item"><img src="img/computer.jpg"></div> 
+            <div class="item"><img src="img/home.jpg"></div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript"> 
+        $('.owl-carousel').owlCarousel({    
+            loop:true,
+            items: 3,
+            autoWidth: false,
+            margin:0,
+            stagePadding: 0,
+            nav: false,
+            autoplay: true,
+            center: true,
+            touchDrag: true,
+            mouseDrag: true,
+            autoplayTimeout: 1000,
+            autoplayHoverPause: true,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                600:{
+                    items:3,
+                },
+                1000:{
+                    items:5,
+                },
+                1400:{
+                    items:3,
+                }                
+            }
+        });                    
+        </script>
+        <form action="search_products.php" method="post">
             <input
                 type="text"
                 name="search"
-                class="bg-gray-50 ml-10 lg:ml-48 -mt-10 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
-            <button type="submit" name="search_position"></button>
+                class="flex bg-gray-50 lg:ml-16 ml-10 -mt-10 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
+            <button type="submit" name="search_products"></button>
         </form>
-            <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    <?php
-                    $post = "SELECT * from jobs_post ORDER BY rand()";
-                    $results=mysqli_query($conn, $post);
-                    while($row=mysqli_fetch_array($results)){
-                    ?>
-                    <div id="list-of-divs" class="">
-                        <div data-content="<?php echo $row['job_title']?>" class="div w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
-                            <div class="mb-8">
-                                <img src="img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
-                            </div>
-                            <div class="text-center">
-                                <p class="text-md text-gray-700 font-bold"><?php echo $row['job_company']?></p>
-                                <p class="text-base text-gray-400 font-normal"><?php echo $row['job_title']?></p>
-                                <button class="myBtn_multi hover:bg-blue-400 hover:text-blue-600 text-base text-black p-1 rounded-md mt-4 ease-in-out duration-500">
-                                    <a href="#_" class="p-1">
-                                        View 
-                                    </a>
-                                </button>
-                                <div class="modal modal_multi fade fixed hidden top-0 left-0 py-24 px-6 lg:py-40 lg:px-96 sm:px-16 sm:py-32 w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                                    id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-content relative w-auto pointer-events-none">
-                                        <div class="bg-gray-400 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                            <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                                                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">
-                                                        <?php echo $row['job_title']?>
-                                                    </h5>
-                                                    <button type="button" class="close close_multi text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                                                    </button>
-                                                    </div>
-                                                    <div class="border-t border-gray-200">
-                                                    <dl>
-                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">Company Name</dt>
-                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_company']?></dd>
-                                                        </div>
-                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">Job Description</dt>
-                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_about']?></dd>
-                                                        </div>
-                                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">Job Experience</dt>
-                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_experience']?></dd>
-                                                        </div>
-                                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                            <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $row['job_qualification']?></dd>
-                                                        </div>
-                                                        <form action="job/apply-auth.php" method="post" role="form">
-                                                            <div class="flex justify-center bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                                <dd class=" mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                                    <div class="da">
-                                                                        <input name="employer_id" class="hidden" type="text" value="<?php echo $row['employer_id']?>">
-                                                                        <input name="job_id" class="hidden" type="text" value="<?php echo $row['post_id']?>">
-                                                                        <input name="user_id" class="hidden" type="text" value="<?php echo $user_id?>">
-                                                                        <input name="fname" class="hidden" type="text" value="<?php echo $fname;?>">
-                                                                        <?php 
-                                                                            if($mode == 'work'){
-                                                                                echo $_SESSION['show'] = '<button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button>';
-                                                                            } elseif($mode != 'work'){
-    
-                                                                            }
-                                                                        ?>
-                                                                        <!-- <button name="apply" type="submit" class="items-center p-3 rounded-md hover:bg-blue-400 ease-in-out duration-500">Apply</button> -->
-                                                                    </div>
-                                                                </dd>
-                                                            </div>
-                                                        </form>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-8 gap-4 md:gap-5 lg:gap-2 px-10 mb-5">
+            <?php     
+            $products_posted="SELECT * from products ORDER BY rand()";
+            $results=mysqli_query($conn,$products_posted);
+            while($get_products = $results -> fetch_assoc()){
+                $product_id = $get_products['product_id'];
+                $seller_id = $get_products['seller_id'];
+                $product_name = $get_products['product_name'];
+                $quantity = $get_products['quantity'];
+                $price = $get_products['price'];
+                $product_description = $get_products['product_description'];
+                $product_category = $get_products['product_category'];
+                $shipping_fee = $get_products['shipping_fee'];
+                $file1 = $get_products['file1'];
+                $file2 = $get_products['file2'];
+                $file3 = $get_products['file3'];
+                $file4 = $get_products['file4'];
+                $file5 = $get_products['file5'];                
+                $sql="SELECT SUM(quantity) as sum from orders WHERE product_id = $product_id";                 
+                $sold=mysqli_query($conn,$sql);
+                $val = $sold -> fetch_array();
+                $total = $val['sum'];
+
+
+            ?>
+                <div id="list-of-divs">
+                    <div data-contents="<?php echo $get_products['product_name']; ?>" class="divs w-40 rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+                        <a href="e-com/item-view.php?item=<?php echo $product_id?>&seller=<?php echo $seller_id?>&sellprof=<?php echo $pictures?>&product=<?php echo $product_name?>&quantity=<?php echo $quantity?>&price=<?php echo $price?>&desc=<?php echo $product_description?>&cat=<?php echo $product_category?>&fee=<?php echo $shipping_fee?>&a=<?php echo $file1?>&b=<?php echo $file2 ?>&c=<?php echo $file3?>&d=<?php echo $file4?>&e=<?php echo $file5?>&total=<?php echo $total?>">
+                            <img class="rounded-t-lg p-5 aspect-square w-full" src="e-com/product_images/<?php echo $get_products['file1']; ?>" alt="product image" />
+                            <div class="px-5 pb-5">
+                                <h3 class="text-sm lg:text-md font-semibold tracking-tight text-gray-900 dark:text-white truncate"><?php echo $get_products['product_name']; ?></h3>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-md lg:text-md lg:fold-bold text-md text-orange-400">₱<?php echo number_format($get_products['price'], 2, '.', ',') ?></span>
+                                    <span href="#" class="text-md px-1 py-2.5 text-center text-sm font-medium text-white"><?php if ($total == null) {  
+                                } else {echo $total," SOLD"; }?></span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php
-                                }
-                        
-                    ?>
-                    
+                        </a>
+                    </div>  
+                </div><?php }?>
+            </div>
 
-                </div>
-            </section>
         </div>
-        <!-- End Jobs -->
+    </main>
+    <!-- E-commerce End -->
+    
     <!--/container-->
     <footer class="bg-white border-t border-gray-400 shadow">
         <div class="container max-w-md mx-auto flex py-8">

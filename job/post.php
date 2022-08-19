@@ -175,23 +175,23 @@
                                                     <dl>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Job Title 1</dt>
-                                                            <input name="job_title" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                            <input name="job_title" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300" required>
                                                         </div>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                                            <input name="job_experience" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                            <input name="job_experience" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300" required>
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Qualifications</dt>
-                                                            <input name="job_qualification" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                            <input name="job_qualification" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300" required>
                                                         </div>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">About</dt>
-                                                            <input name="job_about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300">
+                                                            <input name="job_about" type="text" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 p-2 border border-gray-300" required>
                                                         </div>
                                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">logo</dt>
-                                                            <input name="job_logo" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                                            <input name="job_logo" type="file" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" required>
                                                         </div>
                                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                             <dt class="text-sm font-medium text-gray-500">Create: </dt>

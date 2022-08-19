@@ -103,6 +103,11 @@
                     <li class="mr-6 my-2 md:my-0">
                         <a href="#_" class="block py-1 md:py-3 pl-1 align-middle text-orange-400 no-underline hover:text-orange-400 border-b-2 border-white border-orange-400">
                             <i class="fa fa-shopping-cart fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Cart</span>
+                            <?php
+                                if(isset($_SESSION['notif'])) {
+                                    echo $_SESSION['notif'];
+                                }
+                            ?>
                         </a>
                     </li>
                 </ul>
@@ -120,8 +125,8 @@
                     </h1>
                 </div>
                 <div class="flex  lg:ml-[62rem] lg:px-6">
-                    <div class="w-10 z-10 lg:pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-magnify text-gray-400 text-lg"></i></div>
-                    <input name="contact" type="text" class="w-full sm:-ml-10 lg:-ml-10 lg:pl-12 lg:pr-3 lg:py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Search...">
+                    <!-- <div class="w-10 z-10 lg:pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-magnify text-gray-400 text-lg"></i></div>
+                    <input name="contact" type="text" class="w-full sm:-ml-10 lg:-ml-10 lg:pl-12 lg:pr-3 lg:py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Search..."> -->
                 </div>
             </div>
             <!-- Start of E-commerce -->
@@ -129,60 +134,76 @@
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="overflow-hidden">
-                            <table class="min-w-full">
+                            <table class="min-w-full ">
                                 <thead class="border-b">
                                     <tr>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-2 py-4 text-left">
                                             
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-2 py-4 text-left">
                                             Product
                                         </th>
-                                        <th scope="col" class="text-xs font-medium text-gray-900 px-6 py-4 text-left">
+                                        <th scope="col" class="text-xs font-medium text-gray-900 px-2 py-4 text-left">
                                             Unit Price
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-2 py-4 text-left">
                                             Quantity
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-2 py-4 text-left">
                                             Actions
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     <?php
+                                    <?php
+                                    $i = 0;
                                     $products_posted="SELECT * from cart WHERE user_id ='$user_id'";                
                                     $results=mysqli_query($conn,$products_posted);      
                                         $cartTotal = 0;           
                                         while($row = $results -> fetch_assoc()){
                                             $products_ordered="SELECT * from products WHERE product_id = ".$row['product_id'];  
                                             $res=mysqli_query($conn,$products_ordered);
-                                             while($fetch = $res-> fetch_assoc()){       
-                                            $cartTotal += ($fetch["price"] * $row["quantity"]);                                      
+                                            while($fetch = $res-> fetch_assoc()){       
+                                                $cartTotal += ($fetch["price"] * $row["quantity"] );  
+                                                // $totalPayment += ($cartTotal + $row['shipping_fee']);  
+                                                $shipping_fee = $fetch['shipping_fee'];
                                     ?>                                   
                                     <tr class="border-b">
+                                        <td class="whitespace-nowrap hidden text-sm font-medium text-gray-900">
+                                            <?php echo $i;?>
+                                        </td>
                                         <td class="whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <img src="../img/<?php echo $fetch['file1'] ?>" class="w-36 lg:w-36" alt="product_image">
+                                            <img src="product_images/<?php echo $fetch['file1'] ?>" class="w-36 lg:w-36" alt="product_image">
                                         </td>
-                                        <td class="text-xs lg:text-base text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <?php echo $fetch['product_name']; ?>
-                                            <br>
-                                            white - orange
+                                        <td class="pl-2">
+                                            <div class="text-xs lg:text-base lg:font-bold lg:w-full w-32 font-bold text-gray-900 py-4 whitespace-nowrap tracking-tight truncate">
+                                                <p>
+                                                    <?php echo $fetch['product_name']; ?>
+                                                </p>
+                                            </div>
                                         </td>
-                                        <td class="text-sm text-orange-500 font-light px-6 py-4 whitespace-nowrap">
-                                            PHP <?php echo number_format($fetch['price'], 2, '.', ',') ?>
+                                        <td class="text-sm text-orange-500 font-light px-2 py-4 whitespace-nowrap">
+                                            ₱ <?php echo number_format($fetch['price'], 2, '.', ',') ?>
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             <?php echo $row['quantity']; ?>
                                         </td>
-                                        <td class="text-sm text-red-500 font-light px-6 py-4 whitespace-nowrap">
-                                            <a href="delete-action.php?i=<?php echo $row['cart_id']?>">Delete</a>
+                                        <td class="text-sm text-red-500 font-light py-4 whitespace-nowrap">
+                                            <a href="delete-cart.php?id=<?php echo $row['cart_id']?>">Delete</a>
                                         </td>
                                     </tr>
-                                    <?php 
+                                    <?php $i +=1;
                                         } 
                                     }?>
                                 </tbody>
+                                <?php 
+                                    if($i >= 0){
+                                        echo $notif = '<div class="flex absolute bottom-5 mt-11 ml-4 h-5 w-5 sm:top-2 rounded-full border-4 border-white bg-green-400 sm:invisible md:visible"></div>';
+                                        echo $i;
+                                    } else{
+
+                                    }
+                                ?>
                             </table>
                         </div>
                     </div>
@@ -198,7 +219,7 @@
                         </h1>
                     </a>
                     <h1 class="lg:text-2xl text-orange-600 leading-tight mt-[13px] pl-8 lg:ml-[26rem]">
-                        PHP <?php echo number_format($cartTotal, 2, '.', ',') ?>
+                        ₱<?php echo number_format($cartTotal, 2, '.', ',') ?>
                         <input type="hidden" name="cart_total" value="<?php echo $cartTotal ?>">
                     </h1>
                 </div>
@@ -220,7 +241,7 @@
                     <h1 class="lg:text-2xl text-orange-500 leading-tight mb-2 mr-52 lg:mr-[75rem]">
                         You May Also Like
                     </h1>
-                    <a href="" class="text-orange-500">See All ></a>
+                    <!-- <a href="" class="text-orange-500">See All ></a> -->
                 </div>
             </div>
             <div class="flex justify-center items-center bg-white mt-2 py-5">

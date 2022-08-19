@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="lg:ml-52 text-sm font-medium text-gray-500">Price</dt>
-                                <input name="price" class="mt-1 text-sm text-orange-400 sm:col-span-2 sm:mt-0 p-3 border border-black" value="<?php echo number_format($price, 2, '.', ',')?>">
+                                <input name="price" class="mt-1 text-sm text-orange-400 sm:col-span-2 sm:mt-0 p-3 border border-black" value="<?php echo $price?>">
                                 </div>
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="lg:ml-52 text-sm font-medium text-gray-500">Brand</dt>

@@ -45,8 +45,6 @@
     <script src="js/tab.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- iconscount -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 
 </head>
@@ -107,17 +105,6 @@
                     <li class="mr-6 my-2 md:my-0">
                         <a href="e-com/cart.php" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400 ease-in-out duration-500">
                             <i class="fa fa-shopping-cart fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Cart</span>
-                            <?php
-                            include 'e-com/cart.php';
-                                if(isset($_SESSION['notif'])) {
-                                    echo $_SESSION['notif'];
-                                }
-                            ?>
-                        </a>
-                    </li>
-                    <li class="mr-6 my-2 md:my-0">
-                        <a href="message.php" class="block py-1 md:py-3 pl-1 text-lg align-middle text-gray-500 no-underline hover:text-orange-400 border-b-2 border-white hover:border-orange-400 ease-in-out duration-500">
-                            <i class="uil uil-facebook-messenger-alt fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Message</span>
                         </a>
                     </li>
                 </ul>
@@ -150,25 +137,58 @@
             </ul>
         </div>
     </div>
-
-    <!-- Jobs Part -->
-    <main class="tab-content">
+        <main class="tab-content">
         <div id="job" data-tab-content class="active">
-        <form action="search_jobs.php" method="post">
-            <input
-                type="text"
-                name="search"
-                class="bg-gray-50 ml-10 lg:ml-48 -mt-10 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
-            <button type="submit" name="search_position"></button>
-        </form>
-            <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    <?php
+    <form action="search_jobs.php" method="post">
+        <input
+            type="text"
+            name="search"
+            class="bg-gray-50 ml-52 -mt-10 border-2 border-teal-300 text-gray-900 text-sm rounded-lg block w-80 pl-10 p-2.5 outline-none" placeholder="Search Position...">
+        <button type="submit" name="search_position"></button>
+    </form>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-3">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">            
+
+<?php
+
+    if (isset($_POST['search_position'])) {
+        $connection_string = new mysqli("localhost", "root", "", "propose");
+        $searchString = mysqli_real_escape_string($connection_string, trim(htmlentities($_POST['search'])));
+        if ($connection_string->connect_error) {
+            echo "Failed to connect to Database";
+            exit();
+        }
+        if ($searchString === "" || !ctype_alnum($searchString) || $searchString < 3) {
                     $post = "SELECT * from jobs_post ORDER BY rand()";
                     $results=mysqli_query($conn, $post);
                     while($row=mysqli_fetch_array($results)){
-                    ?>
-                    <div id="list-of-divs" class="">
+                    }
+        }
+	        $searchString = "%$searchString%";
+
+	        // The prepared statement
+	        $sql = "SELECT * FROM jobs_post WHERE job_company LIKE ? ORDER BY rand()";
+
+	        // Prepare, bind, and execute the query
+	        $prepared_stmt = $connection_string->prepare($sql);
+	        $prepared_stmt->bind_param('s', $searchString);
+	        $prepared_stmt->execute();
+
+	        // Fetch the result
+	        $result = $prepared_stmt->get_result();
+
+	        if ($result->num_rows === 0) {
+	            // No match found
+	            echo "No match found";
+	            // Kill the script
+	            exit();
+
+	        } else {
+	            // Process the result(s)
+	            while ($row = $result->fetch_assoc()) {
+
+            	?>
+                    <div id="list-of-divs">
                         <div data-content="<?php echo $row['job_title']?>" class="div w-full bg-white shadow-2xl rounded-lg p-5 flex flex-col justify-center items-center">
                             <div class="mb-8">
                                 <img src="img/<?php echo $row['logo']?>" class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-yellow-200 font-mono text-2xl text-yellow-500" />
@@ -242,16 +262,22 @@
                             </div>
                         </div>
                     </div>
-                    <?php
-                                }
-                        
-                    ?>
-                    
+			                    <?php    
+			            } // end of while loop
+			        } // end of if($result->num_rows)
+			                       
+			    }else { // The user accessed the script directly
 
+			        // Tell them nicely and kill the script.
+			        echo "That is not allowed!";
+			        exit(); 
+
+			    }?> 
                 </div>
             </section>
         </div>
-        <!-- End Jobs -->
+
+
     <!--/container-->
     <footer class="bg-white border-t border-gray-400 shadow">
         <div class="container max-w-md mx-auto flex py-8">
@@ -284,9 +310,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </footer>
     <script>

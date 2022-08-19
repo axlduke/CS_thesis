@@ -14,8 +14,14 @@
             $referer = $_SERVER['HTTP_REFERER'];
             header("Location: $referer"); 
         }
+        $checkout = "UPDATE products SET quantity=quantity-$quantity WHERE product_id='$product_id'";
+            if (mysqli_query($conn, $checkout)) {
+                $referer = $_SERVER['HTTP_REFERER'];
+                header("Location: $referer"); 
+            } else {
+                    echo "Error: " . $checkout . "<br>" . mysqli_error($conn);
+    }            
     }
-
 ?>
 
 <?php

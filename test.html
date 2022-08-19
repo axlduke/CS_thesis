@@ -1,80 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <style>
-        .header {
-            display: flex;
-          }
-          
-          .header p {
-            flex: 1;
-            font-weight: bold;
-          }
-          
-          .results {
-            display: flex;
-          }
-          
-          .results p {
-            flex: 1;
-          }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<input id="filter" type="text">
-
-<div id="header">
-  <div class="header">
-    <p>ID</p>
-    <p>Manufacturer</p>
-    <p>Type</p>
-    <p>PS</p>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+  }
+</style>
+<div class="flex flex justify-between items-center px-5">
+  <div class="w-full md:px-0 mb-16 text-gray-800 leading-normal">
+      <ul class="tabs flex lg:ml-10 justify-center items-center bg-white">
+          <li  class="px-4 py-5 lg:-ml-[60rem] lg:mr-32">
+              <h1 class="lg:text-2xl xl:ml-44 font-bold leading-tight mb-2">
+                  Payment Method
+              </h1>
+          </li>
+          <li class=" mx-2 cursor-pointer hover:bg-blue-400 rounded-md ease-in-out duration-500">
+              <button onclick="openTab(event, 'cod')" class="tablinks lg:text-lg text-black hover:text-blue-600 leading-tight px-2 py-2 focus:text-orange-400 ease-in-out duration-500">
+                  Cash on Delivery
+              </button>
+          </li>
+          <li class="mx-2 cursor-pointer hover:bg-blue-400 rounded-md ease-in-out duration-500">
+              <button onclick="openTab(event, 'epayment')" class="tablinks lg:text-lg text-black hover:text-blue-600 leading-tight px-2 py-2 focus:text-orange-400 ease-in-out duration-500">
+                  E-payment
+              </button>
+          </li>
+          <li class="mx-2 cursor-pointer hover:bg-blue-400 rounded-md ease-in-out duration-500">
+              <button onclick="openTab(event, 'onlinebanking')" class="tablinks lg:text-lg text-black hover:text-blue-600 leading-tight px-2 py-2 ease-in-out duration-500">
+                  Online Banking
+              </button>
+          </li>
+      </ul>
   </div>
 </div>
+  <div id="cod" class="tabcontent px-32">
+      <h1 class="font-bold text-orange-400 text-3xl"><i class="uil uil-truck"></i> Cash on Delivery</h1>
+      <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-rows-3 gap-2">
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Full Name:</p>
+                  <input name="fname" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Contact Num:</p>
+                  <input name="contact" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Complete Add:</p>
+                  <input name="address" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+                  <small class="text-gray-500">Street Name, Building, House No</small>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Zip Code:</p>
+                  <input name="zipcode" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
 
-<div id="results">
-  <div class="results">
-    <p>1</p>
-    <p>Toyota</p>
-    <p>C 200</p>
-    <p>114</p>
+          </div>
+          <div class="">
+              <h1 class="ml-2 font-bold"><i class="uil uil-notes"></i>Payment Details</h1>
+              <div class="flex bg-gray-100 rounded-lg">
+                  <div class="grid grid-cols-3 gap-3">
+                      <img src="product_images/Deliver.png" alt="display" class="w-72">
+                      <div class="grid grid-rows-4 gap-1 mt-12 mb-5">
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Merchandise Subtotal:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo number_format($cartTotal, 2, '.', ',') ?></p>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Shipping Fee:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo $shipping_fee?></p>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Total Payment:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo number_format($cartTotal + $shipping_fee, 2, '.', ',') ?></p>
+                          </div>
+                          <div class="grid grid-cols-1">
+                              <input type="text" class="hidden" values="<?php echo number_format($cartTotal + $shipping_fee, 2, '.', ',') ?>">
+                              <button class="bg-orange-300 hover:bg-orange-600 rounded-lg">Place Order</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-  <div class="results">
-    <p>2</p>
-    <p>Mercedes</p>
-    <p>C 220</p>
-    <p>144</p>
+  <div id="epayment" class="tabcontent">
+      <h1 class="font-bold text-orange-400 text-3xl"><i class="uil uil-truck"></i> Electronic Payments</h1>
+      <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-rows-3 gap-2">
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Full Name:</p>
+                  <input name="fname" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Contact Num:</p>
+                  <input name="contact" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Complete Add:</p>
+                  <input name="address" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+                  <small class="text-gray-500">Street Name, Building, House No</small>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Zip Code:</p>
+                  <input name="zipcode" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+          </div>
+          <div class="">
+              <h1 class="ml-2 font-bold"><i class="uil uil-notes"></i>Payment Details</h1>
+              <div class="flex bg-gray-100 rounded-lg">
+                  <div class="grid grid-cols-3 gap-3">
+                      <img src="product_images/Deliver.png" alt="display" class="w-72">
+                      <div class="grid grid-rows-4 gap-1 mt-12 mb-5">
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Merchandise Subtotal:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo number_format($cartTotal, 2, '.', ',') ?></p>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Shipping Fee:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo $shipping_fee?></p>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Total Payment:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo number_format($cartTotal + $shipping_fee, 2, '.', ',') ?></p>
+                          </div>
+                          <div class="grid grid-cols-1">
+                              <input type="text" class="hidden" values="<?php echo number_format($cartTotal + $shipping_fee, 2, '.', ',') ?>">
+                              <button class="bg-orange-300 hover:bg-orange-600 rounded-lg">Place Order</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-</div>
-    <script>
-        $("#filter").keyup(function() {
+  <div id="onlinebanking" class="tabcontent">
+      <h1 class="font-bold text-orange-400 text-3xl"><i class="uil uil-truck"></i> Online Banking</h1>
+      <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-rows-3 gap-2">
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Full Name:</p>
+                  <input name="fname" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Contact Num:</p>
+                  <input name="contact" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Complete Add:</p>
+                  <input name="address" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+                  <small class="text-gray-500">Street Name, Building, House No</small>
+              </div>
+              <div class="grid grid-cols-1 px-10 py-1">
+                  <p>Zip Code:</p>
+                  <input name="zipcode" type="text" class="border border-black rounded-md p-1 focus:border-orange-400 focus:border-2 outline-none" required>
+              </div>
 
-            // Retrieve the input field text and reset the count to zero
-            var filter = $(this).val(),
-              count = 0;
-      
-            // Loop through the comment list
-            $('#results div').each(function() {
-      
-      
-              // If the list item does not contain the text phrase fade it out
-              if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-                $(this).hide();  // MY CHANGE
-      
-                // Show the list item if the phrase matches and increase the count by 1
-              } else {
-                $(this).show(); // MY CHANGE
-                count++;
-              }
-      
-            });
-      
-          });
-    </script>
+          </div>
+          <div class="">
+              <h1 class="ml-2 font-bold"><i class="uil uil-notes"></i>Payment Details</h1>
+              <div class="flex bg-gray-100 rounded-lg">
+                  <div class="grid grid-cols-3 gap-3">
+                      <img src="product_images/Deliver.png" alt="display" class="w-72">
+                      <div class="grid grid-rows-4 gap-1 mt-12 mb-5">
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Merchandise Subtotal:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo number_format($cartTotal, 2, '.', ',') ?></p>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Shipping Fee:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo $shipping_fee?></p>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <p class="px-1 py-2 text-sm">Total Payment:</p>
+                              <p class="text-orange-500 px-5 py-2">₱<?php echo number_format($cartTotal + $shipping_fee, 2, '.', ',') ?></p>
+                          </div>
+                          <div class="grid grid-cols-1">
+                              <input type="text" class="hidden" values="<?php echo number_format($cartTotal + $shipping_fee, 2, '.', ',') ?>">
+                              <button class="bg-orange-300 hover:bg-orange-600 rounded-lg">Place Order</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+<script>
+function openTab(evt, tabSelect) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabSelect).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+   
 </body>
-</html>
+</html> 

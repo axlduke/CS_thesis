@@ -33,7 +33,7 @@
             <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
                 <div class="text-center">
                     <h2 class="mt-6 text-3xl font-bold text-gray-900">
-                        Login
+                        Forgot Password
                     </h2>
                 </div>
                 <?php
@@ -45,37 +45,18 @@
                 <form class="space-y-6" action="auth/register-auth.php" method="POST">
                     <input type="hidden" name="remember" value="true">
                     <div class="relative">
-                        <label class="text-sm font-bold text-gray-700 tracking-wide">Email</label>
-                        <input name="email" class=" w-full text-black text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="mail@gmail.com">
-                    </div>
-                    <div class="mt-8 content-center">
-                        <label class="text-sm font-bold text-gray-900 tracking-wide">
-                            Password
-                        </label>
-                        <input name="password" class="w-full content-center text-black text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password">
-                    </div>
-                    <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded" require>
-                                <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-                                    Remember me
-                                </label>
-                            </div>
-                        <div class="text-sm">
-                            <a href="forgot-pass.php" class="font-medium text-indigo-500 hover:text-indigo-500">
-                                Forgot your password?
-                            </a>
-                        </div>
+                        <label class="text-sm font-bold text-gray-700 tracking-wide">Email Address</label>
+                        <input name="email" type="email" class=" w-full text-black text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="mail@gmail.com" required>
                     </div>
                     <div>
-                        <button name="login" type="submit" class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4  rounded-full tracking-wide
+                        <button name="check-email" type="submit" class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4  rounded-full tracking-wide
                                         font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300">
-                            Sign in
+                            Continue
                         </button>
                     </div>
                     <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
-                        <span>Don't have an account?</span>
-                        <a href="form.php" class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</a>
+                        <span>Do you have an account?</span>
+                        <a href="form.php" class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300">Log in</a>
                     </p>
                 </form>
             </div>

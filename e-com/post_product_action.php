@@ -17,13 +17,13 @@ if(isset($_POST['post_product'])){
         $file5=$_FILES['img5']['name'];
         $file_tmp5=$_FILES['img5']['tmp_name'];
 
-        $product_name=$_POST['product_name'];
-		$quantity=$_POST['quantity'];
-		$price=$_POST['price'];
-		$product_description=$_POST['product_description'];
-		$product_category=$_POST['product_category'];
-		$shipping_fee= $_POST['shipping_fee'];
-        $brand = $_POST['brand'];
+        $product_name= mysqli_real_escape_string($conn, $_POST['product_name']);
+		$quantity= mysqli_real_escape_string($conn,$_POST['quantity']);
+		$price= mysqli_real_escape_string($conn,$_POST['price']);
+		$product_description= mysqli_real_escape_string($conn,$_POST['product_description']);
+		$product_category= mysqli_real_escape_string($conn,$_POST['product_category']);
+		$shipping_fee=  mysqli_real_escape_string($conn,$_POST['shipping_fee']);
+        $brand =  mysqli_real_escape_string($conn,$_POST['brand']);
         $product_sql = "INSERT INTO products (seller_id, brand, product_name, quantity, price, product_description, product_category, shipping_fee, file1, file2, file3, file4, file5) VALUES ('$seller_id', '$brand', '$product_name', '$quantity', '$price', '$product_description', '$product_category', '$shipping_fee', '$file1', '$file2', '$file3', '$file4', '$file5');";
         if($conn->query($product_sql) === TRUE){
             move_uploaded_file($file_tmp1, $location.$file1);
